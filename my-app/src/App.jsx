@@ -153,7 +153,7 @@ function PageHero({ eyebrow, title, text, action, onAction }) {
       <h1>{title}</h1>
       <p className="hero-copy">{text}</p>
       {action && (
-        <button className="primary" onClick={onAction}>
+        <button className="primary" type="button" onClick={onAction}>
           {action} <ArrowRight size={18} />
         </button>
       )}
@@ -163,6 +163,7 @@ function PageHero({ eyebrow, title, text, action, onAction }) {
 
 export default function App() {
   const [page, setPage] = useState("home");
+  const [activeTarget, setActiveTarget] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [contactStatus, setContactStatus] = useState("");
 
@@ -179,10 +180,12 @@ export default function App() {
   function navigate(target) {
     if (target.startsWith("#")) {
       setPage("home");
-      setTimeout(() => document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" }), 30);
+      setActiveTarget(target);
+      window.setTimeout(() => document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
     } else {
       setPage(target);
-      setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 30);
+      setActiveTarget(target);
+      window.setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 30);
     }
     setMenuOpen(false);
   }
@@ -190,15 +193,18 @@ export default function App() {
   function handleContact(event) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(`AESA enquiry from ${form.get("name")}`);
-    const body = encodeURIComponent(form.get("message"));
+    const name = form.get("name");
+    const email = form.get("email");
+    const message = form.get("message");
+    const subject = encodeURIComponent(`AESA enquiry from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
     window.location.href = `mailto:${club.email}?subject=${subject}&body=${body}`;
     setContactStatus("Opening your email app with the message ready to send.");
   }
 
   return (
     <div className="site-shell">
-      <Header page={page} menuOpen={menuOpen} setMenuOpen={setMenuOpen} navigate={navigate} />
+      <Header activeTarget={activeTarget} menuOpen={menuOpen} setMenuOpen={setMenuOpen} navigate={navigate} />
       {menuOpen && <MobileNav navigate={navigate} />}
 
       <main>
@@ -214,7 +220,7 @@ export default function App() {
   );
 }
 
-function Header({ page, menuOpen, setMenuOpen, navigate }) {
+function Header({ activeTarget, menuOpen, setMenuOpen, navigate }) {
   return (
     <header className="topbar">
       <button className="brand" onClick={() => navigate("home")} aria-label="Go to home">
@@ -229,17 +235,23 @@ function Header({ page, menuOpen, setMenuOpen, navigate }) {
 
       <nav className="desktop-nav" aria-label="Main navigation">
         {navItems.map(([label, target]) => (
-          <button className={target === page ? "active" : ""} key={target} onClick={() => navigate(target)}>
+          <button className={target === activeTarget ? "active" : ""} key={target} type="button" onClick={() => navigate(target)}>
             {label}
           </button>
         ))}
       </nav>
 
-      <button className="primary small" onClick={() => navigate("join")}>
+      <button className="primary small" type="button" onClick={() => navigate("join")}>
         Join
       </button>
 
-      <button className="menu-button" onClick={() => setMenuOpen((open) => !open)} aria-label="Open menu">
+      <button
+        className="menu-button"
+        type="button"
+        onClick={() => setMenuOpen((open) => !open)}
+        aria-expanded={menuOpen}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+      >
         {menuOpen ? <X /> : <Menu />}
       </button>
     </header>
@@ -250,7 +262,7 @@ function MobileNav({ navigate }) {
   return (
     <nav className="mobile-nav" aria-label="Mobile navigation">
       {navItems.map(([label, target]) => (
-        <button key={target} onClick={() => navigate(target)}>
+        <button key={target} type="button" onClick={() => navigate(target)}>
           {label}
         </button>
       ))}
@@ -278,10 +290,10 @@ function HomePage({ stats, navigate, handleContact, contactStatus }) {
             ))}
           </div>
           <div className="hero-actions">
-            <button className="primary" onClick={() => navigate("join")}>
+            <button className="primary" type="button" onClick={() => navigate("join")}>
               Join AESA <ArrowRight size={18} />
             </button>
-            <button className="secondary" onClick={() => navigate("#calendar")}>
+            <button className="secondary" type="button" onClick={() => navigate("#calendar")}>
               View calendar <CalendarDays size={18} />
             </button>
           </div>
@@ -316,7 +328,7 @@ function HomePage({ stats, navigate, handleContact, contactStatus }) {
           </div>
           <div className="mission-note">
             <b>Next checkpoint</b>
-            <span>Aerospace Industry Night · Storey Hall, RMIT City Campus</span>
+            <span>Aerospace Industry Night - Storey Hall, RMIT City Campus</span>
           </div>
         </motion.div>
       </section>
@@ -354,7 +366,7 @@ function HomePage({ stats, navigate, handleContact, contactStatus }) {
           <h2>Association directory</h2>
         </div>
         <div className="directory-list">
-          <button className="directory-row" onClick={() => navigate("activities")}>
+          <button className="directory-row" type="button" onClick={() => navigate("activities")}>
             <CalendarDays />
             <span>
               <b>Activities</b>
@@ -362,7 +374,7 @@ function HomePage({ stats, navigate, handleContact, contactStatus }) {
             </span>
             <ArrowRight />
           </button>
-          <button className="directory-row" onClick={() => navigate("team")}>
+          <button className="directory-row" type="button" onClick={() => navigate("team")}>
             <BriefcaseBusiness />
             <span>
               <b>Executive team</b>
@@ -370,7 +382,7 @@ function HomePage({ stats, navigate, handleContact, contactStatus }) {
             </span>
             <ArrowRight />
           </button>
-          <button className="directory-row" onClick={() => navigate("past")}>
+          <button className="directory-row" type="button" onClick={() => navigate("past")}>
             <Camera />
             <span>
               <b>Past events</b>
@@ -378,7 +390,7 @@ function HomePage({ stats, navigate, handleContact, contactStatus }) {
             </span>
             <ArrowRight />
           </button>
-          <button className="directory-row" onClick={() => navigate("join")}>
+          <button className="directory-row" type="button" onClick={() => navigate("join")}>
             <Send />
             <span>
               <b>Join us</b>
@@ -426,7 +438,7 @@ function CalendarSection({ navigate }) {
       />
       <div className="calendar-list">
         {calendar.map(([date, title, location, time, price]) => (
-          <button className="calendar-row" key={title} onClick={() => navigate("join")}>
+          <button className="calendar-row" key={title} type="button" onClick={() => navigate("join")}>
             <strong>{date}</strong>
             <span>
               <b>{title}</b>
@@ -450,7 +462,7 @@ function ContactSection({ handleContact, contactStatus }) {
     <section className="split-section contact" id="contact">
       <div>
         <SectionHeader
-        eyebrow="Contact us"
+          eyebrow="Contact us"
           title="Questions, sponsorships, collaborations"
           text="Contact AESA for memberships, industry partnerships, event ideas, project support, and student enquiries."
         />
@@ -502,7 +514,7 @@ function ActivitiesPage({ navigate }) {
       <section className="band">
         <div className="activity-grid">
           {activities.map(([title, tag, text]) => (
-            <button className="activity-card" key={title} onClick={() => navigate("#calendar")}>
+            <button className="activity-card" key={title} type="button" onClick={() => navigate("#calendar")}>
               <span>{tag}</span>
               <h3>{title}</h3>
               <p>{text}</p>
@@ -617,7 +629,7 @@ function Footer({ navigate }) {
       </div>
       <div>
         {navItems.slice(0, 5).map(([label, target]) => (
-          <button key={target} onClick={() => navigate(target)}>
+          <button key={target} type="button" onClick={() => navigate(target)}>
             {label}
           </button>
         ))}
