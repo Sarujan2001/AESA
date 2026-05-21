@@ -44,7 +44,7 @@ const navItems = [
   ["Contact", "#contact"],
 ];
 
-const focusAreas = ["Aerodynamics", "Structures", "Propulsion", "UAVs", "Space systems", "Simulation"];
+const focusAreas = ["Industry Connections", "Trvia Nights", "Networking", "Internships", "Nerds Out", "Assignment Help"];
 
 const sponsors = [
   ["AIAA", "AIAA Melbourne Section", "https://www.linkedin.com/company/aiaa-melbourne-section/", "https://logo.clearbit.com/aiaa.org"],
