@@ -17,7 +17,6 @@ import {
   Radar,
   Send,
   Share2,
-  Sparkles,
   X,
 } from "lucide-react";
 
@@ -220,7 +219,7 @@ function Header({ page, menuOpen, setMenuOpen, navigate }) {
     <header className="topbar">
       <button className="brand" onClick={() => navigate("home")} aria-label="Go to home">
         <span className="brand-mark">
-          <Sparkles size={22} />
+          <img src="/AESALONG.png" alt="AESA logo" />
         </span>
         <span>
           <strong>{club.shortName}</strong>
