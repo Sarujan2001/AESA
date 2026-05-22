@@ -307,6 +307,19 @@ function MobileNav({ navigate }) {
 function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) {
   return (
     <>
+      <section className="welcome-scroll" aria-label="Welcome to AESA official website">
+        <div className="welcome-image" aria-hidden="true" />
+        <motion.div
+          className="welcome-copy"
+          initial={{ opacity: 0, y: 26 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: "easeOut" }}
+        >
+          <p>Welcome to</p>
+          <h1>AESA Official Website</h1>
+        </motion.div>
+      </section>
+
       <section className="hero editorial-hero" id="home">
         <motion.div className="hero-statement" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <p className="eyebrow">
