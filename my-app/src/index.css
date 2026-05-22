@@ -820,16 +820,21 @@ h3 {
   font-weight: 900;
 }
 
+.team-photo-frame {
+  width: min(230px, 100%);
+  aspect-ratio: 1;
+  margin: 0 auto 24px;
+  padding: 10px;
+  background: var(--red);
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+}
+
 .team-photo {
   width: min(220px, 100%);
-  aspect-ratio: 1;
-  margin-bottom: 20px;
+  height: 100%;
   object-fit: cover;
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
   filter: grayscale(0.15);
-  justify-self: center;
-  outline: 1px solid var(--line);
-  outline-offset: 8px;
 }
 
 .past-card {
