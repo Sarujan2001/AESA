@@ -51,7 +51,7 @@ const sponsors = [
   ["AMOG", "AMOG", "https://www.amog.consulting/", "/logos/amog.png"],
   ["B", "Boeing", "https://www.boeing.com.au/", "/logos/boeing.png"],
   ["DS", "Dassault Systemes", "https://www.3ds.com/", "/logos/3ds.png"],
-  ["AVA", "AVA tRAINING", "https://avatraining.com.au/", "/logos/avatraining.png"],
+  ["AVA", "AVA TRAINING", "https://avatraining.com.au/", "/logos/avatraining.png"],
 ];
 
 const activities = [
