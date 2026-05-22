@@ -71,15 +71,18 @@ const calendar = [
 ];
 
 const executiveTeam = [
-  ["Nikolas Makris", "President", "Public AESA post text identifies Nikolas supporting membership sign-ups during Campus Fest.", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"],
-  ["Tanya Kimani", "Events Director", "Public AESA post text identifies Tanya as Events Director during Campus Fest.", "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"],
-  ["Sarujan Srikaran", "Careers Director", "Public AESA post text identifies Sarujan as Careers Director and LinkedIn lists him with AESA.", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"],
+  ["Nikolas Makris", "President","Fun Fact : He knows almost every species of monkey","/team/nikolas.png"],
+  ["Paris Theodosiou", "Treasurer", "Fun Fact : She played the flute for 6-7 years", "/team/paris.png"],
+  ["Indra Talwar", "Secretary", "Fun Fact : She fly small planes", "/team/indra.png"],
+  ["Tanya Kimani", "Events Director", "Fun Fact : She loves baking", "/team/tanya.png"],
+  ["Sarujan Srikaran", "Careers Director", "Fun Fact : Finished every Assassins's Creed game", "/team/sarujan.png"],
+  ["Phoenix Hope", "Social Media Director", "Fun Fact : They played violin for 6 years", "/team/phoenix.png"],
 ];
 
 const generalCommittee = [
-  ["Suvindu Amarasekara", "LinkedIn-listed member", "Listed publicly under employees at RMIT Aerospace Engineering Student Association.", "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80"],
-  ["Mahi Mistry", "LinkedIn-listed member", "Listed publicly under employees at RMIT Aerospace Engineering Student Association.", "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"],
-  ["Timotius Tan", "General committee", "Public AESA post text identifies Timotius supporting committee activity at Campus Fest.", "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80"],
+  ["Suvindu Amarasekara", "General committee", "/logos/avatraining.png"],
+  ["Mahi Mistry", "General committee", "/logos/avatraining.png"],
+  ["Timotius Tan", "General committee", "/logos/avatraining.png"],
 ];
 
 const pastEvents = [
