@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -131,6 +131,10 @@ function SocialLink({ href, icon: Icon, label }) {
 
 function SponsorLogo({ mark, name, logo }) {
   const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [logo]);
 
   if (failed) {
     return <span className="sponsor-mark">{mark}</span>;
