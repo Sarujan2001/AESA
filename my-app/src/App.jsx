@@ -316,7 +316,7 @@ function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) 
           transition={{ duration: 0.75, ease: "easeOut" }}
         >
         
-          <h1><span>AESA</span></h1>
+          <h1><span><b>AESA</b></span></h1>
         </motion.div>
       </section>
 
