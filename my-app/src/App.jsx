@@ -63,11 +63,11 @@ const activities = [
 ];
 
 const calendar = [
-  ["May 7", "Aerospace Industry Night 2026", "Storey Hall, Building 16", "6:30 PM - 9:30 PM", "Free"],
-  ["TBA", "Campus Fest / Club Day", "Bowen Street, RMIT City Campus", "Daytime", "Free"],
-  ["TBA", "AIAA Student Branch Session", "RMIT City Campus", "TBA", "Members"],
-  ["TBA", "Industry Q&A Panel", "RMIT City Campus", "Evening", "Free"],
-  ["TBA", "Project and Pathways Night", "RMIT City Campus", "Evening", "Free"],
+  ["May 7", "Aerospace Industry Night 2026", "Storey Hall, Building 16", "6:30 PM - 9:30 PM", "Free", "2026-05-07"],
+  ["TBA", "Campus Fest / Club Day", "Bowen Street, RMIT City Campus", "Daytime", "Free", ""],
+  ["TBA", "AIAA Student Branch Session", "RMIT City Campus", "TBA", "Members", ""],
+  ["TBA", "Industry Q&A Panel", "RMIT City Campus", "Evening", "Free", ""],
+  ["TBA", "Project and Pathways Night", "RMIT City Campus", "Evening", "Free", ""],
 ];
 
 const executiveTeam = [
@@ -80,9 +80,10 @@ const executiveTeam = [
 ];
 
 const generalCommittee = [
-  ["Suvindu Amarasekara", "General committee", "/logos/avatraining.png"],
-  ["Mahi Mistry", "General committee", "/logos/avatraining.png"],
-  ["Timotius Tan", "General committee", "/logos/avatraining.png"],
+  ["Suvindu Amarasekara", "General committee"],
+  ["Isabel Williamson-Lundstedt", "General committee"],
+  ["Mahi Mistry", "General committee"],
+  ["Timotius Tan", "General committee"],
 ];
 
 const pastEvents = [
@@ -161,6 +162,37 @@ function PageHero({ eyebrow, title, text, action, onAction }) {
   );
 }
 
+function getNextEvent(events) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcoming = events
+    .map(([date, title, location, time, price, isoDate]) => ({
+      date,
+      title,
+      location,
+      time,
+      price,
+      isoDate,
+      startsAt: isoDate ? new Date(`${isoDate}T00:00:00`) : null,
+    }))
+    .filter((event) => event.startsAt && event.startsAt >= today)
+    .sort((a, b) => a.startsAt - b.startsAt);
+
+  if (upcoming.length > 0) {
+    return upcoming[0];
+  }
+
+  const unscheduled = events.find(([date]) => date === "TBA");
+  if (unscheduled) {
+    const [date, title, location, time, price, isoDate] = unscheduled;
+    return { date, title, location, time, price, isoDate, startsAt: null };
+  }
+
+  const [date, title, location, time, price, isoDate] = events[0];
+  return { date, title, location, time, price, isoDate, startsAt: null };
+}
+
 export default function App() {
   const [page, setPage] = useState("home");
   const [activeTarget, setActiveTarget] = useState("home");
@@ -176,6 +208,7 @@ export default function App() {
     ],
     [],
   );
+  const nextEvent = useMemo(() => getNextEvent(calendar), []);
 
   function navigate(target) {
     if (target.startsWith("#")) {
@@ -208,7 +241,7 @@ export default function App() {
       {menuOpen && <MobileNav navigate={navigate} />}
 
       <main>
-        {page === "home" && <HomePage stats={stats} navigate={navigate} handleContact={handleContact} contactStatus={contactStatus} />}
+        {page === "home" && <HomePage stats={stats} nextEvent={nextEvent} navigate={navigate} handleContact={handleContact} contactStatus={contactStatus} />}
         {page === "activities" && <ActivitiesPage navigate={navigate} />}
         {page === "team" && <TeamPage />}
         {page === "past" && <PastPage />}
@@ -270,7 +303,7 @@ function MobileNav({ navigate }) {
   );
 }
 
-function HomePage({ stats, navigate, handleContact, contactStatus }) {
+function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) {
   return (
     <>
       <section className="hero editorial-hero" id="home">
@@ -328,7 +361,7 @@ function HomePage({ stats, navigate, handleContact, contactStatus }) {
           </div>
           <div className="mission-note">
             <b>Next checkpoint</b>
-            <span>Aerospace Industry Night - Storey Hall, RMIT City Campus</span>
+            <span>{nextEvent.title} - {nextEvent.location}</span>
           </div>
         </motion.div>
       </section>
