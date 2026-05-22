@@ -71,12 +71,12 @@ const calendar = [
 ];
 
 const executiveTeam = [
-  ["Nikolas Makris", "President","Fun Fact : He knows almost every species of monkey","/team/nikolas.png"],
-  ["Paris Theodosiou", "Treasurer", "Fun Fact : She played the flute for 6-7 years", "/team/paris.png"],
-  ["Indra Talwar", "Secretary", "Fun Fact : She fly small planes", "/team/indra.png"],
-  ["Tanya Kimani", "Events Director", "Fun Fact : She loves baking", "/team/tanya.png"],
-  ["Sarujan Srikaran", "Careers Director", "Fun Fact : Finished every Assassins's Creed game", "/team/sarujan.png"],
-  ["Phoenix Hope", "Social Media Director", "Fun Fact : They played violin for 6 years", "/team/phoenix.png"],
+  ["Nikolas Makris", "he/him", "President","Fun Fact : He knows almost every species of monkey","/team/nikolas.png"],
+  ["Paris Theodosiou", "she/her", "Treasurer", "Fun Fact : She played the flute for 6-7 years", "/team/paris.png"],
+  ["Indra Talwar", "she/her", "Secretary", "Fun Fact : She fly small planes", "/team/indra.png"],
+  ["Tanya Kimani", "she/her", "Events Director", "Fun Fact : She loves baking", "/team/tanya.png"],
+  ["Sarujan Srikaran", "he/him", "Careers Director", "Fun Fact : Finished every Assassins's Creed game", "/team/sarujan.png"],
+  ["Phoenix Hope", "they/them", "Social Media Director", "Fun Fact : They played violin for 6 years", "/team/phoenix.png"],
 ];
 
 const generalCommittee = [
@@ -548,17 +548,39 @@ function TeamBranch({ title, members }) {
     <section className="team-branch">
       <h2>{title}</h2>
       <div className="team-grid">
-        {members.map(([name, role, text, photo]) => (
-          <article className="team-card" key={`${title}-${name}`}>
-            <img className="team-photo" src={photo} alt={name} />
-            <h3>{name}</h3>
-            <p>{role}</p>
-            <span>{text}</span>
-          </article>
-        ))}
+        {members.map((member) => {
+          const { name, pronouns, role, text, photo } = normalizeTeamMember(member);
+
+          return (
+            <article className="team-card" key={`${title}-${name}`}>
+              {photo && <img className="team-photo" src={photo} alt={name} />}
+              <h3>
+                {name}
+                {pronouns && <small>{pronouns}</small>}
+              </h3>
+              <p>{role}</p>
+              {text && <span>{text}</span>}
+            </article>
+          );
+        })}
       </div>
     </section>
   );
+}
+
+function normalizeTeamMember(member) {
+  if (member.length >= 5) {
+    const [name, pronouns, role, text, photo] = member;
+    return { name, pronouns, role, text, photo };
+  }
+
+  if (member.length === 4) {
+    const [name, role, text, photo] = member;
+    return { name, pronouns: "", role, text, photo };
+  }
+
+  const [name, role, photo] = member;
+  return { name, pronouns: "", role, text: "", photo };
 }
 
 function PastPage() {

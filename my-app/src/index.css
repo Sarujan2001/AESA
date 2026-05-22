@@ -629,6 +629,25 @@ h3 {
   border: 0;
 }
 
+.team-card {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+}
+
+.team-card h3 {
+  display: grid;
+  gap: 5px;
+}
+
+.team-card h3 small {
+  color: var(--muted);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
 .activity-card {
   border-top: 5px solid var(--red);
   box-shadow: 0 18px 38px rgba(17, 19, 24, 0.08);
@@ -681,11 +700,15 @@ h3 {
 }
 
 .team-photo {
-  width: 100%;
-  aspect-ratio: 4 / 3;
+  width: min(220px, 100%);
+  aspect-ratio: 1;
   margin-bottom: 20px;
   object-fit: cover;
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
   filter: grayscale(0.15);
+  justify-self: center;
+  outline: 1px solid var(--line);
+  outline-offset: 8px;
 }
 
 .past-card {
