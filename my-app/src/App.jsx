@@ -603,11 +603,7 @@ function TeamBranch({ title, members }) {
 
           return (
             <article className="team-card" key={`${title}-${name}`}>
-              {photo && (
-                <div className="team-photo-frame">
-                  <img className="team-photo" src={photo} alt={name} />
-                </div>
-              )}
+              {photo && <img className="team-photo" src={photo} alt={name} />}
               <h3>
                 {name}
                 {pronouns && <small>{pronouns}</small>}
