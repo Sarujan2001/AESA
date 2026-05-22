@@ -203,7 +203,7 @@ export default function App() {
   const stats = useMemo(
     () => [
       ["392", "LinkedIn followers"],
-      ["191", "members reported"],
+      ["350+", "club members count"],
       ["350", "AIN 2026 tickets"],
       ["AIAA", "RMIT student branch"],
     ],
