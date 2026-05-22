@@ -30,6 +30,7 @@ const club = {
     instagram: "https://www.instagram.com/rmitaesa/",
     linkedin: "https://au.linkedin.com/company/rmit-aerospace-engineering-student-association-aesa",
     rubric: "https://campus.hellorubric.com/?s=957",
+    rubricEvents: "https://campus.hellorubric.com/?s=957&tab=events",
     linktree: "https://linktr.ee/rmitaesa",
   },
 };
@@ -362,6 +363,9 @@ function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) 
           <div className="mission-note">
             <b>Next checkpoint</b>
             <span>{nextEvent.title} - {nextEvent.location}</span>
+            <a href={club.socials.rubricEvents} target="_blank" rel="noreferrer">
+              View upcoming events on Rubric
+            </a>
           </div>
         </motion.div>
       </section>

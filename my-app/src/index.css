@@ -420,6 +420,15 @@ h3 {
   text-transform: uppercase;
 }
 
+.mission-note a {
+  color: var(--red);
+  font-weight: 900;
+}
+
+.mission-note a:hover {
+  text-decoration: underline;
+}
+
 .overview-section,
 .link-board,
 .band,
