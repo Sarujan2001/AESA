@@ -35,6 +35,8 @@ const club = {
   },
 };
 
+const contactFormEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
+
 const navItems = [
   ["Home", "home"],
   ["Activities", "activities"],
@@ -224,16 +226,40 @@ export default function App() {
     setMenuOpen(false);
   }
 
-  function handleContact(event) {
+  async function handleContact(event) {
     event.preventDefault();
+    setContactStatus("Sending your message...");
+
     const form = new FormData(event.currentTarget);
     const name = form.get("name");
     const email = form.get("email");
     const message = form.get("message");
+
+    if (contactFormEndpoint) {
+      try {
+        const response = await fetch(contactFormEndpoint, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+          },
+          body: form,
+        });
+
+        if (!response.ok) {
+          throw new Error("The contact service could not send the message.");
+        }
+
+        event.currentTarget.reset();
+        setContactStatus("Thanks, your message has been sent to AESA.");
+        return;
+      } catch (error) {
+        setContactStatus("We could not send that through the site. Opening your email app instead.");
+      }
+    }
+
     const subject = encodeURIComponent(`AESA enquiry from ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
     window.location.href = `mailto:${club.email}?subject=${subject}&body=${body}`;
-    setContactStatus("Opening your email app with the message ready to send.");
   }
 
   return (
@@ -530,6 +556,8 @@ function ContactSection({ handleContact, contactStatus }) {
       </div>
 
       <form className="form-card" onSubmit={handleContact}>
+        <input type="hidden" name="_subject" value="AESA website enquiry" />
+        <input type="hidden" name="_to" value={club.email} />
         <label>
           Name
           <input name="name" required placeholder="Your name" />
