@@ -728,9 +728,9 @@ h3 {
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(92px, 155px));
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   justify-content: center;
-  gap: 18px 8px;
+  gap: 36px 28px;
   padding: 10px 0 0;
 }
 
@@ -758,7 +758,6 @@ h3 {
 
 .team-card {
   display: grid;
-  grid-column: span 2;
   align-content: start;
   justify-items: center;
   min-height: 0;
@@ -767,10 +766,6 @@ h3 {
   text-align: center;
   background: transparent;
   border: 0;
-}
-
-.team-card:nth-child(6n + 4) {
-  grid-column-start: 2;
 }
 
 .team-card h3 {
@@ -839,11 +834,11 @@ h3 {
 }
 
 .team-photo-frame {
-  width: min(210px, 100%);
+  width: 190px;
   aspect-ratio: 1;
-  margin: 0 auto -8px;
-  padding: 9px;
-  background: var(--red);
+  margin: 0 auto 18px;
+  padding: 0;
+  background: transparent;
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
 }
 
@@ -1071,15 +1066,7 @@ footer button:hover {
   }
 
   .team-grid {
-    grid-template-columns: repeat(4, minmax(92px, 150px));
-  }
-
-  .team-card:nth-child(6n + 4) {
-    grid-column-start: auto;
-  }
-
-  .team-card:nth-child(4n + 3) {
-    grid-column-start: 2;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
   }
 
   .sponsor-list {
@@ -1139,14 +1126,12 @@ footer button:hover {
   }
 
   .team-grid {
-    grid-template-columns: repeat(2, minmax(118px, 180px));
-    gap: 10px 0;
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 
-  .team-card,
-  .team-card:nth-child(4n + 3),
-  .team-card:nth-child(6n + 4) {
-    grid-column: span 2;
+  .team-photo-frame {
+    width: 180px;
   }
 
   .sponsor-list a {
