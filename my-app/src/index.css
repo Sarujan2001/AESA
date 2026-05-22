@@ -272,6 +272,7 @@ footer button:hover {
 
 .editorial-hero {
   position: relative;
+  width: min(1440px, calc(100% - 72px));
   margin-top: -12vh;
   padding-top: clamp(82px, 10vw, 130px);
   background: transparent;
@@ -290,8 +291,8 @@ footer button:hover {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 370px);
-  gap: clamp(42px, 5vw, 72px);
+  grid-template-columns: minmax(0, 1.25fr) minmax(340px, 430px);
+  gap: clamp(54px, 7vw, 120px);
   align-items: center;
   padding: clamp(64px, 8vw, 112px) 0 70px;
   border-bottom: 1px solid var(--line);
@@ -422,7 +423,7 @@ h3 {
   background: var(--white);
   box-shadow: 0 22px 50px rgba(17, 19, 24, 0.08);
   width: 100%;
-  max-width: 370px;
+  max-width: 430px;
   justify-self: end;
 }
 
@@ -983,6 +984,10 @@ footer button:hover {
 @media (max-width: 1180px) {
   .hero {
     grid-template-columns: 1fr;
+  }
+
+  .editorial-hero {
+    width: min(1120px, calc(100% - 44px));
   }
 
   .mission-card {
