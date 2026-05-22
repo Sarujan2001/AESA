@@ -306,7 +306,7 @@ footer button:hover {
   .welcome-copy h1 span {
     animation: aesa-spread linear both;
     animation-timeline: view();
-    animation-range: exit 0% exit 82%;
+    animation-range: cover 18% cover 78%;
   }
 }
 
