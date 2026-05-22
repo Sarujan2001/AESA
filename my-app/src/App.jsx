@@ -315,7 +315,7 @@ function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) 
           </p>
           <h1 className="home-title">AESA is taking aerospace students beyond the lecture hall.</h1>
           <p className="hero-copy">
-            A student-run body providing social and professional development opportunities for aerospace and aviation
+            A student-run club providing social and professional development opportunities for aerospace
             students at RMIT.
           </p>
           <div className="focus-strip" aria-label="AESA focus areas">
@@ -362,7 +362,7 @@ function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) 
           </div>
           <div className="mission-note">
             <b>Next checkpoint</b>
-            <span>{nextEvent.title} - {nextEvent.location}</span>
+            <span>RMIT AESA x Boeing Factory Visit</span>
             <a href={club.socials.rubricEvents} target="_blank" rel="noreferrer">
               View upcoming events on Rubric
             </a>
