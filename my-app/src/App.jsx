@@ -316,7 +316,7 @@ function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) 
           transition={{ duration: 0.75, ease: "easeOut" }}
         >
         
-          <h1>Aerospace Engineering Students Association</h1>
+          <h1>AESA</h1>
         </motion.div>
       </section>
 
