@@ -264,15 +264,19 @@ footer button:hover {
 .welcome-copy h1 {
   margin: 0 auto;
   color: var(--white);
-  font-size: clamp(3.2rem, 8vw, 8.4rem);
+  font-size: clamp(4rem, 13vw, 13rem);
   line-height: 0.92;
   text-shadow: 0 22px 50px rgba(0, 0, 0, 0.34);
   text-wrap: balance;
 }
 
+.welcome-copy h1 span {
+  display: inline-block;
+}
+
 .editorial-hero {
   position: relative;
-  width: min(1440px, calc(100% - 72px));
+  width: min(1680px, calc(100% - 32px));
   margin-top: -12vh;
   padding-top: clamp(82px, 10vw, 130px);
   background: transparent;
@@ -291,11 +295,19 @@ footer button:hover {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(340px, 430px);
-  gap: clamp(54px, 7vw, 120px);
+  grid-template-columns: minmax(0, 1.45fr) minmax(360px, 460px);
+  gap: clamp(64px, 8vw, 150px);
   align-items: center;
   padding: clamp(64px, 8vw, 112px) 0 70px;
   border-bottom: 1px solid var(--line);
+}
+
+@supports (animation-timeline: view()) {
+  .welcome-copy h1 span {
+    animation: aesa-spread linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 82%;
+  }
 }
 
 @keyframes panorama-drift {
@@ -305,6 +317,20 @@ footer button:hover {
 
   to {
     transform: scale(1.04) translateY(-2%);
+  }
+}
+
+@keyframes aesa-spread {
+  from {
+    opacity: 1;
+    letter-spacing: 0;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    letter-spacing: 0.65em;
+    transform: translateY(-26px) scale(1.08);
   }
 }
 
@@ -349,8 +375,8 @@ h1 {
 }
 
 .home-title {
-  max-width: 980px;
-  font-size: clamp(3.1rem, 5vw, 5.6rem);
+  max-width: 1120px;
+  font-size: clamp(3.35rem, 5.7vw, 6.7rem);
   line-height: 0.96;
   text-wrap: balance;
 }
@@ -423,7 +449,7 @@ h3 {
   background: var(--white);
   box-shadow: 0 22px 50px rgba(17, 19, 24, 0.08);
   width: 100%;
-  max-width: 430px;
+  max-width: 460px;
   justify-self: end;
 }
 
@@ -987,7 +1013,7 @@ footer button:hover {
   }
 
   .editorial-hero {
-    width: min(1120px, calc(100% - 44px));
+    width: min(1120px, calc(100% - 32px));
   }
 
   .mission-card {
