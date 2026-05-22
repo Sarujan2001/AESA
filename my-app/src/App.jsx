@@ -315,8 +315,8 @@ function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) 
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: "easeOut" }}
         >
-          <p>Welcome to</p>
-          <h1>AESA Official Website</h1>
+        
+          <h1>Aerospace Engineering Students Association</h1>
         </motion.div>
       </section>
 
