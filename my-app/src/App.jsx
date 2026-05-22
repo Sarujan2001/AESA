@@ -49,16 +49,8 @@ const focusAreas = ["Industry Connections", "Trvia Nights", "Networking", "Inter
 const sponsors = [
   ["AIAA", "AIAA Melbourne Section", "https://www.linkedin.com/company/aiaa-melbourne-section/", "https://logo.clearbit.com/aiaa.org"],
   ["AMOG", "AMOG", "https://www.amog.consulting/", "https://logo.clearbit.com/amog.consulting"],
-  ["B", "Boeing", "https://www.boeing.com.au/", "https://logo.clearbit.com/boeing.com"],
+  ["B", "Boeing", "https://www.boeing.com.au/", "/logos/boeing.jpg"],
   ["3DS", "Dassault Systemes", "https://www.3ds.com/", "https://logo.clearbit.com/3ds.com"],
-  ["DA", "Defence Australia", "https://www.defence.gov.au/", "https://logo.clearbit.com/defence.gov.au"],
-  ["DSTG", "DSTG", "https://www.dst.defence.gov.au/", "https://logo.clearbit.com/dst.defence.gov.au"],
-  ["D", "Dovetail Electric Aviation", "https://www.dovetail.aero/", "https://logo.clearbit.com/dovetail.aero"],
-  ["JAG", "Javelin Aerospace Group", "https://www.javelinaerospace.com/", "https://logo.clearbit.com/javelinaerospace.com"],
-  ["JA", "Jetstar Airways", "https://www.jetstar.com/", "https://logo.clearbit.com/jetstar.com"],
-  ["QF", "Qantas", "https://www.qantas.com/", "https://logo.clearbit.com/qantas.com"],
-  ["RRT", "RMIT Rover Team", "https://www.rmitrover.com/", "https://logo.clearbit.com/rmitrover.com"],
-  ["HPR", "Monash High Powered Rocketry", "https://www.monashhpr.com/", "https://logo.clearbit.com/monashhpr.com"],
 ];
 
 const activities = [
