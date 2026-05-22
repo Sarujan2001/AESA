@@ -47,10 +47,11 @@ const navItems = [
 const focusAreas = ["Industry Connections", "Trvia Nights", "Networking", "Internships", "Nerds Out", "Assignment Help"];
 
 const sponsors = [
-  ["AIAA", "AIAA Melbourne Section", "https://www.linkedin.com/company/aiaa-melbourne-section/", "https://logo.clearbit.com/aiaa.org"],
-  ["AMOG", "AMOG", "https://www.amog.consulting/", "https://logo.clearbit.com/amog.consulting"],
-  ["B", "Boeing", "https://www.boeing.com.au/", "/logos/boeing.jpg"],
-  ["3DS", "Dassault Systemes", "https://www.3ds.com/", "https://logo.clearbit.com/3ds.com"],
+  ["AIAA", "AIAA Melbourne Section", "https://www.linkedin.com/company/aiaa-melbourne-section/", "/logos/aiaa.png"],
+  ["AMOG", "AMOG", "https://www.amog.consulting/", "/logos/amog.png"],
+  ["B", "Boeing", "https://www.boeing.com.au/", "/logos/boeing.png"],
+  ["DS", "Dassault Systemes", "https://www.3ds.com/", "/logos/3ds.png"],
+  ["AVA", "AVA tRAINING", "https://avatraining.com.au/", "/logos/avatraining.png"],
 ];
 
 const activities = [

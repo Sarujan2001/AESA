@@ -585,8 +585,8 @@ h3 {
 
 .sponsor-logo {
   display: block;
-  width: 96px;
-  height: 72px;
+  width: min(150px, 90%);
+  height: 96px;
   object-fit: contain;
   mix-blend-mode: multiply;
 }
