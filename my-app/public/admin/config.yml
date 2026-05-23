@@ -104,28 +104,11 @@ collections:
               - { label: "Pronouns", name: "pronouns", widget: "string", required: false }
               - { label: "Role", name: "role", widget: "string" }
               - { label: "Description / Fun Fact", name: "text", widget: "text", required: false }
-              - { label: "Photo", name: "photo", widget: "image", required: false, hint: "For crop/edit upload, use Admin Home > Team Photo Manager." }
-              - label: "Photo Fit"
-                name: "photoFit"
-                widget: "select"
-                required: false
-                default: "cover"
-                options:
-                  - { label: "Crop to fill card", value: "cover" }
-                  - { label: "Show full image", value: "contain" }
-              - { label: "Crop X", name: "photoX", widget: "number", required: false, default: 50, value_type: "int", min: 0, max: 100, step: 5, hint: "0 = left, 50 = center, 100 = right." }
-              - { label: "Crop Y", name: "photoY", widget: "number", required: false, default: 50, value_type: "int", min: 0, max: 100, step: 5, hint: "0 = top, 50 = center, 100 = bottom." }
-              - label: "Photo Zoom"
-                name: "photoZoom"
-                widget: "select"
-                required: false
-                default: "1"
-                options:
-                  - { label: "Normal", value: "1" }
-                  - { label: "Zoom 1.05x", value: "1.05" }
-                  - { label: "Zoom 1.1x", value: "1.1" }
-                  - { label: "Zoom 1.2x", value: "1.2" }
-                  - { label: "Zoom 1.3x", value: "1.3" }
+              - { label: "Photo Path", name: "photo", widget: "hidden", required: false }
+              - { label: "Photo Fit", name: "photoFit", widget: "hidden", required: false }
+              - { label: "Crop X", name: "photoX", widget: "hidden", required: false }
+              - { label: "Crop Y", name: "photoY", widget: "hidden", required: false }
+              - { label: "Photo Zoom", name: "photoZoom", widget: "hidden", required: false }
           - label: "General Committee"
             name: "generalCommittee"
             widget: "list"
@@ -144,7 +127,7 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Year", name: "year", widget: "string" }
               - { label: "Description", name: "text", widget: "text" }
-              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Image Path", name: "image", widget: "hidden", required: false }
       - name: "join"
         label: "Join Page"
         file: "my-app/src/data/join.json"
@@ -168,4 +151,4 @@ collections:
               - { label: "Fallback Initials", name: "mark", widget: "string" }
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Website", name: "href", widget: "string" }
-              - { label: "Logo", name: "logo", widget: "image", required: false }
+              - { label: "Logo Path", name: "logo", widget: "hidden", required: false }
