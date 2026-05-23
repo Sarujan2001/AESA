@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AESA Team Photo Manager</title>
+    <title>AESA Image Manager</title>
     <style>
       * {
         box-sizing: border-box;
@@ -175,8 +175,8 @@
   <body>
     <header>
       <div>
-        <h1>Team Photo Manager</h1>
-        <p>Upload, crop, and save a team portrait directly to the AESA website repository.</p>
+        <h1>Image Manager</h1>
+        <p>Choose an existing website image or upload a new one, crop it, and save it directly to the AESA repository.</p>
       </div>
       <a href="/admin/">Admin home</a>
     </header>
@@ -190,16 +190,18 @@
         <button class="secondary" id="rememberTokenButton" type="button">Remember token on this browser</button>
 
         <label>
-          Team section
-          <select id="sectionInput">
-            <option value="executiveTeam">Executive Team</option>
-            <option value="generalCommittee">General Committee</option>
+          Image group
+          <select id="groupInput">
+            <option value="team:executiveTeam">Executive Team Photos</option>
+            <option value="team:generalCommittee">General Committee Photos</option>
+            <option value="past:pastEvents">Past Event Images</option>
+            <option value="sponsors:sponsors">Sponsor Logos</option>
           </select>
         </label>
 
         <label>
-          Member
-          <select id="memberInput"></select>
+          Image item
+          <select id="itemInput"></select>
         </label>
 
         <div class="preview">
@@ -214,6 +216,8 @@
           New photo
           <input id="fileInput" type="file" accept="image/*" />
         </label>
+
+        <button class="secondary" id="useCurrentButton" type="button">Edit current image</button>
 
         <label>
           Crop shape
@@ -230,7 +234,7 @@
         </label>
 
         <button id="saveButton" type="button" disabled>Crop and save to website</button>
-        <button class="secondary" id="reloadButton" type="button">Reload latest team data</button>
+        <button class="secondary" id="reloadButton" type="button">Reload latest image data</button>
         <p class="status" id="statusText"></p>
       </aside>
 
@@ -244,14 +248,19 @@
       const owner = "Sarujan2001";
       const repo = "AESA";
       const branch = "main";
-      const teamPath = "my-app/src/data/team.json";
       const uploadDir = "my-app/public/uploads";
+      const dataFiles = {
+        team: "my-app/src/data/team.json",
+        past: "my-app/src/data/pastEvents.json",
+        sponsors: "my-app/src/data/sponsors.json",
+      };
 
       const tokenInput = document.querySelector("#tokenInput");
       const rememberTokenButton = document.querySelector("#rememberTokenButton");
-      const sectionInput = document.querySelector("#sectionInput");
-      const memberInput = document.querySelector("#memberInput");
+      const groupInput = document.querySelector("#groupInput");
+      const itemInput = document.querySelector("#itemInput");
       const fileInput = document.querySelector("#fileInput");
+      const useCurrentButton = document.querySelector("#useCurrentButton");
       const aspectInput = document.querySelector("#aspectInput");
       const zoomInput = document.querySelector("#zoomInput");
       const saveButton = document.querySelector("#saveButton");
@@ -265,8 +274,9 @@
       const currentRole = document.querySelector("#currentRole");
 
       const state = {
-        teamData: null,
-        teamSha: "",
+        data: {},
+        shas: {},
+        currentSourceUrl: "",
         naturalWidth: 0,
         naturalHeight: 0,
         imageX: 0,
@@ -318,33 +328,58 @@
         return response.json();
       }
 
-      async function loadTeamData() {
-        setStatus("Loading team data...");
-        const result = await github(`${teamPath}?ref=${branch}`);
-        state.teamData = JSON.parse(fromBase64(result.content));
-        state.teamSha = result.sha;
-        renderMembers();
-        setStatus("Team data loaded.");
+      function currentGroup() {
+        const [type, key] = groupInput.value.split(":");
+        return { type, key, path: dataFiles[type] };
       }
 
-      function renderMembers() {
-        const section = sectionInput.value;
-        const members = state.teamData?.[section] || [];
+      async function loadImageData() {
+        setStatus("Loading image data...");
 
-        memberInput.innerHTML = members.map((member, index) => `<option value="${index}">${member.name}</option>`).join("");
-        updateCurrentMember();
+        for (const [type, path] of Object.entries(dataFiles)) {
+          const result = await github(`${path}?ref=${branch}`);
+          state.data[type] = JSON.parse(fromBase64(result.content));
+          state.shas[type] = result.sha;
+        }
+
+        renderItems();
+        setStatus("Image data loaded.");
       }
 
-      function currentMember() {
-        return state.teamData[sectionInput.value][Number(memberInput.value || 0)];
+      function labelForItem(item, type) {
+        if (type === "team") return `${item.name} - ${item.role}`;
+        if (type === "past") return `${item.year} - ${item.title}`;
+        return item.name;
       }
 
-      function updateCurrentMember() {
-        if (!state.teamData) return;
-        const member = currentMember();
-        currentName.textContent = member?.name || "No member selected";
-        currentRole.textContent = member?.role || "";
-        currentPhoto.src = member?.photo || "";
+      function imageFieldForType(type) {
+        if (type === "sponsors") return "logo";
+        if (type === "past") return "image";
+        return "photo";
+      }
+
+      function renderItems() {
+        const { type, key } = currentGroup();
+        const items = state.data[type]?.[key] || [];
+
+        itemInput.innerHTML = items.map((item, index) => `<option value="${index}">${labelForItem(item, type)}</option>`).join("");
+        updateCurrentItem();
+      }
+
+      function currentItem() {
+        const { type, key } = currentGroup();
+        return state.data[type][key][Number(itemInput.value || 0)];
+      }
+
+      function updateCurrentItem() {
+        const { type } = currentGroup();
+        if (!state.data[type]) return;
+        const item = currentItem();
+        const field = imageFieldForType(type);
+        currentName.textContent = item ? labelForItem(item, type) : "No image selected";
+        currentRole.textContent = item?.text || item?.href || "";
+        currentPhoto.src = item?.[field] || "";
+        state.currentSourceUrl = item?.[field] || "";
       }
 
       function getAspect() {
@@ -377,6 +412,25 @@
         fitImage();
       }
 
+      async function loadImageFromUrl(url) {
+        if (!url) {
+          setStatus("This item has no current image.");
+          return;
+        }
+
+        setStatus("Loading current image...");
+        image.crossOrigin = "anonymous";
+        image.onload = () => {
+          state.naturalWidth = image.naturalWidth;
+          state.naturalHeight = image.naturalHeight;
+          resetCrop();
+          saveButton.disabled = false;
+          setStatus("Crop the current image, then save it.");
+        };
+        image.onerror = () => setStatus("Could not load that image for cropping. Upload the original file instead.");
+        image.src = url.startsWith("http") ? url : `${window.location.origin}${url}`;
+      }
+
       function canvasToBase64(canvas) {
         return canvas.toDataURL("image/jpeg", 0.92).split(",")[1];
       }
@@ -406,7 +460,7 @@
       }
 
       async function savePhoto() {
-        if (!state.teamData || !state.naturalWidth) return;
+        if (!state.naturalWidth) return;
 
         const token = tokenInput.value.trim();
         if (!token) {
@@ -414,10 +468,11 @@
           return;
         }
 
-        const member = currentMember();
-        const section = sectionInput.value;
-        const memberName = member.name;
-        const fileName = `${slugify(member.name)}-${Date.now()}.jpg`;
+        const { type, key, path } = currentGroup();
+        const item = currentItem();
+        const itemName = item.name || item.title;
+        const imageField = imageFieldForType(type);
+        const fileName = `${slugify(itemName)}-${Date.now()}.jpg`;
         const uploadPath = `${uploadDir}/${fileName}`;
         const publicPath = `/uploads/${fileName}`;
         const canvas = makeCroppedCanvas();
@@ -428,46 +483,49 @@
         await github(uploadPath, {
           method: "PUT",
           body: JSON.stringify({
-            message: `Upload cropped team photo for ${member.name}`,
+            message: `Upload cropped image for ${itemName}`,
             content: canvasToBase64(canvas),
             branch,
           }),
         });
 
-        setStatus("Updating team page data...");
+        setStatus("Updating website data...");
 
-        const latest = await github(`${teamPath}?ref=${branch}`);
-        state.teamSha = latest.sha;
-        const latestTeamData = JSON.parse(fromBase64(latest.content));
-        const latestMembers = latestTeamData[section] || [];
-        const latestMemberIndex = latestMembers.findIndex((teamMember) => teamMember.name === memberName);
+        const latest = await github(`${path}?ref=${branch}`);
+        const latestData = JSON.parse(fromBase64(latest.content));
+        const latestItems = latestData[key] || [];
+        const latestItemIndex = latestItems.findIndex((candidate) => (candidate.name || candidate.title) === itemName);
 
-        if (latestMemberIndex === -1) {
-          throw new Error(`${memberName} was not found in the latest team data. Reload and try again.`);
+        if (latestItemIndex === -1) {
+          throw new Error(`${itemName} was not found in the latest data. Reload and try again.`);
         }
 
-        latestTeamData[section][latestMemberIndex] = {
-          ...latestMembers[latestMemberIndex],
-          photo: publicPath,
-          photoFit: "cover",
-          photoX: 50,
-          photoY: 50,
-          photoZoom: "1",
+        latestData[key][latestItemIndex] = {
+          ...latestItems[latestItemIndex],
+          [imageField]: publicPath,
         };
 
-        await github(teamPath, {
+        if (type === "team") {
+          latestData[key][latestItemIndex].photoFit = "cover";
+          latestData[key][latestItemIndex].photoX = 50;
+          latestData[key][latestItemIndex].photoY = 50;
+          latestData[key][latestItemIndex].photoZoom = "1";
+        }
+
+        await github(path, {
           method: "PUT",
           body: JSON.stringify({
-            message: `Update team photo for ${memberName}`,
-            content: toBase64(`${JSON.stringify(latestTeamData, null, 2)}\n`),
-            sha: state.teamSha,
+            message: `Update image for ${itemName}`,
+            content: toBase64(`${JSON.stringify(latestData, null, 2)}\n`),
+            sha: latest.sha,
             branch,
           }),
         });
 
-        state.teamData = latestTeamData;
-        renderMembers();
-        memberInput.value = String(latestMemberIndex);
+        state.data[type] = latestData;
+        state.shas[type] = latest.sha;
+        renderItems();
+        itemInput.value = String(latestItemIndex);
         currentPhoto.src = publicPath;
         setStatus("Saved. GitHub Pages will update after the deployment finishes.");
         saveButton.disabled = false;
@@ -478,10 +536,11 @@
         setStatus("Token remembered on this browser.");
       });
 
-      sectionInput.addEventListener("change", renderMembers);
-      memberInput.addEventListener("change", updateCurrentMember);
+      groupInput.addEventListener("change", renderItems);
+      itemInput.addEventListener("change", updateCurrentItem);
+      useCurrentButton.addEventListener("click", () => loadImageFromUrl(state.currentSourceUrl));
       aspectInput.addEventListener("change", updateCropBox);
-      reloadButton.addEventListener("click", loadTeamData);
+      reloadButton.addEventListener("click", loadImageData);
       saveButton.addEventListener("click", () => savePhoto().catch((error) => {
         saveButton.disabled = false;
         setStatus(error.message);
@@ -531,7 +590,7 @@
 
       window.addEventListener("resize", fitImage);
       updateCropBox();
-      loadTeamData().catch((error) => setStatus(error.message));
+      loadImageData().catch((error) => setStatus(error.message));
     </script>
   </body>
 </html>
