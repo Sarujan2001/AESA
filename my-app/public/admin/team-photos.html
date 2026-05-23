@@ -415,8 +415,8 @@
         }
 
         const member = currentMember();
-        const memberIndex = Number(memberInput.value);
         const section = sectionInput.value;
+        const memberName = member.name;
         const fileName = `${slugify(member.name)}-${Date.now()}.jpg`;
         const uploadPath = `${uploadDir}/${fileName}`;
         const publicPath = `/uploads/${fileName}`;
@@ -434,8 +434,20 @@
           }),
         });
 
-        state.teamData[section][memberIndex] = {
-          ...member,
+        setStatus("Updating team page data...");
+
+        const latest = await github(`${teamPath}?ref=${branch}`);
+        state.teamSha = latest.sha;
+        const latestTeamData = JSON.parse(fromBase64(latest.content));
+        const latestMembers = latestTeamData[section] || [];
+        const latestMemberIndex = latestMembers.findIndex((teamMember) => teamMember.name === memberName);
+
+        if (latestMemberIndex === -1) {
+          throw new Error(`${memberName} was not found in the latest team data. Reload and try again.`);
+        }
+
+        latestTeamData[section][latestMemberIndex] = {
+          ...latestMembers[latestMemberIndex],
           photo: publicPath,
           photoFit: "cover",
           photoX: 50,
@@ -443,21 +455,19 @@
           photoZoom: "1",
         };
 
-        setStatus("Updating team page data...");
-
-        const latest = await github(`${teamPath}?ref=${branch}`);
-        state.teamSha = latest.sha;
-
         await github(teamPath, {
           method: "PUT",
           body: JSON.stringify({
-            message: `Update team photo for ${member.name}`,
-            content: toBase64(`${JSON.stringify(state.teamData, null, 2)}\n`),
+            message: `Update team photo for ${memberName}`,
+            content: toBase64(`${JSON.stringify(latestTeamData, null, 2)}\n`),
             sha: state.teamSha,
             branch,
           }),
         });
 
+        state.teamData = latestTeamData;
+        renderMembers();
+        memberInput.value = String(latestMemberIndex);
         currentPhoto.src = publicPath;
         setStatus("Saved. GitHub Pages will update after the deployment finishes.");
         saveButton.disabled = false;
