@@ -51,6 +51,15 @@
         line-height: 1.6;
       }
 
+      .note {
+        max-width: none;
+        margin-bottom: 18px;
+        padding: 13px 15px;
+        color: #111318;
+        background: #ffffff;
+        border-left: 4px solid #d71920;
+      }
+
       .grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -105,6 +114,8 @@
         <h1>Website Admin</h1>
         <p>Choose what you want to edit. Use the content editor for text and lists. Use the image manager for every website picture, with crop built into the upload flow.</p>
       </section>
+
+      <p class="note">After using Image Manager, refresh the Content Editor before saving text changes. This keeps GitHub from rejecting old copies of the same data file.</p>
 
       <section class="grid" aria-label="Admin tools">
         <a class="card" href="/admin/cms.html">

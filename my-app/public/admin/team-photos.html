@@ -322,7 +322,9 @@
 
         if (!response.ok) {
           const error = await response.json().catch(() => ({}));
-          throw new Error(error.message || `GitHub request failed: ${response.status}`);
+          const issue = new Error(error.message || `GitHub request failed: ${response.status}`);
+          issue.status = response.status;
+          throw issue;
         }
 
         return response.json();
@@ -459,6 +461,53 @@
         return canvas;
       }
 
+      async function updateImageReference({ type, key, path, itemName, imageField, publicPath }) {
+        for (let attempt = 1; attempt <= 3; attempt += 1) {
+          const latest = await github(`${path}?ref=${branch}`);
+          const latestData = JSON.parse(fromBase64(latest.content));
+          const latestItems = latestData[key] || [];
+          const latestItemIndex = latestItems.findIndex((candidate) => (candidate.name || candidate.title) === itemName);
+
+          if (latestItemIndex === -1) {
+            throw new Error(`${itemName} was not found in the latest data. Reload and try again.`);
+          }
+
+          latestData[key][latestItemIndex] = {
+            ...latestItems[latestItemIndex],
+            [imageField]: publicPath,
+          };
+
+          if (type === "team") {
+            latestData[key][latestItemIndex].photoFit = "cover";
+            latestData[key][latestItemIndex].photoX = 50;
+            latestData[key][latestItemIndex].photoY = 50;
+            latestData[key][latestItemIndex].photoZoom = "1";
+          }
+
+          try {
+            await github(path, {
+              method: "PUT",
+              body: JSON.stringify({
+                message: `Update image for ${itemName}`,
+                content: toBase64(`${JSON.stringify(latestData, null, 2)}\n`),
+                sha: latest.sha,
+                branch,
+              }),
+            });
+
+            return { latestData, latestItemIndex };
+          } catch (error) {
+            const canRetry = error.status === 409 || error.message.includes("does not match");
+
+            if (!canRetry || attempt === 3) {
+              throw error;
+            }
+
+            setStatus("Website data changed while saving. Reloading latest version and retrying...");
+          }
+        }
+      }
+
       async function savePhoto() {
         if (!state.naturalWidth) return;
 
@@ -490,36 +539,13 @@
         });
 
         setStatus("Updating website data...");
-
-        const latest = await github(`${path}?ref=${branch}`);
-        const latestData = JSON.parse(fromBase64(latest.content));
-        const latestItems = latestData[key] || [];
-        const latestItemIndex = latestItems.findIndex((candidate) => (candidate.name || candidate.title) === itemName);
-
-        if (latestItemIndex === -1) {
-          throw new Error(`${itemName} was not found in the latest data. Reload and try again.`);
-        }
-
-        latestData[key][latestItemIndex] = {
-          ...latestItems[latestItemIndex],
-          [imageField]: publicPath,
-        };
-
-        if (type === "team") {
-          latestData[key][latestItemIndex].photoFit = "cover";
-          latestData[key][latestItemIndex].photoX = 50;
-          latestData[key][latestItemIndex].photoY = 50;
-          latestData[key][latestItemIndex].photoZoom = "1";
-        }
-
-        await github(path, {
-          method: "PUT",
-          body: JSON.stringify({
-            message: `Update image for ${itemName}`,
-            content: toBase64(`${JSON.stringify(latestData, null, 2)}\n`),
-            sha: latest.sha,
-            branch,
-          }),
+        const { latestData, latestItemIndex } = await updateImageReference({
+          type,
+          key,
+          path,
+          itemName,
+          imageField,
+          publicPath,
         });
 
         state.data[type] = latestData;
