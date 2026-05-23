@@ -110,6 +110,14 @@ export default function App() {
 
   const nextEvent = useMemo(() => getNextEvent(calendar), []);
 
+  useEffect(() => {
+    const icon = document.querySelector("link[rel='icon']");
+
+    if (icon && club.favicon) {
+      icon.href = club.favicon;
+    }
+  }, []);
+
   function navigate(target) {
     if (target.startsWith("#")) {
       setPage("home");
@@ -182,7 +190,7 @@ function Header({ activeTarget, menuOpen, setMenuOpen, navigate }) {
     <header className="topbar">
       <button className="brand" onClick={() => navigate("home")} aria-label="Go to home">
         <span className="brand-mark">
-          <img src="/AESALONG.png" alt="AESA logo" />
+          <img src={club.brandLogo || "/Light_Logo_Rev1-removebg-preview.png"} alt="AESA logo" />
         </span>
         <span>
           <strong>{club.shortName}</strong>
@@ -231,7 +239,7 @@ function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) 
   return (
     <>
       <section className="welcome-scroll" aria-label="Welcome to AESA official website">
-        <div className="welcome-image" aria-hidden="true" />
+        <div className="welcome-image" style={{ "--welcome-logo": `url("${club.welcomeLogo || club.brandLogo || "/Light_Logo_Rev1-removebg-preview.png"}")` }} aria-hidden="true" />
         <motion.div
           className="welcome-copy"
           initial={{ opacity: 0, y: 26 }}
@@ -526,10 +534,21 @@ function TeamBranch({ title, members }) {
         {members.map((member) => {
           const { name, pronouns, role, text, photo } = normalizeTeamMember(member);
           const photoPosition = member.photoPosition || "center center";
+          const photoFit = member.photoFit || "cover";
+          const photoScale = member.photoScale || "1";
 
           return (
             <article className="team-card" key={`${title}-${name}`}>
-              {photo && <img className="team-photo" src={photo} alt={name} style={{ objectPosition: photoPosition }} />}
+              {photo && (
+                <div className="team-photo-frame">
+                  <img
+                    className="team-photo"
+                    src={photo}
+                    alt={name}
+                    style={{ objectFit: photoFit, objectPosition: photoPosition, transform: `scale(${photoScale})` }}
+                  />
+                </div>
+              )}
               <h3>
                 {name}
                 {pronouns && <small>{pronouns}</small>}
@@ -546,7 +565,7 @@ function TeamBranch({ title, members }) {
 
 function normalizeTeamMember(member) {
   if (!Array.isArray(member)) {
-    return { photoPosition: "center center", ...member };
+    return { photoFit: "cover", photoPosition: "center center", photoScale: "1", ...member };
   }
 
   if (member.length >= 5) {

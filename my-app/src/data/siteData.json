@@ -2,6 +2,9 @@
   "club": {
     "name": "Aerospace Engineering Student Association",
     "shortName": "AESA",
+    "brandLogo": "/Light_Logo_Rev1-removebg-preview.png",
+    "welcomeLogo": "/Light_Logo_Rev1-removebg-preview.png",
+    "favicon": "/Light_Logo_Rev1-removebg-preview.png",
     "email": "rmitaesa@gmail.com",
     "location": "124 La Trobe St, Melbourne VIC 3000",
     "socials": {
@@ -177,7 +180,9 @@
       "role": "President",
       "text": "Fun Fact : He knows almost every species of monkey",
       "photo": "/uploads/NIKOLAS.jpg",
-      "photoPosition": "center center"
+      "photoFit": "cover",
+      "photoPosition": "center center",
+      "photoScale": "1"
     },
     {
       "name": "Paris Theodosiou",
@@ -185,7 +190,9 @@
       "role": "Treasurer",
       "text": "Fun Fact : She played the flute for 6-7 years",
       "photo": "/uploads/Paris.png",
-      "photoPosition": "center center"
+      "photoFit": "cover",
+      "photoPosition": "center center",
+      "photoScale": "1"
     },
     {
       "name": "Indra Talwar",
@@ -193,7 +200,9 @@
       "role": "Secretary",
       "text": "Fun Fact : She fly small planes",
       "photo": "/uploads/Indra.jpg",
-      "photoPosition": "center center"
+      "photoFit": "cover",
+      "photoPosition": "center center",
+      "photoScale": "1"
     },
     {
       "name": "Tanya Kimani",
@@ -201,7 +210,9 @@
       "role": "Events Director",
       "text": "Fun Fact : She loves baking",
       "photo": "/uploads/Tanya.jpg",
-      "photoPosition": "center center"
+      "photoFit": "cover",
+      "photoPosition": "center center",
+      "photoScale": "1"
     },
     {
       "name": "Sarujan Srikaran",
@@ -209,7 +220,9 @@
       "role": "Careers Director",
       "text": "Fun Fact : Finished every Assassins's Creed game",
       "photo": "/uploads/Sarujan.jpg",
-      "photoPosition": "center center"
+      "photoFit": "cover",
+      "photoPosition": "center center",
+      "photoScale": "1"
     },
     {
       "name": "Phoenix Hope",
@@ -217,7 +230,9 @@
       "role": "Social Media Director",
       "text": "Fun Fact : They played violin for 6 years",
       "photo": "/uploads/Phoneix.jpg",
-      "photoPosition": "center center"
+      "photoFit": "cover",
+      "photoPosition": "center center",
+      "photoScale": "1"
     }
   ],
   "generalCommittee": [
@@ -227,7 +242,9 @@
       "role": "General committee",
       "text": "",
       "photo": "",
-      "photoPosition": "center center"
+      "photoFit": "cover",
+      "photoPosition": "center center",
+      "photoScale": "1"
     },
     {
       "name": "Isabel Williamson-Lundstedt",
@@ -235,7 +252,9 @@
       "role": "General committee",
       "text": "",
       "photo": "",
-      "photoPosition": "center center"
+      "photoFit": "cover",
+      "photoPosition": "center center",
+      "photoScale": "1"
     },
     {
       "name": "Mahi Mistry",
@@ -243,7 +262,9 @@
       "role": "General committee",
       "text": "",
       "photo": "",
-      "photoPosition": "center center"
+      "photoFit": "cover",
+      "photoPosition": "center center",
+      "photoScale": "1"
     },
     {
       "name": "Timotius Tan",
@@ -251,7 +272,9 @@
       "role": "General committee",
       "text": "",
       "photo": "",
-      "photoPosition": "center center"
+      "photoFit": "cover",
+      "photoPosition": "center center",
+      "photoScale": "1"
     }
   ],
   "pastEvents": [
