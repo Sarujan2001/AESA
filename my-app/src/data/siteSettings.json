@@ -1,0 +1,46 @@
+{
+    "club":  {
+                 "name":  "Aerospace Engineering Student Association",
+                 "shortName":  "AESA",
+                 "email":  "rmitaesa@gmail.com",
+                 "location":  "124 La Trobe St, Melbourne VIC 3000",
+                 "socials":  {
+                                 "facebook":  "https://www.facebook.com/RMIT.AESA/",
+                                 "instagram":  "https://www.instagram.com/rmitaesa/",
+                                 "linkedin":  "https://au.linkedin.com/company/rmit-aerospace-engineering-student-association-aesa",
+                                 "rubric":  "https://campus.hellorubric.com/?s=957",
+                                 "rubricEvents":  "https://campus.hellorubric.com/?s=957\u0026tab=events",
+                                 "linktree":  "https://linktr.ee/rmitaesa"
+                             }
+             },
+    "navItems":  [
+                     {
+                         "label":  "Home",
+                         "target":  "home"
+                     },
+                     {
+                         "label":  "Activities",
+                         "target":  "activities"
+                     },
+                     {
+                         "label":  "Calendar",
+                         "target":  "#calendar"
+                     },
+                     {
+                         "label":  "Team",
+                         "target":  "team"
+                     },
+                     {
+                         "label":  "Past Events",
+                         "target":  "past"
+                     },
+                     {
+                         "label":  "Join Us",
+                         "target":  "join"
+                     },
+                     {
+                         "label":  "Contact",
+                         "target":  "#contact"
+                     }
+                 ]
+}

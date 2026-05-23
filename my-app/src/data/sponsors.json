@@ -1,0 +1,34 @@
+{
+    "sponsors":  [
+                     {
+                         "mark":  "AIAA",
+                         "name":  "AIAA Melbourne Section",
+                         "href":  "https://www.linkedin.com/company/aiaa-melbourne-section/",
+                         "logo":  "/logos/aiaa.png"
+                     },
+                     {
+                         "mark":  "AMOG",
+                         "name":  "AMOG",
+                         "href":  "https://www.amog.consulting/",
+                         "logo":  "/logos/amog.png"
+                     },
+                     {
+                         "mark":  "B",
+                         "name":  "Boeing",
+                         "href":  "https://www.boeing.com.au/",
+                         "logo":  "/logos/boeing.png"
+                     },
+                     {
+                         "mark":  "DS",
+                         "name":  "Dassault Systemes",
+                         "href":  "https://www.3ds.com/",
+                         "logo":  "/logos/3ds.png"
+                     },
+                     {
+                         "mark":  "AVA",
+                         "name":  "AVA TRAINING",
+                         "href":  "https://avatraining.com.au/",
+                         "logo":  "/logos/avatraining.png"
+                     }
+                 ]
+}

@@ -19,11 +19,24 @@ import {
   Share2,
   X,
 } from "lucide-react";
-import siteData from "./data/siteData.json";
+import activitiesData from "./data/activities.json";
+import calendarData from "./data/calendar.json";
+import homeData from "./data/home.json";
+import joinData from "./data/join.json";
+import pastEventsData from "./data/pastEvents.json";
+import siteSettingsData from "./data/siteSettings.json";
+import sponsorsData from "./data/sponsors.json";
+import teamData from "./data/team.json";
 
 const contactFormEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
-const { club, navItems, focusAreas, sponsors, activities, calendar, executiveTeam, generalCommittee, pastEvents, benefits, stats } =
-  siteData;
+const { club, navItems } = siteSettingsData;
+const { focusAreas, stats } = homeData;
+const { sponsors } = sponsorsData;
+const { activities } = activitiesData;
+const { calendar } = calendarData;
+const { executiveTeam, generalCommittee } = teamData;
+const { pastEvents } = pastEventsData;
+const { benefits } = joinData;
 
 function SectionHeader({ eyebrow, title, text }) {
   return (

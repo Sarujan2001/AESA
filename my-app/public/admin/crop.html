@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AESA Image Crop Tool</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: #111318;
+        background: #f5f1e8;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      header,
+      main {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      header {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px 0 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 4vw, 3rem);
+      }
+
+      a,
+      button,
+      label {
+        font-weight: 800;
+      }
+
+      a {
+        color: #d71920;
+      }
+
+      .tool {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 270px;
+        gap: 20px;
+        align-items: start;
+      }
+
+      .stage {
+        position: relative;
+        min-height: 560px;
+        overflow: hidden;
+        background: #dfe3e8;
+        border: 1px solid #c9ced6;
+      }
+
+      .stage img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        max-width: none;
+        user-select: none;
+        transform-origin: center;
+      }
+
+      .crop-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: min(360px, 72vw);
+        aspect-ratio: 4 / 3;
+        border: 3px solid #7a35ff;
+        box-shadow: 0 0 0 9999px rgba(17, 19, 24, 0.42);
+        cursor: move;
+        transform: translate(-50%, -50%);
+      }
+
+      .crop-box::before,
+      .crop-box::after {
+        position: absolute;
+        inset: 33.333% 0 auto;
+        height: 1px;
+        content: "";
+        background: rgba(255, 255, 255, 0.75);
+      }
+
+      .crop-box::after {
+        inset: auto 0 33.333%;
+      }
+
+      .controls {
+        display: grid;
+        gap: 14px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #d8d1c4;
+      }
+
+      .controls label {
+        display: grid;
+        gap: 7px;
+      }
+
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid #c9ced6;
+        font: inherit;
+      }
+
+      button {
+        color: #ffffff;
+        background: #111318;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        color: #111318;
+        background: #ffffff;
+      }
+
+      .hint {
+        margin: 0;
+        color: #5f6670;
+        font-size: 0.92rem;
+        line-height: 1.45;
+      }
+
+      @media (max-width: 820px) {
+        .tool {
+          grid-template-columns: 1fr;
+        }
+
+        .stage {
+          min-height: 430px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Image Crop Tool</h1>
+        <p class="hint">Crop a photo visually, download it, then upload the cropped file in the CMS photo field.</p>
+      </div>
+      <a href="/admin/">Back to admin</a>
+    </header>
+
+    <main class="tool">
+      <section class="stage" id="stage">
+        <img id="sourceImage" alt="" />
+        <div class="crop-box" id="cropBox" aria-label="Crop area"></div>
+      </section>
+
+      <aside class="controls">
+        <label>
+          Image
+          <input id="fileInput" type="file" accept="image/*" />
+        </label>
+
+        <label>
+          Aspect ratio
+          <select id="aspectInput">
+            <option value="4/3">Team card 4:3</option>
+            <option value="3/4">Portrait 3:4</option>
+            <option value="1/1">Square 1:1</option>
+            <option value="16/9">Wide 16:9</option>
+          </select>
+        </label>
+
+        <label>
+          Zoom
+          <input id="zoomInput" type="range" min="0.4" max="3" step="0.01" value="1" />
+        </label>
+
+        <label>
+          Output width
+          <input id="widthInput" type="number" min="300" max="2400" step="100" value="1200" />
+        </label>
+
+        <button id="downloadButton" type="button">Download cropped image</button>
+        <button class="secondary" id="resetButton" type="button">Reset crop</button>
+        <p class="hint">Tip: for team portraits, keep the face inside the purple box. Use the downloaded image in the Team Page photo field.</p>
+      </aside>
+    </main>
+
+    <script>
+      const stage = document.querySelector("#stage");
+      const image = document.querySelector("#sourceImage");
+      const cropBox = document.querySelector("#cropBox");
+      const fileInput = document.querySelector("#fileInput");
+      const aspectInput = document.querySelector("#aspectInput");
+      const zoomInput = document.querySelector("#zoomInput");
+      const widthInput = document.querySelector("#widthInput");
+      const downloadButton = document.querySelector("#downloadButton");
+      const resetButton = document.querySelector("#resetButton");
+
+      const state = {
+        naturalWidth: 0,
+        naturalHeight: 0,
+        imageX: 0,
+        imageY: 0,
+        zoom: 1,
+        dragging: false,
+        dragStartX: 0,
+        dragStartY: 0,
+        startX: 0,
+        startY: 0,
+      };
+
+      function getAspect() {
+        const [w, h] = aspectInput.value.split("/").map(Number);
+        return w / h;
+      }
+
+      function updateCropBox() {
+        cropBox.style.aspectRatio = aspectInput.value;
+      }
+
+      function fitImage() {
+        if (!state.naturalWidth) return;
+        const rect = stage.getBoundingClientRect();
+        const baseScale = Math.max(rect.width / state.naturalWidth, rect.height / state.naturalHeight);
+        const displayWidth = state.naturalWidth * baseScale * state.zoom;
+        const displayHeight = state.naturalHeight * baseScale * state.zoom;
+
+        image.style.width = `${displayWidth}px`;
+        image.style.height = `${displayHeight}px`;
+        image.style.transform = `translate(calc(-50% + ${state.imageX}px), calc(-50% + ${state.imageY}px))`;
+      }
+
+      function resetCrop() {
+        state.imageX = 0;
+        state.imageY = 0;
+        state.zoom = 1;
+        zoomInput.value = "1";
+        updateCropBox();
+        fitImage();
+      }
+
+      fileInput.addEventListener("change", () => {
+        const file = fileInput.files[0];
+        if (!file) return;
+        const url = URL.createObjectURL(file);
+
+        image.onload = () => {
+          state.naturalWidth = image.naturalWidth;
+          state.naturalHeight = image.naturalHeight;
+          resetCrop();
+        };
+
+        image.src = url;
+      });
+
+      aspectInput.addEventListener("change", updateCropBox);
+
+      zoomInput.addEventListener("input", () => {
+        state.zoom = Number(zoomInput.value);
+        fitImage();
+      });
+
+      stage.addEventListener("pointerdown", (event) => {
+        if (!state.naturalWidth) return;
+        state.dragging = true;
+        state.dragStartX = event.clientX;
+        state.dragStartY = event.clientY;
+        state.startX = state.imageX;
+        state.startY = state.imageY;
+        stage.setPointerCapture(event.pointerId);
+      });
+
+      stage.addEventListener("pointermove", (event) => {
+        if (!state.dragging) return;
+        state.imageX = state.startX + event.clientX - state.dragStartX;
+        state.imageY = state.startY + event.clientY - state.dragStartY;
+        fitImage();
+      });
+
+      stage.addEventListener("pointerup", () => {
+        state.dragging = false;
+      });
+
+      resetButton.addEventListener("click", resetCrop);
+
+      downloadButton.addEventListener("click", () => {
+        if (!state.naturalWidth) return;
+
+        const stageRect = stage.getBoundingClientRect();
+        const cropRect = cropBox.getBoundingClientRect();
+        const imageRect = image.getBoundingClientRect();
+        const scaleX = state.naturalWidth / imageRect.width;
+        const scaleY = state.naturalHeight / imageRect.height;
+        const sourceX = Math.max(0, (cropRect.left - imageRect.left) * scaleX);
+        const sourceY = Math.max(0, (cropRect.top - imageRect.top) * scaleY);
+        const sourceWidth = Math.min(state.naturalWidth - sourceX, cropRect.width * scaleX);
+        const sourceHeight = Math.min(state.naturalHeight - sourceY, cropRect.height * scaleY);
+        const outputWidth = Number(widthInput.value) || 1200;
+        const outputHeight = Math.round(outputWidth / getAspect());
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        canvas.width = outputWidth;
+        canvas.height = outputHeight;
+        context.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, outputWidth, outputHeight);
+
+        canvas.toBlob((blob) => {
+          const link = document.createElement("a");
+          const original = fileInput.files[0]?.name?.replace(/\.[^.]+$/, "") || "aesa-image";
+          link.href = URL.createObjectURL(blob);
+          link.download = `${original}-cropped.jpg`;
+          link.click();
+          URL.revokeObjectURL(link.href);
+        }, "image/jpeg", 0.92);
+      });
+
+      window.addEventListener("resize", fitImage);
+      updateCropBox();
+    </script>
+  </body>
+</html>

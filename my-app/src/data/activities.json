@@ -1,0 +1,29 @@
+{
+    "activities":  [
+                       {
+                           "title":  "Aerospace Industry Night",
+                           "tag":  "Flagship",
+                           "text":  "AESA x MAMEC\u0027s annual networking night connects students with aerospace companies, Q\u0026A panel guests, internship pathways, and industry representatives."
+                       },
+                       {
+                           "title":  "Campus Fest Membership Drive",
+                           "tag":  "Orientation",
+                           "text":  "AESA meets new and returning students on Bowen Street, introducing membership, events, merchandise, and committee opportunities."
+                       },
+                       {
+                           "title":  "Industry Networking",
+                           "tag":  "Careers",
+                           "text":  "Events are built around communication skills, professional development, and helping students build contacts with industry."
+                       },
+                       {
+                           "title":  "Student Project Pathways",
+                           "tag":  "Projects",
+                           "text":  "AESA connects students with aerospace-adjacent initiatives including space sector, rover, rocketry, UAV, and research communities."
+                       },
+                       {
+                           "title":  "AIAA RMIT Student Branch",
+                           "tag":  "Professional",
+                           "text":  "AESA represents the AIAA RMIT University Student Branch and links students with broader aerospace professional networks."
+                       }
+                   ]
+}

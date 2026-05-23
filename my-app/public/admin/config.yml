@@ -11,12 +11,12 @@ display_url: "https://aesa.site"
 logo_url: "/AESALONG.png"
 
 collections:
-  - name: "website"
-    label: "Website"
+  - name: "site"
+    label: "Site"
     files:
-      - name: "site_data"
-        label: "AESA Website Content"
-        file: "my-app/src/data/siteData.json"
+      - name: "settings"
+        label: "Site Settings"
+        file: "my-app/src/data/siteSettings.json"
         format: "json"
         fields:
           - label: "Club Details"
@@ -44,6 +44,15 @@ collections:
             fields:
               - { label: "Label", name: "label", widget: "string" }
               - { label: "Target", name: "target", widget: "string" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "my-app/src/data/home.json"
+        format: "json"
+        fields:
           - { label: "Focus Areas", name: "focusAreas", widget: "list", field: { label: "Focus Area", name: "area", widget: "string" } }
           - label: "Stats"
             name: "stats"
@@ -52,15 +61,11 @@ collections:
             fields:
               - { label: "Value", name: "value", widget: "string" }
               - { label: "Label", name: "label", widget: "string" }
-          - label: "Sponsors"
-            name: "sponsors"
-            widget: "list"
-            summary: "{{fields.name}}"
-            fields:
-              - { label: "Fallback Initials", name: "mark", widget: "string" }
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Website", name: "href", widget: "string" }
-              - { label: "Logo", name: "logo", widget: "image", required: false }
+      - name: "activities"
+        label: "Activities Page"
+        file: "my-app/src/data/activities.json"
+        format: "json"
+        fields:
           - label: "Activities"
             name: "activities"
             widget: "list"
@@ -69,7 +74,12 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Tag", name: "tag", widget: "string" }
               - { label: "Description", name: "text", widget: "text" }
-          - label: "Calendar"
+      - name: "calendar"
+        label: "Calendar"
+        file: "my-app/src/data/calendar.json"
+        format: "json"
+        fields:
+          - label: "Events"
             name: "calendar"
             widget: "list"
             summary: "{{fields.date}} - {{fields.title}}"
@@ -80,51 +90,36 @@ collections:
               - { label: "Time", name: "time", widget: "string" }
               - { label: "Price", name: "price", widget: "string" }
               - { label: "ISO Date", name: "isoDate", widget: "string", required: false, hint: "Use YYYY-MM-DD for scheduled events, or leave blank for TBA." }
+      - name: "team"
+        label: "Team Page"
+        file: "my-app/src/data/team.json"
+        format: "json"
+        fields:
           - label: "Executive Team"
             name: "executiveTeam"
             widget: "list"
             summary: "{{fields.name}} - {{fields.role}}"
-            fields:
+            fields: &team_member_fields
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Pronouns", name: "pronouns", widget: "string", required: false }
               - { label: "Role", name: "role", widget: "string" }
               - { label: "Description / Fun Fact", name: "text", widget: "text", required: false }
-              - { label: "Photo", name: "photo", widget: "image", required: false }
+              - { label: "Photo", name: "photo", widget: "image", required: false, hint: "For visual cropping, open /admin/crop.html first, download the cropped image, then upload it here." }
               - label: "Photo Fit"
                 name: "photoFit"
                 widget: "select"
                 required: false
                 default: "cover"
-                hint: "Cover fills the card and crops edges. Contain shows the full image."
                 options:
                   - { label: "Crop to fill card", value: "cover" }
                   - { label: "Show full image", value: "contain" }
-              - label: "Crop X"
-                name: "photoX"
-                widget: "number"
-                required: false
-                default: 50
-                value_type: "int"
-                min: 0
-                max: 100
-                step: 5
-                hint: "Horizontal crop focus. 0 = left, 50 = center, 100 = right."
-              - label: "Crop Y"
-                name: "photoY"
-                widget: "number"
-                required: false
-                default: 50
-                value_type: "int"
-                min: 0
-                max: 100
-                step: 5
-                hint: "Vertical crop focus. 0 = top, 50 = center, 100 = bottom."
+              - { label: "Crop X", name: "photoX", widget: "number", required: false, default: 50, value_type: "int", min: 0, max: 100, step: 5, hint: "0 = left, 50 = center, 100 = right." }
+              - { label: "Crop Y", name: "photoY", widget: "number", required: false, default: 50, value_type: "int", min: 0, max: 100, step: 5, hint: "0 = top, 50 = center, 100 = bottom." }
               - label: "Photo Zoom"
                 name: "photoZoom"
                 widget: "select"
                 required: false
                 default: "1"
-                hint: "Use 1 for normal. Higher numbers zoom in more."
                 options:
                   - { label: "Normal", value: "1" }
                   - { label: "Zoom 1.05x", value: "1.05" }
@@ -135,53 +130,12 @@ collections:
             name: "generalCommittee"
             widget: "list"
             summary: "{{fields.name}}"
-            fields:
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Pronouns", name: "pronouns", widget: "string", required: false }
-              - { label: "Role", name: "role", widget: "string" }
-              - { label: "Description", name: "text", widget: "text", required: false }
-              - { label: "Photo", name: "photo", widget: "image", required: false }
-              - label: "Photo Fit"
-                name: "photoFit"
-                widget: "select"
-                required: false
-                default: "cover"
-                hint: "Cover fills the card and crops edges. Contain shows the full image."
-                options:
-                  - { label: "Crop to fill card", value: "cover" }
-                  - { label: "Show full image", value: "contain" }
-              - label: "Crop X"
-                name: "photoX"
-                widget: "number"
-                required: false
-                default: 50
-                value_type: "int"
-                min: 0
-                max: 100
-                step: 5
-                hint: "Horizontal crop focus. 0 = left, 50 = center, 100 = right."
-              - label: "Crop Y"
-                name: "photoY"
-                widget: "number"
-                required: false
-                default: 50
-                value_type: "int"
-                min: 0
-                max: 100
-                step: 5
-                hint: "Vertical crop focus. 0 = top, 50 = center, 100 = bottom."
-              - label: "Photo Zoom"
-                name: "photoZoom"
-                widget: "select"
-                required: false
-                default: "1"
-                hint: "Use 1 for normal. Higher numbers zoom in more."
-                options:
-                  - { label: "Normal", value: "1" }
-                  - { label: "Zoom 1.05x", value: "1.05" }
-                  - { label: "Zoom 1.1x", value: "1.1" }
-                  - { label: "Zoom 1.2x", value: "1.2" }
-                  - { label: "Zoom 1.3x", value: "1.3" }
+            fields: *team_member_fields
+      - name: "past_events"
+        label: "Past Events"
+        file: "my-app/src/data/pastEvents.json"
+        format: "json"
+        fields:
           - label: "Past Events"
             name: "pastEvents"
             widget: "list"
@@ -191,4 +145,27 @@ collections:
               - { label: "Year", name: "year", widget: "string" }
               - { label: "Description", name: "text", widget: "text" }
               - { label: "Image", name: "image", widget: "image", required: false }
+      - name: "join"
+        label: "Join Page"
+        file: "my-app/src/data/join.json"
+        format: "json"
+        fields:
           - { label: "Join Page Benefits", name: "benefits", widget: "list", field: { label: "Benefit", name: "benefit", widget: "string" } }
+
+  - name: "sponsors"
+    label: "Sponsors"
+    files:
+      - name: "sponsors"
+        label: "Sponsors"
+        file: "my-app/src/data/sponsors.json"
+        format: "json"
+        fields:
+          - label: "Sponsors"
+            name: "sponsors"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Fallback Initials", name: "mark", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Website", name: "href", widget: "string" }
+              - { label: "Logo", name: "logo", widget: "image", required: false }

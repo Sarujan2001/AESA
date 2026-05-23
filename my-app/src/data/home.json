@@ -1,0 +1,28 @@
+{
+    "focusAreas":  [
+                       "Industry Connections",
+                       "Trvia Nights",
+                       "Networking",
+                       "Internships",
+                       "Nerds Out",
+                       "Assignment Help"
+                   ],
+    "stats":  [
+                  {
+                      "value":  "392",
+                      "label":  "LinkedIn followers"
+                  },
+                  {
+                      "value":  "350+",
+                      "label":  "club members count"
+                  },
+                  {
+                      "value":  "350",
+                      "label":  "AIN 2026 tickets"
+                  },
+                  {
+                      "value":  "AIAA",
+                      "label":  "RMIT student branch"
+                  }
+              ]
+}

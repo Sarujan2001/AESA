@@ -1,0 +1,116 @@
+{
+    "executiveTeam":  [
+                          {
+                              "name":  "Nikolas Makris",
+                              "pronouns":  "he/him",
+                              "role":  "President",
+                              "text":  "Fun Fact : He knows almost every species of monkey",
+                              "photo":  "/uploads/NIKOLAS.jpg",
+                              "photoFit":  "cover",
+                              "photoX":  50,
+                              "photoY":  50,
+                              "photoZoom":  "1"
+                          },
+                          {
+                              "name":  "Paris Theodosiou",
+                              "pronouns":  "she/her",
+                              "role":  "Treasurer",
+                              "text":  "Fun Fact : She played the flute for 6-7 years",
+                              "photo":  "/uploads/Paris.png",
+                              "photoFit":  "cover",
+                              "photoX":  50,
+                              "photoY":  50,
+                              "photoZoom":  "1"
+                          },
+                          {
+                              "name":  "Indra Talwar",
+                              "pronouns":  "she/her",
+                              "role":  "Secretary",
+                              "text":  "Fun Fact : She fly small planes",
+                              "photo":  "/uploads/Indra.jpg",
+                              "photoFit":  "cover",
+                              "photoX":  50,
+                              "photoY":  50,
+                              "photoZoom":  "1"
+                          },
+                          {
+                              "name":  "Tanya Kimani",
+                              "pronouns":  "she/her",
+                              "role":  "Events Director",
+                              "text":  "Fun Fact : She loves baking",
+                              "photo":  "/uploads/Tanya.jpg",
+                              "photoFit":  "cover",
+                              "photoX":  50,
+                              "photoY":  50,
+                              "photoZoom":  "1"
+                          },
+                          {
+                              "name":  "Sarujan Srikaran",
+                              "pronouns":  "he/him",
+                              "role":  "Careers Director",
+                              "text":  "Fun Fact : Finished every Assassins\u0027s Creed game",
+                              "photo":  "/uploads/Sarujan.jpg",
+                              "photoFit":  "cover",
+                              "photoX":  50,
+                              "photoY":  50,
+                              "photoZoom":  "1"
+                          },
+                          {
+                              "name":  "Phoenix Hope",
+                              "pronouns":  "they/them",
+                              "role":  "Social Media Director",
+                              "text":  "Fun Fact : They played violin for 6 years",
+                              "photo":  "/uploads/Phoneix.jpg",
+                              "photoFit":  "cover",
+                              "photoX":  50,
+                              "photoY":  50,
+                              "photoZoom":  "1"
+                          }
+                      ],
+    "generalCommittee":  [
+                             {
+                                 "name":  "Suvindu Amarasekara",
+                                 "pronouns":  "",
+                                 "role":  "General committee",
+                                 "text":  "",
+                                 "photo":  "",
+                                 "photoFit":  "cover",
+                                 "photoX":  50,
+                                 "photoY":  50,
+                                 "photoZoom":  "1"
+                             },
+                             {
+                                 "name":  "Isabel Williamson-Lundstedt",
+                                 "pronouns":  "",
+                                 "role":  "General committee",
+                                 "text":  "",
+                                 "photo":  "",
+                                 "photoFit":  "cover",
+                                 "photoX":  50,
+                                 "photoY":  50,
+                                 "photoZoom":  "1"
+                             },
+                             {
+                                 "name":  "Mahi Mistry",
+                                 "pronouns":  "",
+                                 "role":  "General committee",
+                                 "text":  "",
+                                 "photo":  "",
+                                 "photoFit":  "cover",
+                                 "photoX":  50,
+                                 "photoY":  50,
+                                 "photoZoom":  "1"
+                             },
+                             {
+                                 "name":  "Timotius Tan",
+                                 "pronouns":  "",
+                                 "role":  "General committee",
+                                 "text":  "",
+                                 "photo":  "",
+                                 "photoFit":  "cover",
+                                 "photoX":  50,
+                                 "photoY":  50,
+                                 "photoZoom":  "1"
+                             }
+                         ]
+}

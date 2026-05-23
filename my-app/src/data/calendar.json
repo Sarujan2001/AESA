@@ -1,0 +1,44 @@
+{
+    "calendar":  [
+                     {
+                         "date":  "May 7",
+                         "title":  "Aerospace Industry Night 2026",
+                         "location":  "Storey Hall, Building 16",
+                         "time":  "6:30 PM - 9:30 PM",
+                         "price":  "Free",
+                         "isoDate":  "2026-05-07"
+                     },
+                     {
+                         "date":  "TBA",
+                         "title":  "Campus Fest / Club Day",
+                         "location":  "Bowen Street, RMIT City Campus",
+                         "time":  "Daytime",
+                         "price":  "Free",
+                         "isoDate":  ""
+                     },
+                     {
+                         "date":  "TBA",
+                         "title":  "AIAA Student Branch Session",
+                         "location":  "RMIT City Campus",
+                         "time":  "TBA",
+                         "price":  "Members",
+                         "isoDate":  ""
+                     },
+                     {
+                         "date":  "TBA",
+                         "title":  "Industry Q\u0026A Panel",
+                         "location":  "RMIT City Campus",
+                         "time":  "Evening",
+                         "price":  "Free",
+                         "isoDate":  ""
+                     },
+                     {
+                         "date":  "TBA",
+                         "title":  "Project and Pathways Night",
+                         "location":  "RMIT City Campus",
+                         "time":  "Evening",
+                         "price":  "Free",
+                         "isoDate":  ""
+                     }
+                 ]
+}

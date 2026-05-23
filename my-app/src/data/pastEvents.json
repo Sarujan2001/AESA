@@ -1,0 +1,22 @@
+{
+    "pastEvents":  [
+                       {
+                           "title":  "Aerospace Industry Night 2026",
+                           "year":  "2026",
+                           "text":  "AESA and MAMEC hosted a sold-out industry night with 350 tickets, Q\u0026A panel insight, and companies across aerospace, defence, aviation, and engineering.",
+                           "image":  "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format\u0026fit=crop\u0026w=900\u0026q=80"
+                       },
+                       {
+                           "title":  "Campus Fest Membership Drive",
+                           "year":  "2026",
+                           "text":  "AESA signed up 50 students on the day and reported 191 members to date, introducing students to events, merchandise, and the Rubric membership page.",
+                           "image":  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format\u0026fit=crop\u0026w=900\u0026q=80"
+                       },
+                       {
+                           "title":  "AESA x MAMEC Collaboration",
+                           "year":  "2026",
+                           "text":  "AESA collaborated with Monash Aerospace and Mechanical Engineering Club to bring students, industry professionals, and organisations together.",
+                           "image":  "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format\u0026fit=crop\u0026w=900\u0026q=80"
+                       }
+                   ]
+}
