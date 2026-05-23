@@ -525,10 +525,11 @@ function TeamBranch({ title, members }) {
       <div className="team-grid">
         {members.map((member) => {
           const { name, pronouns, role, text, photo } = normalizeTeamMember(member);
+          const photoPosition = member.photoPosition || "center center";
 
           return (
             <article className="team-card" key={`${title}-${name}`}>
-              {photo && <img className="team-photo" src={photo} alt={name} />}
+              {photo && <img className="team-photo" src={photo} alt={name} style={{ objectPosition: photoPosition }} />}
               <h3>
                 {name}
                 {pronouns && <small>{pronouns}</small>}
@@ -545,7 +546,7 @@ function TeamBranch({ title, members }) {
 
 function normalizeTeamMember(member) {
   if (!Array.isArray(member)) {
-    return member;
+    return { photoPosition: "center center", ...member };
   }
 
   if (member.length >= 5) {

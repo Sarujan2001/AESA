@@ -90,6 +90,19 @@ collections:
               - { label: "Role", name: "role", widget: "string" }
               - { label: "Description / Fun Fact", name: "text", widget: "text", required: false }
               - { label: "Photo", name: "photo", widget: "image", required: false }
+              - label: "Photo Position"
+                name: "photoPosition"
+                widget: "select"
+                required: false
+                default: "center center"
+                hint: "Choose where the crop focuses. Use Top if heads are being cut off."
+                options:
+                  - { label: "Center", value: "center center" }
+                  - { label: "Top", value: "center top" }
+                  - { label: "Upper", value: "center 25%" }
+                  - { label: "Lower", value: "center 70%" }
+                  - { label: "Left", value: "left center" }
+                  - { label: "Right", value: "right center" }
           - label: "General Committee"
             name: "generalCommittee"
             widget: "list"
@@ -100,6 +113,19 @@ collections:
               - { label: "Role", name: "role", widget: "string" }
               - { label: "Description", name: "text", widget: "text", required: false }
               - { label: "Photo", name: "photo", widget: "image", required: false }
+              - label: "Photo Position"
+                name: "photoPosition"
+                widget: "select"
+                required: false
+                default: "center center"
+                hint: "Choose where the crop focuses. Use Top if heads are being cut off."
+                options:
+                  - { label: "Center", value: "center center" }
+                  - { label: "Top", value: "center top" }
+                  - { label: "Upper", value: "center 25%" }
+                  - { label: "Lower", value: "center 70%" }
+                  - { label: "Left", value: "left center" }
+                  - { label: "Right", value: "right center" }
           - label: "Past Events"
             name: "pastEvents"
             widget: "list"
