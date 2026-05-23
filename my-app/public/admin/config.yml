@@ -1,0 +1,112 @@
+backend:
+  name: github
+  repo: Sarujan2001/AESA
+  branch: main
+
+local_backend: true
+media_folder: "my-app/public/uploads"
+public_folder: "/uploads"
+site_url: "https://aesa.site"
+display_url: "https://aesa.site"
+logo_url: "/AESALONG.png"
+
+collections:
+  - name: "website"
+    label: "Website"
+    files:
+      - name: "site_data"
+        label: "AESA Website Content"
+        file: "my-app/src/data/siteData.json"
+        format: "json"
+        fields:
+          - label: "Club Details"
+            name: "club"
+            widget: "object"
+            fields:
+              - { label: "Full Name", name: "name", widget: "string" }
+              - { label: "Short Name", name: "shortName", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - label: "Social Links"
+                name: "socials"
+                widget: "object"
+                fields:
+                  - { label: "Facebook", name: "facebook", widget: "string", required: false }
+                  - { label: "Instagram", name: "instagram", widget: "string", required: false }
+                  - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
+                  - { label: "Rubric", name: "rubric", widget: "string", required: false }
+                  - { label: "Rubric Events", name: "rubricEvents", widget: "string", required: false }
+                  - { label: "Linktree", name: "linktree", widget: "string", required: false }
+          - label: "Navigation"
+            name: "navItems"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Target", name: "target", widget: "string" }
+          - { label: "Focus Areas", name: "focusAreas", widget: "list", field: { label: "Focus Area", name: "area", widget: "string" } }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            summary: "{{fields.value}} - {{fields.label}}"
+            fields:
+              - { label: "Value", name: "value", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+          - label: "Sponsors"
+            name: "sponsors"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Fallback Initials", name: "mark", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Website", name: "href", widget: "string" }
+              - { label: "Logo", name: "logo", widget: "image", required: false }
+          - label: "Activities"
+            name: "activities"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Description", name: "text", widget: "text" }
+          - label: "Calendar"
+            name: "calendar"
+            widget: "list"
+            summary: "{{fields.date}} - {{fields.title}}"
+            fields:
+              - { label: "Display Date", name: "date", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Time", name: "time", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "ISO Date", name: "isoDate", widget: "string", required: false, hint: "Use YYYY-MM-DD for scheduled events, or leave blank for TBA." }
+          - label: "Executive Team"
+            name: "executiveTeam"
+            widget: "list"
+            summary: "{{fields.name}} - {{fields.role}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Pronouns", name: "pronouns", widget: "string", required: false }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Description / Fun Fact", name: "text", widget: "text", required: false }
+              - { label: "Photo", name: "photo", widget: "image", required: false }
+          - label: "General Committee"
+            name: "generalCommittee"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Pronouns", name: "pronouns", widget: "string", required: false }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Description", name: "text", widget: "text", required: false }
+              - { label: "Photo", name: "photo", widget: "image", required: false }
+          - label: "Past Events"
+            name: "pastEvents"
+            widget: "list"
+            summary: "{{fields.year}} - {{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Description", name: "text", widget: "text" }
+              - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Join Page Benefits", name: "benefits", widget: "list", field: { label: "Benefit", name: "benefit", widget: "string" } }

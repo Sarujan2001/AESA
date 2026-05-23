@@ -19,103 +19,11 @@ import {
   Share2,
   X,
 } from "lucide-react";
-
-const club = {
-  name: "Aerospace Engineering Student Association",
-  shortName: "AESA",
-  email: "rmitaesa@gmail.com",
-  location: "124 La Trobe St, Melbourne VIC 3000",
-  socials: {
-    facebook: "https://www.facebook.com/RMIT.AESA/",
-    instagram: "https://www.instagram.com/rmitaesa/",
-    linkedin: "https://au.linkedin.com/company/rmit-aerospace-engineering-student-association-aesa",
-    rubric: "https://campus.hellorubric.com/?s=957",
-    rubricEvents: "https://campus.hellorubric.com/?s=957&tab=events",
-    linktree: "https://linktr.ee/rmitaesa",
-  },
-};
+import siteData from "./data/siteData.json";
 
 const contactFormEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
-
-const navItems = [
-  ["Home", "home"],
-  ["Activities", "activities"],
-  ["Calendar", "#calendar"],
-  ["Team", "team"],
-  ["Past Events", "past"],
-  ["Join Us", "join"],
-  ["Contact", "#contact"],
-];
-
-const focusAreas = ["Industry Connections", "Trvia Nights", "Networking", "Internships", "Nerds Out", "Assignment Help"];
-
-const sponsors = [
-  ["AIAA", "AIAA Melbourne Section", "https://www.linkedin.com/company/aiaa-melbourne-section/", "/logos/aiaa.png"],
-  ["AMOG", "AMOG", "https://www.amog.consulting/", "/logos/amog.png"],
-  ["B", "Boeing", "https://www.boeing.com.au/", "/logos/boeing.png"],
-  ["DS", "Dassault Systemes", "https://www.3ds.com/", "/logos/3ds.png"],
-  ["AVA", "AVA TRAINING", "https://avatraining.com.au/", "/logos/avatraining.png"],
-];
-
-const activities = [
-  ["Aerospace Industry Night", "Flagship", "AESA x MAMEC's annual networking night connects students with aerospace companies, Q&A panel guests, internship pathways, and industry representatives."],
-  ["Campus Fest Membership Drive", "Orientation", "AESA meets new and returning students on Bowen Street, introducing membership, events, merchandise, and committee opportunities."],
-  ["Industry Networking", "Careers", "Events are built around communication skills, professional development, and helping students build contacts with industry."],
-  ["Student Project Pathways", "Projects", "AESA connects students with aerospace-adjacent initiatives including space sector, rover, rocketry, UAV, and research communities."],
-  ["AIAA RMIT Student Branch", "Professional", "AESA represents the AIAA RMIT University Student Branch and links students with broader aerospace professional networks."],
-];
-
-const calendar = [
-  ["May 7", "Aerospace Industry Night 2026", "Storey Hall, Building 16", "6:30 PM - 9:30 PM", "Free", "2026-05-07"],
-  ["TBA", "Campus Fest / Club Day", "Bowen Street, RMIT City Campus", "Daytime", "Free", ""],
-  ["TBA", "AIAA Student Branch Session", "RMIT City Campus", "TBA", "Members", ""],
-  ["TBA", "Industry Q&A Panel", "RMIT City Campus", "Evening", "Free", ""],
-  ["TBA", "Project and Pathways Night", "RMIT City Campus", "Evening", "Free", ""],
-];
-
-const executiveTeam = [
-  ["Nikolas Makris", "he/him", "President","Fun Fact : He knows almost every species of monkey","/team/nikolas.png"],
-  ["Paris Theodosiou", "she/her", "Treasurer", "Fun Fact : She played the flute for 6-7 years", "/team/paris.png"],
-  ["Indra Talwar", "she/her", "Secretary", "Fun Fact : She fly small planes", "/team/indra.png"],
-  ["Tanya Kimani", "she/her", "Events Director", "Fun Fact : She loves baking", "/team/tanya.png"],
-  ["Sarujan Srikaran", "he/him", "Careers Director", "Fun Fact : Finished every Assassins's Creed game", "/team/sarujan.png"],
-  ["Phoenix Hope", "they/them", "Social Media Director", "Fun Fact : They played violin for 6 years", "/team/phoenix.png"],
-];
-
-const generalCommittee = [
-  ["Suvindu Amarasekara", "General committee"],
-  ["Isabel Williamson-Lundstedt", "General committee"],
-  ["Mahi Mistry", "General committee"],
-  ["Timotius Tan", "General committee"],
-];
-
-const pastEvents = [
-  {
-    title: "Aerospace Industry Night 2026",
-    year: "2026",
-    text: "AESA and MAMEC hosted a sold-out industry night with 350 tickets, Q&A panel insight, and companies across aerospace, defence, aviation, and engineering.",
-    image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "Campus Fest Membership Drive",
-    year: "2026",
-    text: "AESA signed up 50 students on the day and reported 191 members to date, introducing students to events, merchandise, and the Rubric membership page.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "AESA x MAMEC Collaboration",
-    year: "2026",
-    text: "AESA collaborated with Monash Aerospace and Mechanical Engineering Club to bring students, industry professionals, and organisations together.",
-    image: "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=900&q=80",
-  },
-];
-
-const benefits = [
-  "Access AESA events, memberships, and ticketing through Rubric.",
-  "Build communication and organisational skills through student-led opportunities.",
-  "Meet industry contacts through networking nights, panels, and professional events.",
-  "Connect with the AIAA RMIT University Student Branch and wider aerospace community.",
-];
+const { club, navItems, focusAreas, sponsors, activities, calendar, executiveTeam, generalCommittee, pastEvents, benefits, stats } =
+  siteData;
 
 function SectionHeader({ eyebrow, title, text }) {
   return (
@@ -170,7 +78,7 @@ function getNextEvent(events) {
   today.setHours(0, 0, 0, 0);
 
   const upcoming = events
-    .map(([date, title, location, time, price, isoDate]) => ({
+    .map(({ date, title, location, time, price, isoDate }) => ({
       date,
       title,
       location,
@@ -186,14 +94,12 @@ function getNextEvent(events) {
     return upcoming[0];
   }
 
-  const unscheduled = events.find(([date]) => date === "TBA");
+  const unscheduled = events.find((event) => event.date === "TBA");
   if (unscheduled) {
-    const [date, title, location, time, price, isoDate] = unscheduled;
-    return { date, title, location, time, price, isoDate, startsAt: null };
+    return { ...unscheduled, startsAt: null };
   }
 
-  const [date, title, location, time, price, isoDate] = events[0];
-  return { date, title, location, time, price, isoDate, startsAt: null };
+  return { ...events[0], startsAt: null };
 }
 
 export default function App() {
@@ -202,15 +108,6 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [contactStatus, setContactStatus] = useState("");
 
-  const stats = useMemo(
-    () => [
-      ["392", "LinkedIn followers"],
-      ["350+", "club members count"],
-      ["350", "AIN 2026 tickets"],
-      ["AIAA", "RMIT student branch"],
-    ],
-    [],
-  );
   const nextEvent = useMemo(() => getNextEvent(calendar), []);
 
   function navigate(target) {
@@ -294,7 +191,7 @@ function Header({ activeTarget, menuOpen, setMenuOpen, navigate }) {
       </button>
 
       <nav className="desktop-nav" aria-label="Main navigation">
-        {navItems.map(([label, target]) => (
+        {navItems.map(({ label, target }) => (
           <button className={target === activeTarget ? "active" : ""} key={target} type="button" onClick={() => navigate(target)}>
             {label}
           </button>
@@ -321,7 +218,7 @@ function Header({ activeTarget, menuOpen, setMenuOpen, navigate }) {
 function MobileNav({ navigate }) {
   return (
     <nav className="mobile-nav" aria-label="Mobile navigation">
-      {navItems.map(([label, target]) => (
+      {navItems.map(({ label, target }) => (
         <button key={target} type="button" onClick={() => navigate(target)}>
           {label}
         </button>
@@ -392,7 +289,7 @@ function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) 
             <Plane className="plane-wire" strokeWidth={1.2} />
           </div>
           <div className="stats-grid">
-            {stats.map(([value, label]) => (
+            {stats.map(({ value, label }) => (
               <div key={label}>
                 <strong>{value}</strong>
                 <span>{label}</span>
@@ -493,7 +390,7 @@ function SponsorSection() {
         text="AESA public posts mention aerospace, aviation, defence, engineering, and student project organisations involved in industry night programming."
       />
       <div className="sponsor-list">
-        {sponsors.map(([mark, name, href, logo]) => (
+        {sponsors.map(({ mark, name, href, logo }) => (
           <a href={href} target="_blank" rel="noreferrer" key={name}>
             <SponsorLogo mark={mark} name={name} logo={logo} />
             <span>{name}</span>
@@ -513,7 +410,7 @@ function CalendarSection({ navigate }) {
         text="Aerospace Industry Night 2026 was publicly listed for Thursday 7 May, 6:30 PM to 9:30 PM. TBA rows can be replaced with future Rubric events."
       />
       <div className="calendar-list">
-        {calendar.map(([date, title, location, time, price]) => (
+        {calendar.map(({ date, title, location, time, price }) => (
           <button className="calendar-row" key={title} type="button" onClick={() => navigate("join")}>
             <strong>{date}</strong>
             <span>
@@ -591,7 +488,7 @@ function ActivitiesPage({ navigate }) {
       />
       <section className="band">
         <div className="activity-grid">
-          {activities.map(([title, tag, text]) => (
+          {activities.map(({ title, tag, text }) => (
             <button className="activity-card" key={title} type="button" onClick={() => navigate("#calendar")}>
               <span>{tag}</span>
               <h3>{title}</h3>
@@ -647,6 +544,10 @@ function TeamBranch({ title, members }) {
 }
 
 function normalizeTeamMember(member) {
+  if (!Array.isArray(member)) {
+    return member;
+  }
+
   if (member.length >= 5) {
     const [name, pronouns, role, text, photo] = member;
     return { name, pronouns, role, text, photo };
@@ -728,7 +629,7 @@ function Footer({ navigate }) {
         <span>RMIT aerospace engineering student association</span>
       </div>
       <div>
-        {navItems.slice(0, 5).map(([label, target]) => (
+        {navItems.slice(0, 5).map(({ label, target }) => (
           <button key={target} type="button" onClick={() => navigate(target)}>
             {label}
           </button>

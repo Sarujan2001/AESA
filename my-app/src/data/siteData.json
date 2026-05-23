@@ -1,0 +1,78 @@
+{
+  "club": {
+    "name": "Aerospace Engineering Student Association",
+    "shortName": "AESA",
+    "email": "rmitaesa@gmail.com",
+    "location": "124 La Trobe St, Melbourne VIC 3000",
+    "socials": {
+      "facebook": "https://www.facebook.com/RMIT.AESA/",
+      "instagram": "https://www.instagram.com/rmitaesa/",
+      "linkedin": "https://au.linkedin.com/company/rmit-aerospace-engineering-student-association-aesa",
+      "rubric": "https://campus.hellorubric.com/?s=957",
+      "rubricEvents": "https://campus.hellorubric.com/?s=957&tab=events",
+      "linktree": "https://linktr.ee/rmitaesa"
+    }
+  },
+  "navItems": [
+    { "label": "Home", "target": "home" },
+    { "label": "Activities", "target": "activities" },
+    { "label": "Calendar", "target": "#calendar" },
+    { "label": "Team", "target": "team" },
+    { "label": "Past Events", "target": "past" },
+    { "label": "Join Us", "target": "join" },
+    { "label": "Contact", "target": "#contact" }
+  ],
+  "focusAreas": ["Industry Connections", "Trvia Nights", "Networking", "Internships", "Nerds Out", "Assignment Help"],
+  "stats": [
+    { "value": "392", "label": "LinkedIn followers" },
+    { "value": "350+", "label": "club members count" },
+    { "value": "350", "label": "AIN 2026 tickets" },
+    { "value": "AIAA", "label": "RMIT student branch" }
+  ],
+  "sponsors": [
+    { "mark": "AIAA", "name": "AIAA Melbourne Section", "href": "https://www.linkedin.com/company/aiaa-melbourne-section/", "logo": "/logos/aiaa.png" },
+    { "mark": "AMOG", "name": "AMOG", "href": "https://www.amog.consulting/", "logo": "/logos/amog.png" },
+    { "mark": "B", "name": "Boeing", "href": "https://www.boeing.com.au/", "logo": "/logos/boeing.png" },
+    { "mark": "DS", "name": "Dassault Systemes", "href": "https://www.3ds.com/", "logo": "/logos/3ds.png" },
+    { "mark": "AVA", "name": "AVA TRAINING", "href": "https://avatraining.com.au/", "logo": "/logos/avatraining.png" }
+  ],
+  "activities": [
+    { "title": "Aerospace Industry Night", "tag": "Flagship", "text": "AESA x MAMEC's annual networking night connects students with aerospace companies, Q&A panel guests, internship pathways, and industry representatives." },
+    { "title": "Campus Fest Membership Drive", "tag": "Orientation", "text": "AESA meets new and returning students on Bowen Street, introducing membership, events, merchandise, and committee opportunities." },
+    { "title": "Industry Networking", "tag": "Careers", "text": "Events are built around communication skills, professional development, and helping students build contacts with industry." },
+    { "title": "Student Project Pathways", "tag": "Projects", "text": "AESA connects students with aerospace-adjacent initiatives including space sector, rover, rocketry, UAV, and research communities." },
+    { "title": "AIAA RMIT Student Branch", "tag": "Professional", "text": "AESA represents the AIAA RMIT University Student Branch and links students with broader aerospace professional networks." }
+  ],
+  "calendar": [
+    { "date": "May 7", "title": "Aerospace Industry Night 2026", "location": "Storey Hall, Building 16", "time": "6:30 PM - 9:30 PM", "price": "Free", "isoDate": "2026-05-07" },
+    { "date": "TBA", "title": "Campus Fest / Club Day", "location": "Bowen Street, RMIT City Campus", "time": "Daytime", "price": "Free", "isoDate": "" },
+    { "date": "TBA", "title": "AIAA Student Branch Session", "location": "RMIT City Campus", "time": "TBA", "price": "Members", "isoDate": "" },
+    { "date": "TBA", "title": "Industry Q&A Panel", "location": "RMIT City Campus", "time": "Evening", "price": "Free", "isoDate": "" },
+    { "date": "TBA", "title": "Project and Pathways Night", "location": "RMIT City Campus", "time": "Evening", "price": "Free", "isoDate": "" }
+  ],
+  "executiveTeam": [
+    { "name": "Nikolas Makris", "pronouns": "he/him", "role": "President", "text": "Fun Fact : He knows almost every species of monkey", "photo": "/team/nikolas.png" },
+    { "name": "Paris Theodosiou", "pronouns": "she/her", "role": "Treasurer", "text": "Fun Fact : She played the flute for 6-7 years", "photo": "/team/paris.png" },
+    { "name": "Indra Talwar", "pronouns": "she/her", "role": "Secretary", "text": "Fun Fact : She fly small planes", "photo": "/team/indra.png" },
+    { "name": "Tanya Kimani", "pronouns": "she/her", "role": "Events Director", "text": "Fun Fact : She loves baking", "photo": "/team/tanya.png" },
+    { "name": "Sarujan Srikaran", "pronouns": "he/him", "role": "Careers Director", "text": "Fun Fact : Finished every Assassins's Creed game", "photo": "/team/sarujan.png" },
+    { "name": "Phoenix Hope", "pronouns": "they/them", "role": "Social Media Director", "text": "Fun Fact : They played violin for 6 years", "photo": "/team/phoenix.png" }
+  ],
+  "generalCommittee": [
+    { "name": "Suvindu Amarasekara", "pronouns": "", "role": "General committee", "text": "", "photo": "" },
+    { "name": "Isabel Williamson-Lundstedt", "pronouns": "", "role": "General committee", "text": "", "photo": "" },
+    { "name": "Mahi Mistry", "pronouns": "", "role": "General committee", "text": "", "photo": "" },
+    { "name": "Timotius Tan", "pronouns": "", "role": "General committee", "text": "", "photo": "" }
+  ],
+  "pastEvents": [
+    { "title": "Aerospace Industry Night 2026", "year": "2026", "text": "AESA and MAMEC hosted a sold-out industry night with 350 tickets, Q&A panel insight, and companies across aerospace, defence, aviation, and engineering.", "image": "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=900&q=80" },
+    { "title": "Campus Fest Membership Drive", "year": "2026", "text": "AESA signed up 50 students on the day and reported 191 members to date, introducing students to events, merchandise, and the Rubric membership page.", "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80" },
+    { "title": "AESA x MAMEC Collaboration", "year": "2026", "text": "AESA collaborated with Monash Aerospace and Mechanical Engineering Club to bring students, industry professionals, and organisations together.", "image": "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=900&q=80" }
+  ],
+  "benefits": [
+    "Access AESA events, memberships, and ticketing through Rubric.",
+    "Build communication and organisational skills through student-led opportunities.",
+    "Meet industry contacts through networking nights, panels, and professional events.",
+    "Connect with the AIAA RMIT University Student Branch and wider aerospace community."
+  ]
+}
