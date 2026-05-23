@@ -104,7 +104,7 @@ collections:
               - { label: "Pronouns", name: "pronouns", widget: "string", required: false }
               - { label: "Role", name: "role", widget: "string" }
               - { label: "Description / Fun Fact", name: "text", widget: "text", required: false }
-              - { label: "Photo", name: "photo", widget: "image", required: false, hint: "For visual cropping, open /admin/crop.html first, download the cropped image, then upload it here." }
+              - { label: "Photo", name: "photo", widget: "image", required: false, hint: "For crop/edit upload, use Admin Home > Team Photo Manager." }
               - label: "Photo Fit"
                 name: "photoFit"
                 widget: "select"
