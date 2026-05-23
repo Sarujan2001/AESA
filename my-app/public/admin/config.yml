@@ -25,9 +25,6 @@ collections:
             fields:
               - { label: "Full Name", name: "name", widget: "string" }
               - { label: "Short Name", name: "shortName", widget: "string" }
-              - { label: "Header Logo", name: "brandLogo", widget: "image", required: false }
-              - { label: "Welcome Logo", name: "welcomeLogo", widget: "image", required: false }
-              - { label: "Browser Tab Icon", name: "favicon", widget: "image", required: false }
               - { label: "Email", name: "email", widget: "string" }
               - { label: "Location", name: "location", widget: "string" }
               - label: "Social Links"
@@ -102,21 +99,28 @@ collections:
                 options:
                   - { label: "Crop to fill card", value: "cover" }
                   - { label: "Show full image", value: "contain" }
-              - label: "Photo Position"
-                name: "photoPosition"
-                widget: "select"
+              - label: "Crop X"
+                name: "photoX"
+                widget: "number"
                 required: false
-                default: "center center"
-                hint: "Choose where the crop focuses. Use Top if heads are being cut off."
-                options:
-                  - { label: "Center", value: "center center" }
-                  - { label: "Top", value: "center top" }
-                  - { label: "Upper", value: "center 25%" }
-                  - { label: "Lower", value: "center 70%" }
-                  - { label: "Left", value: "left center" }
-                  - { label: "Right", value: "right center" }
+                default: 50
+                value_type: "int"
+                min: 0
+                max: 100
+                step: 5
+                hint: "Horizontal crop focus. 0 = left, 50 = center, 100 = right."
+              - label: "Crop Y"
+                name: "photoY"
+                widget: "number"
+                required: false
+                default: 50
+                value_type: "int"
+                min: 0
+                max: 100
+                step: 5
+                hint: "Vertical crop focus. 0 = top, 50 = center, 100 = bottom."
               - label: "Photo Zoom"
-                name: "photoScale"
+                name: "photoZoom"
                 widget: "select"
                 required: false
                 default: "1"
@@ -146,21 +150,28 @@ collections:
                 options:
                   - { label: "Crop to fill card", value: "cover" }
                   - { label: "Show full image", value: "contain" }
-              - label: "Photo Position"
-                name: "photoPosition"
-                widget: "select"
+              - label: "Crop X"
+                name: "photoX"
+                widget: "number"
                 required: false
-                default: "center center"
-                hint: "Choose where the crop focuses. Use Top if heads are being cut off."
-                options:
-                  - { label: "Center", value: "center center" }
-                  - { label: "Top", value: "center top" }
-                  - { label: "Upper", value: "center 25%" }
-                  - { label: "Lower", value: "center 70%" }
-                  - { label: "Left", value: "left center" }
-                  - { label: "Right", value: "right center" }
+                default: 50
+                value_type: "int"
+                min: 0
+                max: 100
+                step: 5
+                hint: "Horizontal crop focus. 0 = left, 50 = center, 100 = right."
+              - label: "Crop Y"
+                name: "photoY"
+                widget: "number"
+                required: false
+                default: 50
+                value_type: "int"
+                min: 0
+                max: 100
+                step: 5
+                hint: "Vertical crop focus. 0 = top, 50 = center, 100 = bottom."
               - label: "Photo Zoom"
-                name: "photoScale"
+                name: "photoZoom"
                 widget: "select"
                 required: false
                 default: "1"

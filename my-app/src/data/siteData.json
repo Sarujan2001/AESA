@@ -2,9 +2,6 @@
   "club": {
     "name": "Aerospace Engineering Student Association",
     "shortName": "AESA",
-    "brandLogo": "/Light_Logo_Rev1-removebg-preview.png",
-    "welcomeLogo": "/Light_Logo_Rev1-removebg-preview.png",
-    "favicon": "/Light_Logo_Rev1-removebg-preview.png",
     "email": "rmitaesa@gmail.com",
     "location": "124 La Trobe St, Melbourne VIC 3000",
     "socials": {
@@ -181,8 +178,9 @@
       "text": "Fun Fact : He knows almost every species of monkey",
       "photo": "/uploads/NIKOLAS.jpg",
       "photoFit": "cover",
-      "photoPosition": "center center",
-      "photoScale": "1"
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
     },
     {
       "name": "Paris Theodosiou",
@@ -191,8 +189,9 @@
       "text": "Fun Fact : She played the flute for 6-7 years",
       "photo": "/uploads/Paris.png",
       "photoFit": "cover",
-      "photoPosition": "center center",
-      "photoScale": "1"
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
     },
     {
       "name": "Indra Talwar",
@@ -201,8 +200,9 @@
       "text": "Fun Fact : She fly small planes",
       "photo": "/uploads/Indra.jpg",
       "photoFit": "cover",
-      "photoPosition": "center center",
-      "photoScale": "1"
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
     },
     {
       "name": "Tanya Kimani",
@@ -211,8 +211,9 @@
       "text": "Fun Fact : She loves baking",
       "photo": "/uploads/Tanya.jpg",
       "photoFit": "cover",
-      "photoPosition": "center center",
-      "photoScale": "1"
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
     },
     {
       "name": "Sarujan Srikaran",
@@ -221,8 +222,9 @@
       "text": "Fun Fact : Finished every Assassins's Creed game",
       "photo": "/uploads/Sarujan.jpg",
       "photoFit": "cover",
-      "photoPosition": "center center",
-      "photoScale": "1"
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
     },
     {
       "name": "Phoenix Hope",
@@ -231,8 +233,9 @@
       "text": "Fun Fact : They played violin for 6 years",
       "photo": "/uploads/Phoneix.jpg",
       "photoFit": "cover",
-      "photoPosition": "center center",
-      "photoScale": "1"
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
     }
   ],
   "generalCommittee": [
@@ -243,8 +246,9 @@
       "text": "",
       "photo": "",
       "photoFit": "cover",
-      "photoPosition": "center center",
-      "photoScale": "1"
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
     },
     {
       "name": "Isabel Williamson-Lundstedt",
@@ -253,8 +257,9 @@
       "text": "",
       "photo": "",
       "photoFit": "cover",
-      "photoPosition": "center center",
-      "photoScale": "1"
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
     },
     {
       "name": "Mahi Mistry",
@@ -263,8 +268,9 @@
       "text": "",
       "photo": "",
       "photoFit": "cover",
-      "photoPosition": "center center",
-      "photoScale": "1"
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
     },
     {
       "name": "Timotius Tan",
@@ -273,8 +279,9 @@
       "text": "",
       "photo": "",
       "photoFit": "cover",
-      "photoPosition": "center center",
-      "photoScale": "1"
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
     }
   ],
   "pastEvents": [
