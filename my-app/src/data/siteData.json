@@ -177,7 +177,7 @@
       "role": "President",
       "text": "Fun Fact : He knows almost every species of monkey",
       "photo": "/uploads/NIKOLAS.jpg",
-      "photoPosition": "center top"
+      "photoPosition": "center center"
     },
     {
       "name": "Paris Theodosiou",
@@ -185,7 +185,7 @@
       "role": "Treasurer",
       "text": "Fun Fact : She played the flute for 6-7 years",
       "photo": "/uploads/Paris.png",
-      "photoPosition": "center top"
+      "photoPosition": "center center"
     },
     {
       "name": "Indra Talwar",
@@ -193,7 +193,7 @@
       "role": "Secretary",
       "text": "Fun Fact : She fly small planes",
       "photo": "/uploads/Indra.jpg",
-      "photoPosition": "center top"
+      "photoPosition": "center center"
     },
     {
       "name": "Tanya Kimani",
@@ -201,7 +201,7 @@
       "role": "Events Director",
       "text": "Fun Fact : She loves baking",
       "photo": "/uploads/Tanya.jpg",
-      "photoPosition": "center top"
+      "photoPosition": "center center"
     },
     {
       "name": "Sarujan Srikaran",
@@ -209,7 +209,7 @@
       "role": "Careers Director",
       "text": "Fun Fact : Finished every Assassins's Creed game",
       "photo": "/uploads/Sarujan.jpg",
-      "photoPosition": "center top"
+      "photoPosition": "center center"
     },
     {
       "name": "Phoenix Hope",
@@ -217,7 +217,7 @@
       "role": "Social Media Director",
       "text": "Fun Fact : They played violin for 6 years",
       "photo": "/uploads/Phoneix.jpg",
-      "photoPosition": "center top"
+      "photoPosition": "center center"
     }
   ],
   "generalCommittee": [
