@@ -489,27 +489,6 @@ h3 {
   background-size: 24px 24px;
 }
 
-.mini-orbit::before {
-  position: absolute;
-  inset: 34px auto auto 34px;
-  width: 112px;
-  aspect-ratio: 1;
-  content: "";
-  background: var(--amber);
-  border-radius: 50%;
-}
-
-.mini-orbit::after {
-  position: absolute;
-  right: 42px;
-  bottom: 38px;
-  width: 92px;
-  aspect-ratio: 1;
-  content: "";
-  background: var(--emerald);
-  transform: rotate(12deg);
-}
-
 .plane-wire {
   position: absolute;
   top: 50%;
