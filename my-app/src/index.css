@@ -248,6 +248,12 @@ footer button:hover {
   background: var(--charcoal);
 }
 
+/* Removes the unwanted red circle/blob pseudo-element */
+.welcome-scroll::after {
+  content: none !important;
+  display: none !important;
+}
+
 .welcome-image {
   position: absolute;
   inset: 0;
@@ -266,19 +272,6 @@ footer button:hover {
   content: "";
   background: rgba(17, 24, 39, 0.5);
 }
-
-.welcome-scroll::after {
-  position: absolute;
-  right: 8vw;
-  bottom: 8vh;
-  width: min(300px, 45vw);
-  aspect-ratio: 1;
-  content: "";
-  background: rgba(215, 25, 32, 0.82);
-  border-radius: 50%;
-  mix-blend-mode: multiply;
-}
-
 .welcome-copy {
   width: min(1120px, calc(100% - 36px));
   padding-bottom: 10vh;
