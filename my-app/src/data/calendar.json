@@ -1,13 +1,6 @@
 {
   "calendar": [
     {
-      "date": "7 May",
-      "title": "AESA x MAMEC Aerospace Industry Night",
-      "location": "Bowen Street, RMIT City Campus",
-      "time": "Daytime",
-      "price": "Sold Out"
-    },
-    {
       "date": "May 29",
       "title": "RMIT AESA x Boeing Factory Visit",
       "location": "224-260 Lorimer St, Port Melbourne VIC 3207",
@@ -16,11 +9,32 @@
       "isoDate": "2026-05-07"
     },
     {
-      "date": "Comming Soon",
+      "date": "7 May",
+      "title": "AESA x MAMEC Aerospace Industry Night",
+      "location": "Bowen Street, RMIT City Campus",
+      "time": "Daytime",
+      "price": "Sold Out"
+    },
+    {
+      "date": "18/09/2026",
       "title": "ENG BALL 2026",
-      "location": "Secrect ",
-      "time": "6:30 Pm",
+      "location": "Melbourne Pavilion",
+      "time": "7:00pm - 11:00pm",
       "price": "Soon to be announced"
+    },
+    {
+      "date": "23 April 2026",
+      "title": "Engineers to be Hired by AVA TRAINING",
+      "location": "Home Building Docklands",
+      "time": "3:00pm",
+      "price": "Sold Out"
+    },
+    {
+      "date": "16 April 2026",
+      "title": "LUNCHTIME LIFTOFF",
+      "location": "Oxford Scholar",
+      "time": "12pm",
+      "price": "Sold Out"
     }
   ]
 }
