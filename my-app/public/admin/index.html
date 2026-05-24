@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AESA Content Manager</title>
+    <title>AESA CMS</title>
     <style>
       * {
         box-sizing: border-box;
@@ -15,222 +15,140 @@
         margin: 0;
         color: #111827;
         background:
-          linear-gradient(90deg, rgba(17, 24, 39, 0.04) 1px, transparent 1px),
-          linear-gradient(rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(215, 25, 32, 0.08) 1px, transparent 1px),
+          linear-gradient(rgba(17, 24, 39, 0.05) 1px, transparent 1px),
           #ffffff;
-        background-size: 42px 42px;
+        background-size: 40px 40px;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
-      .token-login {
+      main {
         display: grid;
-        width: min(680px, calc(100% - 32px));
+        width: min(860px, calc(100% - 32px));
         min-height: 100vh;
         margin: 0 auto;
         place-items: center;
+        padding: 32px 0;
       }
 
-      .token-card {
+      .panel {
         display: grid;
-        gap: 16px;
+        gap: 18px;
         width: 100%;
-        padding: 24px;
+        padding: clamp(22px, 5vw, 42px);
         background: #ffffff;
+        border: 4px solid #111827;
         border-radius: 8px;
       }
 
       .brand {
-        width: 112px;
-        height: 58px;
+        width: 132px;
+        height: 64px;
         object-fit: contain;
       }
 
       h1 {
+        max-width: 720px;
         margin: 0;
-        font-size: clamp(2rem, 6vw, 4.2rem);
-        line-height: 0.96;
+        font-size: clamp(2.4rem, 7vw, 5.6rem);
+        line-height: 0.92;
         letter-spacing: -0.02em;
       }
 
       p {
+        max-width: 680px;
         margin: 0;
-        color: #5f6670;
-        line-height: 1.6;
+        color: #4b5563;
+        font-size: 1.02rem;
+        line-height: 1.65;
       }
 
-      label {
-        display: grid;
-        gap: 8px;
-        font-weight: 800;
-      }
-
-      input {
-        width: 100%;
-        min-height: 48px;
-        padding: 12px 14px;
+      .note {
+        padding: 16px;
         color: #111827;
         background: #f3f4f6;
-        border: 0;
         border-radius: 8px;
-        font: inherit;
-      }
-
-      button,
-      a.button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 48px;
-        padding: 12px 16px;
-        color: #ffffff;
-        background: #d71920;
-        border: 0;
-        border-radius: 8px;
-        font: inherit;
-        font-weight: 900;
-        text-decoration: none;
-        cursor: pointer;
       }
 
       .actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 12px;
+        margin-top: 6px;
       }
 
-      .secondary {
-        color: #111827 !important;
-        background: #f3f4f6 !important;
+      a.button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 13px 18px;
+        color: #ffffff;
+        background: #d71920;
+        border: 0;
+        border-radius: 8px;
+        font-weight: 900;
+        text-decoration: none;
+        transition:
+          transform 160ms ease,
+          background 160ms ease;
       }
 
-      .note {
-        padding: 14px;
+      a.button:hover {
+        background: #b9151b;
+        transform: scale(1.03);
+      }
+
+      a.button.secondary {
         color: #111827;
         background: #f3f4f6;
-        border-radius: 8px;
-        font-size: 0.95rem;
       }
 
-      .error {
-        color: #d71920;
-        font-weight: 800;
+      a.button.secondary:hover {
+        background: #e5e7eb;
       }
 
-      [hidden] {
-        display: none !important;
+      ol {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding-left: 22px;
+        color: #374151;
+        line-height: 1.6;
+      }
+
+      strong {
+        color: #111827;
       }
     </style>
   </head>
   <body>
-    <main class="token-login" id="tokenLogin">
-      <form class="token-card" id="tokenForm">
+    <main>
+      <section class="panel" aria-labelledby="cms-title">
         <img class="brand" src="/AESALONG.png" alt="AESA" />
-        <h1>AESA Content Manager</h1>
-        <p>Paste a fine-grained GitHub token to open Decap CMS without a separate OAuth server.</p>
-
-        <p class="note">
-          Use a token limited to the <strong>rmitaesa/AESA</strong> repository with <strong>Contents: Read and write</strong>.
-          Decap stores the token in this browser while you are logged in. Use Clear saved token when you finish.
+        <h1 id="cms-title">AESA Pages CMS</h1>
+        <p>
+          Use Pages CMS to edit the AESA website content and upload images through GitHub. Changes are saved to
+          <strong>rmitaesa/AESA</strong>, then GitHub Pages rebuilds the live website automatically.
         </p>
 
-        <label>
-          GitHub token
-          <input id="tokenInput" type="password" autocomplete="off" placeholder="github_pat_..." required />
-        </label>
-
-        <div class="actions">
-          <button type="submit">Open Decap CMS</button>
-          <a class="button secondary" href="/admin/images.html">Open Image Crop Manager</a>
-          <a class="button secondary" href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noreferrer">Create token</a>
-          <button class="secondary" id="clearButton" type="button">Clear saved token</button>
+        <div class="note">
+          Future committee members should sign in with the shared RMIT AESA GitHub account, or an approved GitHub
+          account that has write access to the repository.
         </div>
 
-        <p class="error" id="errorText" hidden></p>
-      </form>
+        <ol>
+          <li>Open Pages CMS and sign in with GitHub.</li>
+          <li>Select the <strong>rmitaesa/AESA</strong> repository.</li>
+          <li>Edit the section you need, save, then wait for GitHub Pages to deploy.</li>
+        </ol>
+
+        <div class="actions">
+          <a class="button" href="https://app.pagescms.org/" target="_blank" rel="noreferrer">Open Pages CMS -></a>
+          <a class="button secondary" href="/admin/images.html">Open Image Crop Manager</a>
+          <a class="button secondary" href="https://github.com/apps/pages-cms" target="_blank" rel="noreferrer">Install GitHub App</a>
+        </div>
+      </section>
     </main>
-
-    <script>
-      const tokenLogin = document.querySelector("#tokenLogin");
-      const tokenForm = document.querySelector("#tokenForm");
-      const tokenInput = document.querySelector("#tokenInput");
-      const clearButton = document.querySelector("#clearButton");
-      const errorText = document.querySelector("#errorText");
-      const savedToken = localStorage.getItem("aesaDecapToken");
-
-      function loadDecap() {
-        tokenLogin.hidden = true;
-        const script = document.createElement("script");
-        script.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
-        document.body.appendChild(script);
-      }
-
-      async function verifyToken(token) {
-        const response = await fetch("https://api.github.com/repos/rmitaesa/AESA/contents/my-app/src/data/siteSettings.json?ref=main", {
-          headers: {
-            Accept: "application/vnd.github+json",
-            Authorization: `Bearer ${token}`,
-            "X-GitHub-Api-Version": "2022-11-28",
-          },
-        });
-
-        if (!response.ok) {
-          if (response.status === 401 || response.status === 403) {
-            throw new Error("GitHub rejected this token. Check that it has Contents: Read and write for rmitaesa/AESA.");
-          }
-
-          throw new Error(`GitHub token check failed with status ${response.status}.`);
-        }
-      }
-
-      function storeDecapUser(token) {
-        const user = {
-          backendName: "github",
-          token,
-        };
-
-        localStorage.setItem("aesaDecapToken", token);
-        localStorage.setItem("decap-cms-user", JSON.stringify(user));
-      }
-
-      async function openWithToken(token) {
-        const cleanToken = token.trim();
-
-        if (!cleanToken.startsWith("github_pat_") && !cleanToken.startsWith("ghp_")) {
-          errorText.hidden = false;
-          errorText.textContent = "That does not look like a GitHub token.";
-          return;
-        }
-
-        errorText.hidden = false;
-        errorText.textContent = "Checking token with GitHub...";
-
-        await verifyToken(cleanToken);
-        storeDecapUser(cleanToken);
-        window.location.hash = "#/";
-        loadDecap();
-      }
-
-      tokenForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        try {
-          await openWithToken(tokenInput.value);
-        } catch (error) {
-          errorText.hidden = false;
-          errorText.textContent = error.message;
-        }
-      });
-
-      clearButton.addEventListener("click", () => {
-        localStorage.removeItem("aesaDecapToken");
-        localStorage.removeItem("decap-cms-user");
-        window.location.hash = "";
-        tokenInput.value = "";
-        errorText.hidden = true;
-      });
-
-      if (savedToken) {
-        tokenInput.value = savedToken;
-      }
-    </script>
   </body>
 </html>

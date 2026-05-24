@@ -1,0 +1,314 @@
+media:
+  - name: uploads
+    label: Website Photos
+    input: my-app/public/uploads
+    output: /uploads
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+  - name: logos
+    label: Sponsor Logos
+    input: my-app/public/logos
+    output: /logos
+    extensions: [jpg, jpeg, png, webp, svg]
+    rename: safe
+
+components:
+  teamMember:
+    label: Team Member
+    type: object
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+      - name: pronouns
+        label: Pronouns
+        type: string
+        required: false
+        description: Example: he/him, she/her, they/them.
+      - name: role
+        label: Role
+        type: string
+        required: true
+      - name: text
+        label: Fun Fact
+        type: text
+        required: false
+      - name: photo
+        label: Photo
+        type: image
+        required: false
+        options:
+          media: uploads
+      - name: photoFit
+        label: Photo Fit
+        type: select
+        required: false
+        options:
+          values: [cover, contain]
+      - name: photoX
+        label: Photo Position X
+        type: number
+        required: false
+        description: Use 50 for center. Lower moves left, higher moves right.
+      - name: photoY
+        label: Photo Position Y
+        type: number
+        required: false
+        description: Use 50 for center. Lower moves up, higher moves down.
+      - name: photoZoom
+        label: Photo Zoom
+        type: string
+        required: false
+        description: Use 1 for normal, 1.2 or 1.5 to zoom in.
+
+content:
+  - name: site
+    label: Site Settings
+    type: file
+    path: my-app/src/data/siteSettings.json
+    format: json
+    fields:
+      - name: club
+        label: Club Details
+        type: object
+        fields:
+          - name: name
+            label: Full Name
+            type: string
+          - name: shortName
+            label: Short Name
+            type: string
+          - name: email
+            label: Email
+            type: string
+          - name: location
+            label: Location
+            type: string
+          - name: socials
+            label: Social Links
+            type: object
+            fields:
+              - name: facebook
+                label: Facebook
+                type: string
+                required: false
+              - name: instagram
+                label: Instagram
+                type: string
+                required: false
+              - name: linkedin
+                label: LinkedIn
+                type: string
+                required: false
+              - name: rubric
+                label: Rubric
+                type: string
+                required: false
+              - name: rubricEvents
+                label: Rubric Events
+                type: string
+                required: false
+              - name: linktree
+                label: Linktree
+                type: string
+                required: false
+      - name: navItems
+        label: Navigation Items
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
+        fields:
+          - name: label
+            label: Label
+            type: string
+          - name: target
+            label: Target
+            type: string
+
+  - name: pages
+    label: Website Pages
+    type: group
+    items:
+      - name: home
+        label: Home Page
+        type: file
+        path: my-app/src/data/home.json
+        format: json
+        fields:
+          - name: focusAreas
+            label: Focus Areas
+            type: string
+            list: true
+          - name: stats
+            label: Stats
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{value} - {label}"
+            fields:
+              - name: value
+                label: Value
+                type: string
+              - name: label
+                label: Label
+                type: string
+
+      - name: activities
+        label: Activities Page
+        type: file
+        path: my-app/src/data/activities.json
+        format: json
+        fields:
+          - name: activities
+            label: Activities
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: title
+                label: Title
+                type: string
+              - name: tag
+                label: Tag
+                type: string
+              - name: text
+                label: Description
+                type: text
+
+      - name: calendar
+        label: Calendar
+        type: file
+        path: my-app/src/data/calendar.json
+        format: json
+        fields:
+          - name: calendar
+            label: Events
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{date} - {title}"
+            fields:
+              - name: date
+                label: Display Date
+                type: string
+              - name: title
+                label: Title
+                type: string
+              - name: location
+                label: Location
+                type: string
+              - name: time
+                label: Time
+                type: string
+              - name: price
+                label: Price
+                type: string
+              - name: isoDate
+                label: ISO Date
+                type: string
+                required: false
+                description: Use YYYY-MM-DD for scheduled events, or leave blank for TBA.
+
+      - name: team
+        label: Team Page
+        type: file
+        path: my-app/src/data/team.json
+        format: json
+        fields:
+          - name: executiveTeam
+            label: Executive Committee
+            component: teamMember
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name} - {role}"
+          - name: generalCommittee
+            label: General Committee
+            component: teamMember
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name} - {role}"
+
+      - name: pastEvents
+        label: Past Events
+        type: file
+        path: my-app/src/data/pastEvents.json
+        format: json
+        fields:
+          - name: pastEvents
+            label: Past Events
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{year} - {title}"
+            fields:
+              - name: title
+                label: Title
+                type: string
+              - name: year
+                label: Year
+                type: string
+              - name: text
+                label: Description
+                type: text
+              - name: image
+                label: Image
+                type: image
+                required: false
+                options:
+                  media: uploads
+
+      - name: sponsors
+        label: Sponsors
+        type: file
+        path: my-app/src/data/sponsors.json
+        format: json
+        fields:
+          - name: sponsors
+            label: Sponsors
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name}"
+            fields:
+              - name: mark
+                label: Fallback Initials
+                type: string
+              - name: name
+                label: Sponsor Name
+                type: string
+              - name: href
+                label: Website
+                type: string
+              - name: logo
+                label: Logo
+                type: image
+                required: false
+                options:
+                  media: logos
+
+      - name: join
+        label: Join Page
+        type: file
+        path: my-app/src/data/join.json
+        format: json
+        fields:
+          - name: benefits
+            label: Benefits
+            type: string
+            list: true
+
+settings:
+  hide: true
+  content:
+    merge: true
