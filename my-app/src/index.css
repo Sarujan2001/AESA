@@ -497,7 +497,7 @@ h3 {
   width: 145px;
   height: 145px;
   color: var(--ink);
-  transform: translate(-50%, -50%) rotate(-18deg);
+  transform: translate(-50%, -50%);
 }
 
 .stats-grid {
