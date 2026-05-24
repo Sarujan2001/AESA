@@ -26,7 +26,6 @@
   if (!root) return;
 
   const tokenInput = root.querySelector("#tokenInput");
-  const rememberTokenButton = root.querySelector("#rememberTokenButton");
   const groupInput = root.querySelector("#groupInput");
   const itemInput = root.querySelector("#itemInput");
   const fileInput = root.querySelector("#fileInput");
@@ -70,8 +69,6 @@
     croppedUrl: "",
     croppedExtension: "webp",
   };
-
-  tokenInput.value = localStorage.getItem("aesaGithubToken") || "";
 
   function setStatus(message) {
     statusText.textContent = message;
@@ -131,6 +128,14 @@
     return item.name;
   }
 
+  function renderOption(value, label) {
+    const option = document.createElement("option");
+
+    option.value = String(value);
+    option.textContent = label || "Untitled item";
+    return option;
+  }
+
   function currentItem() {
     const { type, key } = currentGroup();
     return state.data[type]?.[key]?.[Number(itemInput.value || 0)];
@@ -140,7 +145,7 @@
     const { type, key } = currentGroup();
     const items = state.data[type]?.[key] || [];
 
-    itemInput.innerHTML = items.map((item, index) => `<option value="${index}">${labelForItem(item, type)}</option>`).join("");
+    itemInput.replaceChildren(...items.map((item, index) => renderOption(index, labelForItem(item, type))));
     clearCrop();
     updateCurrentItem();
   }
@@ -463,11 +468,6 @@
     clearCrop();
     setStatus("Saved. GitHub Pages will update after the deployment finishes.");
   }
-
-  rememberTokenButton.addEventListener("click", () => {
-    localStorage.setItem("aesaGithubToken", tokenInput.value.trim());
-    setStatus("Token remembered on this browser.");
-  });
 
   groupInput.addEventListener("change", renderItems);
   itemInput.addEventListener("change", updateCurrentItem);

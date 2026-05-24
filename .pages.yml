@@ -9,7 +9,7 @@ media:
     label: Sponsor Logos
     input: my-app/public/logos
     output: /logos
-    extensions: [jpg, jpeg, png, webp, svg]
+    extensions: [jpg, jpeg, png, webp]
     rename: safe
 
 content:
