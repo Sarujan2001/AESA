@@ -518,11 +518,6 @@ function ActivitiesPage({ navigate }) {
 }
 
 function TeamPage() {
-  const featuredMembers = [
-    ...executiveTeam.map((member) => ({ ...normalizeTeamMember(member), category: "Executive" })),
-    ...generalCommittee.map((member) => ({ ...normalizeTeamMember(member), category: "Committee" })),
-  ].slice(0, 8);
-
   return (
     <section className="team-page">
       <div className="team-page-header">
@@ -540,11 +535,23 @@ function TeamPage() {
       </div>
 
       <div className="team-members-panel">
-        <div className="team-member-grid">
-          {featuredMembers.map((member) => (
-            <TeamMemberBlock member={member} key={`${member.category}-${member.name}`} />
-          ))}
-        </div>
+        <TeamSection title="Executive Committee" members={executiveTeam} category="Executive" />
+        <TeamSection title="General Committee" members={generalCommittee} category="Committee" />
+      </div>
+    </section>
+  );
+}
+
+function TeamSection({ title, members, category }) {
+  return (
+    <section className="team-subsection">
+      <h2>{title}</h2>
+      <div className="team-member-grid">
+        {members.map((member) => {
+          const normalizedMember = normalizeTeamMember(member);
+
+          return <TeamMemberBlock member={{ ...normalizedMember, category }} key={`${category}-${normalizedMember.name}`} />;
+        })}
       </div>
     </section>
   );
@@ -572,10 +579,6 @@ function TeamMemberBlock({ member }) {
       </span>
       <h3>{name}</h3>
       <p>{role}</p>
-      <a className="team-contact-button" href={`mailto:${club.email}?subject=${encodeURIComponent(`AESA enquiry for ${name}`)}`}>
-        <Mail size={14} />
-        Contact me
-      </a>
     </article>
   );
 }

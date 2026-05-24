@@ -848,7 +848,20 @@ h3 {
 }
 
 .team-members-panel {
+  display: grid;
+  gap: clamp(52px, 7vw, 84px);
   background: transparent;
+}
+
+.team-subsection {
+  display: grid;
+  gap: clamp(26px, 4vw, 40px);
+}
+
+.team-subsection h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.5vw, 3.8rem);
+  line-height: 0.96;
 }
 
 .team-member-grid {
@@ -868,8 +881,8 @@ h3 {
 
 .team-avatar {
   display: grid;
-  width: 112px;
-  height: 112px;
+  width: 148px;
+  height: 148px;
   margin-bottom: 4px;
   place-items: center;
   overflow: hidden;
