@@ -558,7 +558,7 @@ function TeamSection({ title, members, category }) {
 }
 
 function TeamMemberBlock({ member }) {
-  const { name, role, photo, photoFit, photoX, photoY, photoZoom, category } = member;
+  const { name, pronouns, role, photo, photoFit, photoX, photoY, photoZoom, category } = member;
 
   return (
     <article className="team-member-block">
@@ -578,6 +578,7 @@ function TeamMemberBlock({ member }) {
         {category}
       </span>
       <h3>{name}</h3>
+      {pronouns && <small className="team-pronouns">{pronouns}</small>}
       <p>{role}</p>
     </article>
   );

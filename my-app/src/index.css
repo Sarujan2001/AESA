@@ -920,6 +920,13 @@ h3 {
   line-height: 1.2;
 }
 
+.team-pronouns {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .team-member-block p {
   width: 100%;
   margin: 0;
