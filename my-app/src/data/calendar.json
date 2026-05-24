@@ -6,35 +6,39 @@
       "location": "224-260 Lorimer St, Port Melbourne VIC 3207",
       "time": "9:45 AM",
       "price": "Sold Out",
-      "isoDate": "2026-05-07"
+      "isoDate": "2026-05-29"
     },
     {
       "date": "18 Sep",
       "title": "ENG BALL 2026",
       "location": "Melbourne Pavilion",
       "time": "7:00pm - 11:00pm",
-      "price": "Soon to be announced"
+      "price": "Soon to be announced",
+      "isoDate": "2026-09-18"
     },
     {
       "date": "7 May",
       "title": "AESA x MAMEC Aerospace Industry Night",
       "location": "Bowen Street, RMIT City Campus",
       "time": "Daytime",
-      "price": "Sold Out"
+      "price": "Sold Out",
+      "isoDate": "2026-05-07"
     },
     {
       "date": "23 April ",
       "title": "Engineers to be Hired by AVA TRAINING",
       "location": "Home Building Docklands",
       "time": "3:00pm",
-      "price": "Sold Out"
+      "price": "Sold Out",
+      "isoDate": "2026-04-23"
     },
     {
       "date": "16 April ",
       "title": "LUNCHTIME LIFTOFF",
       "location": "Oxford Scholar",
       "time": "12pm",
-      "price": "Sold Out"
+      "price": "Sold Out",
+      "isoDate": "2026-04-16"
     }
   ]
 }

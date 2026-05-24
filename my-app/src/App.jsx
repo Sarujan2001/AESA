@@ -276,7 +276,7 @@ function MobileNav({ navigate }) {
   );
 }
 
-function HomePage({ stats, navigate, handleContact, contactStatus }) {
+function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) {
   return (
     <>
       <section className="welcome-scroll" aria-label="Welcome to AESA official website">
@@ -337,7 +337,7 @@ function HomePage({ stats, navigate, handleContact, contactStatus }) {
           <div className="mini-orbit" aria-hidden="true">
           <img
                className="plane-wire"
-               s src="/Light_Logo_Rev1-removebg-preview.png"
+               src="/Light_Logo_Rev1-removebg-preview.png"
                alt=""
                />
           </div>
@@ -351,7 +351,7 @@ function HomePage({ stats, navigate, handleContact, contactStatus }) {
           </div>
           <div className="mission-note">
             <b>Next checkpoint</b>
-            <span>RMIT AESA x Boeing Factory Visit</span>
+            <span>{toText(nextEvent?.title, "Check the calendar for upcoming AESA events")}</span>
             <a href={club.socials.rubricEvents} target="_blank" rel="noreferrer">
               View upcoming events on Rubric
             </a>

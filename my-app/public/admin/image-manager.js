@@ -16,9 +16,9 @@
       {
         name: "Homepage panorama banner",
         text: "Large homepage background image",
-        filePath: "my-app/public/panorama.jpg",
-        publicPath: "/panorama.jpg",
-        extension: "jpg",
+        filePath: "my-app/public/panorama.webp",
+        publicPath: "/panorama.webp",
+        extension: "webp",
       },
     ],
   };
@@ -310,8 +310,8 @@
 
   function canvasToUpload(canvas) {
     if (currentGroup().type === "asset") {
-      state.croppedExtension = "jpg";
-      return canvas.toDataURL("image/jpeg", 0.92);
+      state.croppedExtension = "webp";
+      return canvas.toDataURL("image/webp", 0.9);
     }
 
     let dataUrl = canvas.toDataURL("image/webp", 0.9);
