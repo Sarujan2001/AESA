@@ -518,17 +518,76 @@ function ActivitiesPage({ navigate }) {
 }
 
 function TeamPage() {
+  const featuredMembers = [
+    ...executiveTeam.map((member) => ({ ...normalizeTeamMember(member), category: "Executive" })),
+    ...generalCommittee.map((member) => ({ ...normalizeTeamMember(member), category: "Committee" })),
+  ].slice(0, 8);
+
   return (
-    <>
-      <PageHero
-        eyebrow="Executive team"
-        title="2025-2026 committee"
-        text="Publicly listed AESA committee and member names gathered from accessible AESA LinkedIn page text."
-      />
-      <TeamBranch title="Executive Team" members={executiveTeam} />
-      <TeamBranch title="General Committee Members" members={generalCommittee} />
-    </>
+    <section className="team-page">
+      <div className="team-page-header">
+        <div>
+          <p className="eyebrow">Executive team</p>
+          <h1>Meet the AESA committee</h1>
+          <p className="hero-copy">
+            The student team building aerospace events, industry connections, social programming, and peer support for
+            RMIT's aerospace community.
+          </p>
+        </div>
+        <a className="team-header-action" href={club.socials.rubric} target="_blank" rel="noreferrer">
+          Join AESA <ArrowRight size={17} />
+        </a>
+      </div>
+
+      <div className="team-members-panel">
+        <div className="team-member-grid">
+          {featuredMembers.map((member) => (
+            <TeamMemberBlock member={member} key={`${member.category}-${member.name}`} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
+}
+
+function TeamMemberBlock({ member }) {
+  const { name, role, photo, photoFit, photoX, photoY, photoZoom, category } = member;
+
+  return (
+    <article className="team-member-block">
+      <div className="team-avatar">
+        {photo ? (
+          <img
+            src={photo}
+            alt={name}
+            style={{ objectFit: photoFit || "cover", objectPosition: `${photoX ?? 50}% ${photoY ?? 50}%`, transform: `scale(${photoZoom || "1"})` }}
+          />
+        ) : (
+          <span>{getInitials(name)}</span>
+        )}
+      </div>
+      <span className="team-role-badge">
+        <BriefcaseBusiness size={12} />
+        {category}
+      </span>
+      <h3>{name}</h3>
+      <p>{role}</p>
+      <a className="team-contact-button" href={`mailto:${club.email}?subject=${encodeURIComponent(`AESA enquiry for ${name}`)}`}>
+        <Mail size={14} />
+        Contact me
+      </a>
+    </article>
+  );
+}
+
+function getInitials(name) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
 }
 
 function TeamBranch({ title, members }) {
