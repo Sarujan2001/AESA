@@ -1,3 +1,5 @@
+# Legacy Decap CMS configuration. The current admin entry points editors to Pages CMS,
+# but this file is kept so older Decap experiments do not break unexpectedly.
 backend:
   name: github
   repo: rmitaesa/AESA

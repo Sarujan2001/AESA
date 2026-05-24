@@ -1,3 +1,5 @@
+/* Global AESA website styling.
+   This file owns the public layout, theme colors, responsive rules, and page sections. */
 :root {
   --bg: #ffffff;
   --ink: #111827;
@@ -66,6 +68,7 @@ svg {
 }
 
 .site-shell {
+  /* Subtle grid background used across the main public site. */
   min-height: 100vh;
   background:
     linear-gradient(90deg, rgba(17, 24, 39, 0.04) 1px, transparent 1px),
@@ -238,6 +241,7 @@ footer button:hover {
 }
 
 .welcome-scroll {
+  /* Full-screen opening image section. It fades into the homepage content below. */
   position: relative;
   display: grid;
   min-height: calc(100vh - 76px);
@@ -300,6 +304,7 @@ footer button:hover {
 }
 
 .editorial-hero {
+  /* Main homepage content after the opening image. Kept transparent so the grid background continues. */
   position: relative;
   width: 100%;
   margin-top: 0;
@@ -1232,6 +1237,7 @@ footer button:hover {
 }
 
 @media (max-width: 1180px) {
+  /* Tablet layout: stack the main homepage columns. */
   .hero {
     grid-template-columns: 1fr;
   }
@@ -1247,6 +1253,7 @@ footer button:hover {
 }
 
 @media (max-width: 1040px) {
+  /* Mobile/tablet navigation switches from desktop links to a menu button. */
   .desktop-nav,
   .topbar > .primary {
     display: none;
@@ -1291,6 +1298,7 @@ footer button:hover {
 }
 
 @media (max-width: 680px) {
+  /* Phone layout: single-column grids and tighter side padding. */
   .hero,
   .overview-section,
   .link-board,

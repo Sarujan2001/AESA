@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Admin landing page. Keep this simple for future editors: one CMS login path and clear instructions. -->
     <meta charset="utf-8" />
     <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -72,7 +73,6 @@
 
       .actions {
         display: flex;
-        flex-wrap: wrap;
         gap: 12px;
         margin-top: 6px;
       }
@@ -99,15 +99,6 @@
         transform: scale(1.03);
       }
 
-      a.button.secondary {
-        color: #111827;
-        background: #f3f4f6;
-      }
-
-      a.button.secondary:hover {
-        background: #e5e7eb;
-      }
-
       ol {
         display: grid;
         gap: 10px;
@@ -128,25 +119,24 @@
         <img class="brand" src="/AESALONG.png" alt="AESA" />
         <h1 id="cms-title">AESA Pages CMS</h1>
         <p>
-          Use Pages CMS to edit the AESA website content and upload images through GitHub. Changes are saved to
-          <strong>rmitaesa/AESA</strong>, then GitHub Pages rebuilds the live website automatically.
+          Use Pages CMS to edit the AESA website content through GitHub. Changes are saved to
+          <strong>rmitaesa/AESA</strong>, then the live website rebuilds automatically.
         </p>
 
         <div class="note">
-          Future committee members should sign in with the shared RMIT AESA GitHub account, or an approved GitHub
-          account that has write access to the repository.
+          Sign in with the approved RMIT AESA GitHub account. Do not use a personal account unless the committee has
+          intentionally given it write access.
         </div>
 
         <ol>
-          <li>Open Pages CMS and sign in with GitHub.</li>
+          <li>Click the button below.</li>
+          <li>Sign in with GitHub when Pages CMS asks.</li>
           <li>Select the <strong>rmitaesa/AESA</strong> repository.</li>
-          <li>Edit the section you need, save, then wait for GitHub Pages to deploy.</li>
+          <li>Edit the section you need, save, and wait a few minutes for the website to update.</li>
         </ol>
 
         <div class="actions">
-          <a class="button" href="https://app.pagescms.org/" target="_blank" rel="noreferrer">Open Pages CMS -></a>
-          <a class="button secondary" href="/admin/images.html">Open Image Crop Manager</a>
-          <a class="button secondary" href="https://github.com/apps/pages-cms" target="_blank" rel="noreferrer">Install GitHub App</a>
+          <a class="button" href="https://app.pagescms.org/" target="_blank" rel="noreferrer">Login to CMS -></a>
         </div>
       </section>
     </main>

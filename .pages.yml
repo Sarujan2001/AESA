@@ -1,3 +1,5 @@
+# Pages CMS configuration for editing AESA content stored in JSON files.
+# The paths here match the files imported by src/App.jsx and the public upload folders.
 media:
   - name: uploads
     label: Website Photos

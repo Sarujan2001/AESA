@@ -1,3 +1,5 @@
+/* Legacy starter CSS from the original Vite template.
+   The live AESA website uses src/index.css, so keep this file only if old imports need it. */
 .counter {
   font-size: 16px;
   padding: 5px 10px;

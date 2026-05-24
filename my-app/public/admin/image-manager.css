@@ -1,3 +1,4 @@
+/* Styles for /admin/images.html, the optional crop manager used before saving images to GitHub. */
 [data-image-manager] {
   display: grid;
   gap: 18px;
@@ -135,6 +136,7 @@
 }
 
 .crop-modal {
+  /* Full-screen modal that holds the crop stage and controls. */
   position: fixed;
   inset: 0;
   z-index: 10000;

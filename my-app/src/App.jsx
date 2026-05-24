@@ -27,6 +27,8 @@ import siteSettingsData from "./data/siteSettings.json";
 import sponsorsData from "./data/sponsors.json";
 import teamData from "./data/team.json";
 
+// Main public website component. The editable content comes from JSON files in
+// src/data so Pages CMS can update text, links, events, team members, and sponsors.
 const contactFormEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
 const { club, navItems } = siteSettingsData;
 const { focusAreas, stats } = homeData;
@@ -38,6 +40,8 @@ const { pastEvents } = pastEventsData;
 const { benefits } = joinData;
 
 function toText(value, fallback = "") {
+  // CMS tools can sometimes save simple list values as objects. Convert those
+  // values back to plain text so React never tries to render an object directly.
   if (value === null || value === undefined) {
     return fallback;
   }
@@ -85,6 +89,7 @@ function SocialLink({ href, icon: Icon, label }) {
 }
 
 function SponsorLogo({ mark, name, logo }) {
+  // If a sponsor logo is missing or broken, show the fallback initials instead.
   const [failedLogo, setFailedLogo] = useState("");
   const logoUrl = toText(logo);
   const sponsorName = toText(name);
@@ -113,6 +118,7 @@ function PageHero({ eyebrow, title, text, action, onAction }) {
 }
 
 function getNextEvent(events) {
+  // Finds the next scheduled calendar item when the optional isoDate field exists.
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -142,6 +148,8 @@ function getNextEvent(events) {
 }
 
 export default function App() {
+  // This is a static GitHub Pages site, so navigation is handled with React state
+  // instead of server routes like /team or /join.
   const [page, setPage] = useState("home");
   const [activeTarget, setActiveTarget] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -163,6 +171,8 @@ export default function App() {
   }
 
   async function handleContact(event) {
+    // If a form endpoint is configured, send there. Otherwise open the visitor's
+    // email app with the message prefilled.
     event.preventDefault();
     setContactStatus("Sending your message...");
 

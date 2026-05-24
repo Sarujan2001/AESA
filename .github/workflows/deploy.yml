@@ -1,5 +1,6 @@
 name: Deploy AESA Website to GitHub Pages
 
+# Builds the Vite app in my-app and publishes my-app/dist to GitHub Pages.
 on:
   push:
     branches: [main]

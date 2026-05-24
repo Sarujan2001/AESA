@@ -1,4 +1,6 @@
 (() => {
+  // Standalone admin image cropper. It lets trusted admins crop images locally in
+  // the browser, then uploads the cropped result to GitHub with a session-only token.
   const owner = "rmitaesa";
   const repo = "AESA";
   const branch = "main";
@@ -83,6 +85,7 @@
   }
 
   async function github(path, options = {}) {
+    // Thin wrapper around the GitHub Contents API. The token stays in memory only.
     const token = tokenInput.value.trim();
     const headers = {
       Accept: "application/vnd.github+json",
@@ -129,6 +132,7 @@
   }
 
   function renderOption(value, label) {
+    // Use textContent rather than innerHTML so CMS-edited names cannot inject HTML.
     const option = document.createElement("option");
 
     option.value = String(value);
@@ -163,6 +167,7 @@
   }
 
   async function loadImageData() {
+    // Always reload JSON from GitHub before editing so the cropper starts from current data.
     setStatus("Loading latest website image data...");
     state.data.asset = assetItems;
 
@@ -281,6 +286,7 @@
   }
 
   function cropCanvas() {
+    // Converts the visible crop box into a canvas that can be exported and uploaded.
     const cropRect = cropBox.getBoundingClientRect();
     const imageRect = image.getBoundingClientRect();
     const scaleX = state.naturalWidth / imageRect.width;
@@ -352,6 +358,7 @@
   }
 
   async function updateImageReference({ type, key, path, itemName, imageField, publicPath }) {
+    // Re-read the target JSON before saving to reduce conflicts with Pages CMS edits.
     for (let attempt = 1; attempt <= 3; attempt += 1) {
       const latest = await github(`${path}?ref=${branch}`);
       const latestData = JSON.parse(fromBase64(latest.content));
@@ -401,6 +408,7 @@
   }
 
   async function savePhoto() {
+    // Uploads the cropped image, then updates the relevant JSON file to point at it.
     if (!state.croppedBase64) {
       setStatus("Confirm a crop before saving.");
       return;
