@@ -69,22 +69,8 @@
   ],
   "generalCommittee": [
     {
-      "name": "Suvindu Amarasekara",
-      "pronouns": "",
-      "role": "General committee",
-      "text": "",
-      "photo": "",
-      "photoFit": "cover",
-      "photoX": 50,
-      "photoY": 50,
-      "photoZoom": "1"
-    },
-    {
       "name": "Isabel Williamson-Lundstedt",
-      "pronouns": "",
       "role": "General committee",
-      "text": "",
-      "photo": "",
       "photoFit": "cover",
       "photoX": 50,
       "photoY": 50,
@@ -92,10 +78,7 @@
     },
     {
       "name": "Mahi Mistry",
-      "pronouns": "",
       "role": "General committee",
-      "text": "",
-      "photo": "",
       "photoFit": "cover",
       "photoX": 50,
       "photoY": 50,
@@ -103,14 +86,28 @@
     },
     {
       "name": "Timotius Tan",
-      "pronouns": "",
       "role": "General committee",
-      "text": "",
-      "photo": "",
       "photoFit": "cover",
       "photoX": 50,
       "photoY": 50,
       "photoZoom": "1"
-    }
+    },
+    {
+      "name": "Suvindu Amarasekara",
+      "role": "General committee",
+      "photoFit": "cover",
+      "photoX": 50,
+      "photoY": 50,
+      "photoZoom": "1"
+    },
+    {
+      "name": "Vasa Rakocevic",
+      "role": "General Committee"
+    },
+    {
+      "name": "Belle Anseim Ocay",
+      "role": "General Committee"
+    },
+    {}
   ]
 }
