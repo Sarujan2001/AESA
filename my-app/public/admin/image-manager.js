@@ -26,7 +26,6 @@
   if (!root) return;
 
   const tokenInput = root.querySelector("#tokenInput");
-  const rememberTokenButton = root.querySelector("#rememberTokenButton");
   const groupInput = root.querySelector("#groupInput");
   const itemInput = root.querySelector("#itemInput");
   const fileInput = root.querySelector("#fileInput");
@@ -71,8 +70,6 @@
     croppedExtension: "webp",
   };
 
-  tokenInput.value = localStorage.getItem("aesaGithubToken") || "";
-
   function setStatus(message) {
     statusText.textContent = message;
   }
@@ -86,7 +83,7 @@
   }
 
   async function github(path, options = {}) {
-    const token = tokenInput.value.trim();
+    const token = window.AESAAdmin?.getToken?.() || tokenInput.value.trim();
     const headers = {
       Accept: "application/vnd.github+json",
       "X-GitHub-Api-Version": "2022-11-28",
@@ -463,11 +460,6 @@
     clearCrop();
     setStatus("Saved. GitHub Pages will update after the deployment finishes.");
   }
-
-  rememberTokenButton.addEventListener("click", () => {
-    localStorage.setItem("aesaGithubToken", tokenInput.value.trim());
-    setStatus("Token remembered on this browser.");
-  });
 
   groupInput.addEventListener("change", renderItems);
   itemInput.addEventListener("change", updateCurrentItem);
