@@ -5,8 +5,200 @@
     <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AESA Content Manager</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: #111827;
+        background:
+          linear-gradient(90deg, rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+          linear-gradient(rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+          #ffffff;
+        background-size: 42px 42px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .token-login {
+        display: grid;
+        width: min(680px, calc(100% - 32px));
+        min-height: 100vh;
+        margin: 0 auto;
+        place-items: center;
+      }
+
+      .token-card {
+        display: grid;
+        gap: 16px;
+        width: 100%;
+        padding: 24px;
+        background: #ffffff;
+        border-radius: 8px;
+      }
+
+      .brand {
+        width: 112px;
+        height: 58px;
+        object-fit: contain;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 6vw, 4.2rem);
+        line-height: 0.96;
+        letter-spacing: -0.02em;
+      }
+
+      p {
+        margin: 0;
+        color: #5f6670;
+        line-height: 1.6;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        font-weight: 800;
+      }
+
+      input {
+        width: 100%;
+        min-height: 48px;
+        padding: 12px 14px;
+        color: #111827;
+        background: #f3f4f6;
+        border: 0;
+        border-radius: 8px;
+        font: inherit;
+      }
+
+      button,
+      a.button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 12px 16px;
+        color: #ffffff;
+        background: #d71920;
+        border: 0;
+        border-radius: 8px;
+        font: inherit;
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .secondary {
+        color: #111827 !important;
+        background: #f3f4f6 !important;
+      }
+
+      .note {
+        padding: 14px;
+        color: #111827;
+        background: #f3f4f6;
+        border-radius: 8px;
+        font-size: 0.95rem;
+      }
+
+      .error {
+        color: #d71920;
+        font-weight: 800;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+    </style>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <main class="token-login" id="tokenLogin">
+      <form class="token-card" id="tokenForm">
+        <img class="brand" src="/AESALONG.png" alt="AESA" />
+        <h1>AESA Content Manager</h1>
+        <p>Paste a fine-grained GitHub token to open Decap CMS without a separate OAuth server.</p>
+
+        <p class="note">
+          Use a token limited to the <strong>Sarujan2001/AESA</strong> repository with <strong>Contents: Read and write</strong>.
+          Do not use this on a shared computer.
+        </p>
+
+        <label>
+          GitHub token
+          <input id="tokenInput" type="password" autocomplete="off" placeholder="github_pat_..." required />
+        </label>
+
+        <div class="actions">
+          <button type="submit">Open Decap CMS</button>
+          <a class="button secondary" href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noreferrer">Create token</a>
+          <button class="secondary" id="clearButton" type="button">Clear saved token</button>
+        </div>
+
+        <p class="error" id="errorText" hidden></p>
+      </form>
+    </main>
+
+    <script>
+      const tokenLogin = document.querySelector("#tokenLogin");
+      const tokenForm = document.querySelector("#tokenForm");
+      const tokenInput = document.querySelector("#tokenInput");
+      const clearButton = document.querySelector("#clearButton");
+      const errorText = document.querySelector("#errorText");
+      const savedToken = sessionStorage.getItem("aesaDecapToken");
+
+      function hasTokenHash() {
+        const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+        return Boolean(hash.get("access_token"));
+      }
+
+      function loadDecap() {
+        tokenLogin.hidden = true;
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
+        document.body.appendChild(script);
+      }
+
+      function openWithToken(token) {
+        const cleanToken = token.trim();
+
+        if (!cleanToken.startsWith("github_pat_") && !cleanToken.startsWith("ghp_")) {
+          errorText.hidden = false;
+          errorText.textContent = "That does not look like a GitHub token.";
+          return;
+        }
+
+        sessionStorage.setItem("aesaDecapToken", cleanToken);
+        window.location.hash = `access_token=${encodeURIComponent(cleanToken)}&token_type=bearer`;
+        loadDecap();
+      }
+
+      tokenForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        openWithToken(tokenInput.value);
+      });
+
+      clearButton.addEventListener("click", () => {
+        sessionStorage.removeItem("aesaDecapToken");
+        window.location.hash = "";
+        tokenInput.value = "";
+        errorText.hidden = true;
+      });
+
+      if (hasTokenHash()) {
+        loadDecap();
+      } else if (savedToken) {
+        openWithToken(savedToken);
+      }
+    </script>
   </body>
 </html>
