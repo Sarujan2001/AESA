@@ -1,0 +1,253 @@
+[data-image-manager] {
+  display: grid;
+  gap: 18px;
+  margin-top: 42px;
+}
+
+.image-manager-head {
+  display: flex;
+  gap: 18px;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.image-manager-head h2 {
+  max-width: 760px;
+  margin: 0 0 8px;
+  color: var(--ink, #111827);
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.96;
+}
+
+.image-manager-layout {
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.image-manager-panel,
+.image-preview-panel {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.image-manager-panel label,
+.crop-controls label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink, #111827);
+  font-weight: 800;
+}
+
+.image-manager-panel input,
+.image-manager-panel select,
+.image-manager-panel button,
+.crop-controls input,
+.crop-controls select,
+.crop-actions button {
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 12px;
+  border: 0;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.image-manager-panel input,
+.image-manager-panel select,
+.crop-controls input,
+.crop-controls select {
+  color: var(--ink, #111827);
+  background: var(--soft, #f3f4f6);
+}
+
+.image-manager-panel button,
+.crop-actions button {
+  color: #ffffff;
+  background: var(--red, #d71920);
+  cursor: pointer;
+  font-weight: 900;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.image-manager-panel button.secondary,
+.crop-actions button.secondary {
+  color: var(--ink, #111827);
+  background: var(--soft, #f3f4f6);
+}
+
+.image-manager-panel button:hover,
+.crop-actions button:hover {
+  background: var(--ink, #111827);
+  transform: scale(1.02);
+}
+
+.image-manager-panel button.secondary:hover,
+.crop-actions button.secondary:hover {
+  color: #ffffff;
+  background: var(--red, #d71920);
+}
+
+.image-manager-panel button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+.image-preview-card {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+  background: var(--soft, #f3f4f6);
+  border-radius: 8px;
+}
+
+.image-preview-card img,
+.cropped-preview {
+  width: 112px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--line, #e5e7eb);
+  border-radius: 8px;
+}
+
+.cropped-preview {
+  width: min(100%, 520px);
+  aspect-ratio: auto;
+}
+
+.image-manager-status {
+  min-height: 24px;
+  color: var(--red, #d71920);
+  font-weight: 800;
+}
+
+.crop-modal[hidden] {
+  display: none;
+}
+
+.crop-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(17, 24, 39, 0.82);
+}
+
+.crop-dialog {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 16px;
+  width: min(1180px, 100%);
+  max-height: calc(100vh - 36px);
+  padding: 16px;
+  overflow: auto;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.crop-stage {
+  position: relative;
+  min-height: min(66vh, 650px);
+  overflow: hidden;
+  touch-action: none;
+  background:
+    linear-gradient(90deg, rgba(17, 24, 39, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(17, 24, 39, 0.08) 1px, transparent 1px),
+    var(--soft, #f3f4f6);
+  background-size: 28px 28px;
+  border-radius: 8px;
+}
+
+.crop-stage img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: none;
+  user-select: none;
+  transform-origin: center;
+}
+
+.crop-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(460px, 72vw);
+  height: 340px;
+  border: 4px solid var(--red, #d71920);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: move;
+  transform: translate(-50%, -50%);
+}
+
+.crop-box::before,
+.crop-box::after {
+  position: absolute;
+  inset: 33.333% 0 auto;
+  height: 1px;
+  content: "";
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.crop-box::after {
+  inset: auto 0 33.333%;
+}
+
+.crop-controls {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.crop-controls h3 {
+  margin: 0;
+  color: var(--ink, #111827);
+  font-size: 1.35rem;
+}
+
+.crop-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+body.crop-modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .image-manager-head,
+  .image-manager-layout,
+  .crop-dialog {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .crop-stage {
+    min-height: 430px;
+  }
+}
+
+@media (max-width: 560px) {
+  .image-preview-card {
+    grid-template-columns: 1fr;
+  }
+
+  .image-preview-card img {
+    width: 100%;
+  }
+
+  .crop-actions {
+    grid-template-columns: 1fr;
+  }
+}
