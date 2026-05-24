@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Sarujan2001/AESA
+  repo: rmitaesa/AESA
   branch: main
 
 media_folder: "my-app/public/uploads"

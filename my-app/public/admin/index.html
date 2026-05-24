@@ -129,7 +129,7 @@
         <p>Paste a fine-grained GitHub token to open Decap CMS without a separate OAuth server.</p>
 
         <p class="note">
-          Use a token limited to the <strong>Sarujan2001/AESA</strong> repository with <strong>Contents: Read and write</strong>.
+          Use a token limited to the <strong>rmitaesa/AESA</strong> repository with <strong>Contents: Read and write</strong>.
           Decap stores the token in this browser while you are logged in. Use Clear saved token when you finish.
         </p>
 
@@ -165,7 +165,7 @@
       }
 
       async function verifyToken(token) {
-        const response = await fetch("https://api.github.com/repos/Sarujan2001/AESA/contents/my-app/src/data/siteSettings.json?ref=main", {
+        const response = await fetch("https://api.github.com/repos/rmitaesa/AESA/contents/my-app/src/data/siteSettings.json?ref=main", {
           headers: {
             Accept: "application/vnd.github+json",
             Authorization: `Bearer ${token}`,
@@ -175,7 +175,7 @@
 
         if (!response.ok) {
           if (response.status === 401 || response.status === 403) {
-            throw new Error("GitHub rejected this token. Check that it has Contents: Read and write for Sarujan2001/AESA.");
+            throw new Error("GitHub rejected this token. Check that it has Contents: Read and write for rmitaesa/AESA.");
           }
 
           throw new Error(`GitHub token check failed with status ${response.status}.`);
