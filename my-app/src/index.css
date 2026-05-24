@@ -241,6 +241,7 @@ footer button:hover {
   position: relative;
   display: grid;
   min-height: calc(100vh - 76px);
+  margin-bottom: clamp(-120px, -8vw, -72px);
   place-items: center;
   overflow: clip;
   color: var(--white);
@@ -248,10 +249,16 @@ footer button:hover {
   background: var(--charcoal);
 }
 
-/* Removes the unwanted red circle/blob pseudo-element */
 .welcome-scroll::after {
-  content: none !important;
-  display: none !important;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  height: clamp(180px, 24vh, 320px);
+  content: "";
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), var(--bg) 88%);
+  pointer-events: none;
 }
 
 .welcome-image {
@@ -296,7 +303,7 @@ footer button:hover {
   position: relative;
   width: min(1680px, calc(100% - 32px));
   margin-top: 0;
-  padding-top: clamp(60px, 8vw, 104px);
+  padding-top: clamp(118px, 14vw, 190px);
   background: var(--white);
 }
 
