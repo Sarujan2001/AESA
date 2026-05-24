@@ -5,6 +5,9 @@
     <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AESA Content Editor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
     <a class="admin-home-link" href="/admin/">Admin home</a>
@@ -14,13 +17,23 @@
         right: 18px;
         bottom: 18px;
         z-index: 9999;
-        padding: 10px 14px;
-        border-radius: 6px;
+        padding: 12px 16px;
+        border-radius: 8px;
         color: #ffffff;
         background: #d71920;
-        font: 700 14px/1.2 system-ui, sans-serif;
+        font: 800 14px/1.2 Outfit, system-ui, sans-serif;
         text-decoration: none;
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+
+      .admin-home-link:hover {
+        background: #111827;
+        transform: scale(1.04);
+      }
+
+      .admin-home-link:focus-visible {
+        outline: 3px solid #d71920;
+        outline-offset: 4px;
       }
     </style>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>

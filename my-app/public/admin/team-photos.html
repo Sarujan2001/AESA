@@ -5,16 +5,36 @@
     <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AESA Image Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
+      :root {
+        --bg: #ffffff;
+        --ink: #111827;
+        --muted: #5f6670;
+        --soft: #f3f4f6;
+        --line: #e5e7eb;
+        --red: #d71920;
+        --red-dark: #b51218;
+        --emerald: #10b981;
+        --amber: #f59e0b;
+        --radius: 8px;
+      }
+
       * {
         box-sizing: border-box;
       }
 
       body {
         margin: 0;
-        color: #111318;
-        background: #f5f1e8;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          linear-gradient(90deg, rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+          linear-gradient(rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+          var(--bg);
+        background-size: 42px 42px;
+        font-family: "Outfit", system-ui, sans-serif;
       }
 
       header,
@@ -34,17 +54,19 @@
       h1 {
         margin: 0 0 8px;
         font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
         line-height: 0.96;
       }
 
       p {
         margin: 0;
-        color: #5f6670;
+        color: var(--muted);
         line-height: 1.55;
       }
 
       a {
-        color: #d71920;
+        color: var(--red);
         font-weight: 800;
       }
 
@@ -60,7 +82,8 @@
         gap: 14px;
         padding: 18px;
         background: #ffffff;
-        border: 1px solid #d8d1c4;
+        border: 0;
+        border-radius: var(--radius);
       }
 
       label {
@@ -73,21 +96,48 @@
       select,
       button {
         width: 100%;
+        min-height: 44px;
         padding: 11px 12px;
-        border: 1px solid #c9ced6;
+        border: 0;
+        border-radius: var(--radius);
         font: inherit;
+      }
+
+      input,
+      select {
+        color: var(--ink);
+        background: var(--soft);
+      }
+
+      input:focus,
+      select:focus,
+      button:focus-visible,
+      a:focus-visible {
+        outline: 3px solid var(--red);
+        outline-offset: 3px;
       }
 
       button {
         color: #ffffff;
-        background: #111318;
+        background: var(--red);
         cursor: pointer;
         font-weight: 900;
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
       }
 
       button.secondary {
-        color: #111318;
-        background: #ffffff;
+        color: var(--ink);
+        background: var(--soft);
+      }
+
+      button:hover {
+        background: var(--ink);
+        transform: scale(1.02);
+      }
+
+      button.secondary:hover {
+        color: #ffffff;
+        background: var(--red);
       }
 
       button:disabled {
@@ -99,8 +149,12 @@
         position: relative;
         min-height: 620px;
         overflow: hidden;
-        background: #dfe3e8;
-        border: 1px solid #c9ced6;
+        background:
+          linear-gradient(90deg, rgba(17, 24, 39, 0.08) 1px, transparent 1px),
+          linear-gradient(rgba(17, 24, 39, 0.08) 1px, transparent 1px),
+          var(--soft);
+        background-size: 28px 28px;
+        border-radius: var(--radius);
       }
 
       .stage img {
@@ -118,8 +172,8 @@
         left: 50%;
         width: min(460px, 72vw);
         aspect-ratio: 4 / 3;
-        border: 3px solid #7a35ff;
-        box-shadow: 0 0 0 9999px rgba(17, 19, 24, 0.42);
+        border: 4px solid var(--red);
+        background: rgba(255, 255, 255, 0.08);
         cursor: move;
         transform: translate(-50%, -50%);
       }
@@ -143,19 +197,21 @@
         gap: 12px;
         align-items: center;
         padding: 12px;
-        background: #f5f1e8;
+        background: var(--soft);
+        border-radius: var(--radius);
       }
 
       .preview img {
         width: 82px;
         aspect-ratio: 4 / 3;
         object-fit: cover;
-        background: #dfe3e8;
+        background: var(--line);
+        border-radius: var(--radius);
       }
 
       .status {
         min-height: 24px;
-        color: #d71920;
+        color: var(--red);
         font-weight: 800;
       }
 
@@ -495,7 +551,7 @@
               }),
             });
 
-            return { latestData, latestItemIndex };
+            return { latestData, latestItemIndex, latestSha: latest.sha };
           } catch (error) {
             const canRetry = error.status === 409 || error.message.includes("does not match");
 
@@ -539,7 +595,7 @@
         });
 
         setStatus("Updating website data...");
-        const { latestData, latestItemIndex } = await updateImageReference({
+        const { latestData, latestItemIndex, latestSha } = await updateImageReference({
           type,
           key,
           path,
@@ -549,7 +605,7 @@
         });
 
         state.data[type] = latestData;
-        state.shas[type] = latest.sha;
+        state.shas[type] = latestSha;
         renderItems();
         itemInput.value = String(latestItemIndex);
         currentPhoto.src = publicPath;

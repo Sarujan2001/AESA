@@ -5,16 +5,33 @@
     <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AESA Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
+      :root {
+        --bg: #ffffff;
+        --ink: #111827;
+        --muted: #5f6670;
+        --soft: #f3f4f6;
+        --red: #d71920;
+        --charcoal: #111827;
+        --radius: 8px;
+      }
+
       * {
         box-sizing: border-box;
       }
 
       body {
         margin: 0;
-        color: #111318;
-        background: #f5f1e8;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          linear-gradient(90deg, rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+          linear-gradient(rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+          var(--bg);
+        background-size: 42px 42px;
+        font-family: "Outfit", system-ui, sans-serif;
       }
 
       main {
@@ -31,8 +48,8 @@
       }
 
       .brand {
-        width: 98px;
-        height: 54px;
+        width: 112px;
+        height: 58px;
         object-fit: contain;
       }
 
@@ -40,13 +57,15 @@
         max-width: 760px;
         margin: 0;
         font-size: clamp(2.4rem, 6vw, 5rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
         line-height: 0.96;
       }
 
       p {
         max-width: 720px;
         margin: 0;
-        color: #5f6670;
+        color: var(--muted);
         font-size: 1.05rem;
         line-height: 1.6;
       }
@@ -54,16 +73,17 @@
       .note {
         max-width: none;
         margin-bottom: 18px;
-        padding: 13px 15px;
-        color: #111318;
-        background: #ffffff;
-        border-left: 4px solid #d71920;
+        padding: 16px;
+        color: var(--ink);
+        background: var(--soft);
+        border-radius: var(--radius);
+        font-weight: 600;
       }
 
       .grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
+        gap: 16px;
       }
 
       .card {
@@ -71,11 +91,13 @@
         min-height: 210px;
         align-content: space-between;
         gap: 24px;
-        padding: 22px;
-        color: #111318;
-        background: #ffffff;
-        border: 1px solid #d8d1c4;
+        padding: 24px;
+        color: var(--ink);
+        background: var(--white, #ffffff);
+        border: 0;
+        border-radius: var(--radius);
         text-decoration: none;
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
       }
 
       .card strong {
@@ -85,19 +107,31 @@
       }
 
       .card span {
-        color: #5f6670;
+        color: var(--muted);
         line-height: 1.55;
       }
 
       .card b {
-        color: #d71920;
+        color: var(--red);
         font-size: 0.78rem;
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
       .card:hover {
-        border-color: #d71920;
+        color: #ffffff;
+        background: var(--red);
+        transform: scale(1.02);
+      }
+
+      .card:hover span,
+      .card:hover b {
+        color: rgba(255, 255, 255, 0.86);
+      }
+
+      a:focus-visible {
+        outline: 3px solid var(--red);
+        outline-offset: 4px;
       }
 
       @media (max-width: 800px) {
