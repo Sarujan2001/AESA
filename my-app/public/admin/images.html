@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AESA Image Crop Manager</title>
+    <link rel="stylesheet" href="/admin/image-manager.css" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --ink: #111827;
+        --muted: #5f6670;
+        --soft: #f3f4f6;
+        --line: #e5e7eb;
+        --red: #d71920;
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          linear-gradient(90deg, rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+          linear-gradient(rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+          var(--bg);
+        background-size: 42px 42px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 36px 0 72px;
+      }
+
+      .top {
+        display: flex;
+        gap: 18px;
+        align-items: end;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: clamp(2rem, 5vw, 4rem);
+        line-height: 0.96;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      a {
+        color: var(--red);
+        font-weight: 800;
+      }
+
+      @media (max-width: 800px) {
+        .top {
+          display: grid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main data-image-manager>
+      <header class="top">
+        <div>
+          <h1>Image Crop Manager</h1>
+          <p>Use this for photos and logos that need cropping before they go live.</p>
+        </div>
+        <a href="/admin/">Back to Decap CMS</a>
+      </header>
+
+      <div class="image-manager-layout">
+        <aside class="image-manager-panel">
+          <label>
+            GitHub token
+            <input id="tokenInput" type="password" autocomplete="off" placeholder="github_pat_..." />
+          </label>
+          <button class="secondary" id="rememberTokenButton" type="button">Remember token on this browser</button>
+
+          <label>
+            Image group
+            <select id="groupInput">
+              <option value="asset:assets">Homepage Banner</option>
+              <option value="team:executiveTeam">Executive Team Photos</option>
+              <option value="team:generalCommittee">General Committee Photos</option>
+              <option value="past:pastEvents">Past Event Images</option>
+              <option value="sponsors:sponsors">Sponsor Logos</option>
+            </select>
+          </label>
+
+          <label>
+            Image item
+            <select id="itemInput"></select>
+          </label>
+
+          <label>
+            Upload image
+            <input id="fileInput" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" />
+          </label>
+
+          <button class="secondary" id="useCurrentButton" type="button">Crop current website image</button>
+          <button id="saveButton" type="button" disabled>Save cropped image</button>
+          <button class="secondary" id="reloadButton" type="button">Reload latest image data</button>
+          <p class="image-manager-status" id="statusText"></p>
+        </aside>
+
+        <section class="image-preview-panel">
+          <div class="image-preview-card">
+            <img id="currentPhoto" alt="" />
+            <div>
+              <strong id="currentName">Loading...</strong>
+              <p id="currentRole"></p>
+            </div>
+          </div>
+          <img class="cropped-preview" id="croppedPreview" alt="Cropped preview" hidden />
+        </section>
+      </div>
+
+      <div class="crop-modal" id="cropModal" hidden>
+        <div class="crop-dialog" role="dialog" aria-modal="true" aria-labelledby="cropTitle">
+          <section class="crop-stage" id="stage">
+            <img id="sourceImage" alt="" />
+            <div class="crop-box" id="cropBox" aria-label="Crop area"></div>
+          </section>
+
+          <aside class="crop-controls">
+            <h3 id="cropTitle">Crop image</h3>
+            <label>
+              Aspect ratio
+              <select id="aspectInput">
+                <option value="free">Free crop</option>
+                <option value="1/1">Square 1:1</option>
+                <option value="16/9">Landscape 16:9</option>
+                <option value="4/5">Portrait 4:5</option>
+                <option value="3/1">Banner 3:1</option>
+                <option value="4/3">Team card 4:3</option>
+              </select>
+            </label>
+
+            <label>
+              Zoom
+              <input id="zoomInput" type="range" min="0.4" max="3" step="0.01" value="1" />
+            </label>
+
+            <label>
+              Crop width
+              <input id="cropWidthInput" type="range" min="30" max="92" step="1" value="72" />
+            </label>
+
+            <label>
+              Crop height
+              <input id="cropHeightInput" type="range" min="30" max="86" step="1" value="60" />
+            </label>
+
+            <div class="crop-actions">
+              <button class="secondary" id="rotateLeftButton" type="button">Rotate left</button>
+              <button class="secondary" id="rotateRightButton" type="button">Rotate right</button>
+              <button class="secondary" id="resetCropButton" type="button">Reset</button>
+              <button class="secondary" id="cancelCropButton" type="button">Cancel</button>
+              <button id="confirmCropButton" type="button">Confirm crop</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <script src="/admin/image-manager.js"></script>
+  </body>
+</html>
