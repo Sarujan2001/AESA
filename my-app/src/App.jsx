@@ -569,10 +569,14 @@ function TeamMemberBlock({ member }) {
       <div className="team-avatar">
         {photo ? (
           <img
-            src={photo}
-            alt={name}
-            style={{ objectFit: photoFit || "cover", objectPosition: `${photoX ?? 50}% ${photoY ?? 50}%`, transform: `scale(${photoZoom || "1"})` }}
-          />
+  src={photo}
+  alt={name}
+  style={{
+    objectFit: "cover",
+    objectPosition: "center center",
+    transform: `scale(${photoZoom || "1"})`
+  }}
+/>
         ) : (
           <span>{getInitials(name)}</span>
         )}
