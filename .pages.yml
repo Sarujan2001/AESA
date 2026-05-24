@@ -12,56 +12,6 @@ media:
     extensions: [jpg, jpeg, png, webp, svg]
     rename: safe
 
-components:
-  teamMember:
-    label: Team Member
-    type: object
-    fields:
-      - name: name
-        label: Name
-        type: string
-        required: true
-      - name: pronouns
-        label: Pronouns
-        type: string
-        required: false
-        description: Example: he/him, she/her, they/them.
-      - name: role
-        label: Role
-        type: string
-        required: true
-      - name: text
-        label: Fun Fact
-        type: text
-        required: false
-      - name: photo
-        label: Photo
-        type: image
-        required: false
-        options:
-          media: uploads
-      - name: photoFit
-        label: Photo Fit
-        type: select
-        required: false
-        options:
-          values: [cover, contain]
-      - name: photoX
-        label: Photo Position X
-        type: number
-        required: false
-        description: Use 50 for center. Lower moves left, higher moves right.
-      - name: photoY
-        label: Photo Position Y
-        type: number
-        required: false
-        description: Use 50 for center. Lower moves up, higher moves down.
-      - name: photoZoom
-        label: Photo Zoom
-        type: string
-        required: false
-        description: Use 1 for normal, 1.2 or 1.5 to zoom in.
-
 content:
   - name: site
     label: Site Settings
@@ -224,18 +174,108 @@ content:
         fields:
           - name: executiveTeam
             label: Executive Committee
-            component: teamMember
+            type: object
             list:
               collapsible:
                 collapsed: true
                 summary: "{name} - {role}"
+            fields:
+              - name: name
+                label: Name
+                type: string
+                required: true
+              - name: pronouns
+                label: Pronouns
+                type: string
+                required: false
+                description: "Example: he/him, she/her, they/them."
+              - name: role
+                label: Role
+                type: string
+                required: true
+              - name: text
+                label: Fun Fact
+                type: text
+                required: false
+              - name: photo
+                label: Photo
+                type: image
+                required: false
+                options:
+                  media: uploads
+              - name: photoFit
+                label: Photo Fit
+                type: select
+                required: false
+                options:
+                  values: [cover, contain]
+              - name: photoX
+                label: Photo Position X
+                type: number
+                required: false
+                description: "Use 50 for center. Lower moves left, higher moves right."
+              - name: photoY
+                label: Photo Position Y
+                type: number
+                required: false
+                description: "Use 50 for center. Lower moves up, higher moves down."
+              - name: photoZoom
+                label: Photo Zoom
+                type: string
+                required: false
+                description: "Use 1 for normal, 1.2 or 1.5 to zoom in."
           - name: generalCommittee
             label: General Committee
-            component: teamMember
+            type: object
             list:
               collapsible:
                 collapsed: true
                 summary: "{name} - {role}"
+            fields:
+              - name: name
+                label: Name
+                type: string
+                required: true
+              - name: pronouns
+                label: Pronouns
+                type: string
+                required: false
+                description: "Example: he/him, she/her, they/them."
+              - name: role
+                label: Role
+                type: string
+                required: true
+              - name: text
+                label: Fun Fact
+                type: text
+                required: false
+              - name: photo
+                label: Photo
+                type: image
+                required: false
+                options:
+                  media: uploads
+              - name: photoFit
+                label: Photo Fit
+                type: select
+                required: false
+                options:
+                  values: [cover, contain]
+              - name: photoX
+                label: Photo Position X
+                type: number
+                required: false
+                description: "Use 50 for center. Lower moves left, higher moves right."
+              - name: photoY
+                label: Photo Position Y
+                type: number
+                required: false
+                description: "Use 50 for center. Lower moves up, higher moves down."
+              - name: photoZoom
+                label: Photo Zoom
+                type: string
+                required: false
+                description: "Use 1 for normal, 1.2 or 1.5 to zoom in."
 
       - name: pastEvents
         label: Past Events
