@@ -299,7 +299,11 @@ function HomePage({ stats, nextEvent, navigate, handleContact, contactStatus }) 
             <strong>2025-2026</strong>
           </div>
           <div className="mini-orbit" aria-hidden="true">
-            <Plane className="plane-wire" strokeWidth={1.2} />
+          <img
+               className="plane-wire"
+               s src="/Light_Logo_Rev1-removebg-preview.png"
+               alt=""
+               />
           </div>
           <div className="stats-grid">
             {stats.map(({ value, label }) => (
