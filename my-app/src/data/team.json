@@ -17,10 +17,10 @@
       "role": "Treasurer",
       "text": "Fun Fact : She played the flute for 6-7 years",
       "photo": "/uploads/paris-theodosiou-1779604321542.webp",
-      "photoFit": "cover",
+      "photoFit": "center",
       "photoX": 50,
-      "photoY": 50,
-      "photoZoom": "1"
+      "photoY": 40,
+      "photoZoom": "0.8"
     },
     {
       "name": "Indra Talwar",
@@ -28,7 +28,7 @@
       "role": "Secretary",
       "text": "Fun Fact : She fly small planes",
       "photo": "/uploads/indra-talwar-1779556156087.jpg",
-      "photoFit": "cover",
+      "photoFit": "contain",
       "photoX": 50,
       "photoY": 50,
       "photoZoom": "1"
@@ -42,7 +42,7 @@
       "photoFit": "cover",
       "photoX": 50,
       "photoY": 50,
-      "photoZoom": "1"
+      "photoZoom": "1.5"
     },
     {
       "name": "Sarujan Srikaran",

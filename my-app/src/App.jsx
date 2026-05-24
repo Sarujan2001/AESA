@@ -578,12 +578,11 @@ function TeamMemberBlock({ member }) {
         )}
       </div>
       <span className="team-role-badge">
-        <BriefcaseBusiness size={12} />
-        {category}
+       <BriefcaseBusiness size={12} />
+       {role}
       </span>
       <h3>{name}</h3>
       {pronouns && <small className="team-pronouns">{pronouns}</small>}
-      <p>{role}</p>
     </article>
   );
 }
