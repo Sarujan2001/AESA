@@ -301,10 +301,12 @@ footer button:hover {
 
 .editorial-hero {
   position: relative;
-  width: min(1680px, calc(100% - 32px));
+  width: 100%;
   margin-top: 0;
+  padding-right: max(18px, calc((100vw - 1120px) / 2));
+  padding-left: max(18px, calc((100vw - 1120px) / 2));
   padding-top: clamp(118px, 14vw, 190px);
-  background: var(--white);
+  background: transparent;
 }
 
 .hero {
@@ -1235,7 +1237,7 @@ footer button:hover {
   }
 
   .editorial-hero {
-    width: min(1120px, calc(100% - 32px));
+    width: 100%;
   }
 
   .mission-card {
@@ -1313,6 +1315,12 @@ footer button:hover {
 
   .hero {
     padding-top: 56px;
+  }
+
+  .editorial-hero {
+    width: 100%;
+    padding-right: 14px;
+    padding-left: 14px;
   }
 
   h1 {
