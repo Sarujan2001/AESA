@@ -35,6 +35,10 @@
                          "target":  "past"
                      },
                      {
+                         "label":  "Merch",
+                         "target":  "merch"
+                     },
+                     {
                          "label":  "Join Us",
                          "target":  "join"
                      },

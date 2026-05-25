@@ -22,6 +22,7 @@ import activitiesData from "./data/activities.json";
 import calendarData from "./data/calendar.json";
 import homeData from "./data/home.json";
 import joinData from "./data/join.json";
+import merchData from "./data/merch.json";
 import pastEventsData from "./data/pastEvents.json";
 import siteSettingsData from "./data/siteSettings.json";
 import sponsorsData from "./data/sponsors.json";
@@ -38,6 +39,7 @@ const { calendar } = calendarData;
 const { executiveTeam, generalCommittee } = teamData;
 const { pastEvents } = pastEventsData;
 const { benefits } = joinData;
+const { merch } = merchData;
 
 function toText(value, fallback = "") {
   // CMS tools can sometimes save simple list values as objects. Convert those
@@ -222,6 +224,7 @@ export default function App() {
         {page === "activities" && <ActivitiesPage navigate={navigate} />}
         {page === "team" && <TeamPage />}
         {page === "past" && <PastPage />}
+        {page === "merch" && <MerchPage />}
         {page === "join" && <JoinPage />}
       </main>
 
@@ -693,6 +696,60 @@ function PastPage() {
         </div>
       </section>
     </>
+  );
+}
+
+function MerchPage() {
+  const items = Array.isArray(merch.items) ? merch.items : [];
+
+  return (
+    <>
+      <PageHero eyebrow={merch.eyebrow} title={merch.title} text={merch.text} />
+      <section className="band merch-band">
+        <div className="merch-grid">
+          {items.map((item) => (
+            <MerchCard item={item} key={toText(item.name, "Merch item")} />
+          ))}
+        </div>
+        <div className="merch-order-note">
+          <Mail size={18} />
+          <span>{toText(merch.orderNote, "Contact AESA committee to order")}</span>
+          <a href={`mailto:${club.email}`}>{toText(club.email)}</a>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function MerchCard({ item }) {
+  const productName = toText(item.name, "AESA merch");
+  const productImage = toText(item.image);
+
+  return (
+    <article className="merch-card">
+      <div className="merch-image">
+        {productImage ? <img src={productImage} alt={productName} /> : <span>{getInitials(productName)}</span>}
+      </div>
+      <div className="merch-card-body">
+        <span className="merch-status">{toText(item.status, "Coming soon")}</span>
+        <h3>{productName}</h3>
+        <p>{toText(item.description, "Merch details will be added soon.")}</p>
+        <dl className="merch-details">
+          <div>
+            <dt>Price</dt>
+            <dd>{toText(item.price, "Price TBC")}</dd>
+          </div>
+          <div>
+            <dt>Options</dt>
+            <dd>{toText(item.options, "Options TBC")}</dd>
+          </div>
+          <div>
+            <dt>Order</dt>
+            <dd>{toText(item.order, "Contact AESA committee to order")}</dd>
+          </div>
+        </dl>
+      </div>
+    </article>
   );
 }
 

@@ -776,7 +776,8 @@ h3 {
 
 .activity-grid,
 .team-grid,
-.past-grid {
+.past-grid,
+.merch-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
@@ -1062,6 +1063,115 @@ h3 {
   padding: 24px;
 }
 
+.merch-band {
+  display: grid;
+  gap: 22px;
+}
+
+.merch-card {
+  display: grid;
+  grid-template-rows: 220px 1fr;
+  min-height: 100%;
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--white);
+  border-radius: var(--radius);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.merch-card:hover {
+  background: #fee2e2;
+  transform: scale(1.02);
+}
+
+.merch-image {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--white);
+  background: var(--charcoal);
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.merch-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.merch-card-body {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 24px;
+}
+
+.merch-status {
+  display: inline-flex;
+  width: fit-content;
+  padding: 7px 10px;
+  color: var(--red);
+  background: #fee2e2;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.merch-card h3,
+.merch-card p,
+.merch-details {
+  margin: 0;
+}
+
+.merch-card p,
+.merch-details {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.merch-details {
+  display: grid;
+  gap: 10px;
+}
+
+.merch-details div {
+  display: grid;
+  gap: 2px;
+}
+
+.merch-details dt {
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.merch-details dd {
+  margin: 0;
+}
+
+.merch-order-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 18px;
+  color: var(--ink);
+  background: var(--white);
+  border-radius: var(--radius);
+  font-weight: 800;
+}
+
+.merch-order-note svg,
+.merch-order-note a {
+  color: var(--red);
+}
+
 .split-section {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(300px, 1.1fr);
@@ -1275,7 +1385,8 @@ footer button:hover {
 
   .activity-grid,
   .team-grid,
-  .past-grid {
+  .past-grid,
+  .merch-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1360,6 +1471,7 @@ footer button:hover {
   .team-grid,
   .team-member-grid,
   .past-grid,
+  .merch-grid,
   .stats-grid {
     grid-template-columns: 1fr;
   }
