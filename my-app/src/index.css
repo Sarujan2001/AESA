@@ -1172,6 +1172,14 @@ h3 {
   color: var(--red);
 }
 
+.merch-order-note a,
+.merch-order-link {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-weight: 900;
+}
+
 .split-section {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(300px, 1.1fr);

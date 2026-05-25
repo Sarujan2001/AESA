@@ -713,8 +713,10 @@ function MerchPage() {
         </div>
         <div className="merch-order-note">
           <Mail size={18} />
-          <span>{toText(merch.orderNote, "Contact AESA committee to order")}</span>
-          <a href={`mailto:${club.email}`}>{toText(club.email)}</a>
+          <span>{toText(merch.orderNote, "To buy AESA merch, visit the AESA Rubric page.")}</span>
+          <a href={club.socials.rubric} target="_blank" rel="noreferrer">
+            Open Rubric <ArrowRight size={16} />
+          </a>
         </div>
       </section>
     </>
@@ -745,7 +747,11 @@ function MerchCard({ item }) {
           </div>
           <div>
             <dt>Order</dt>
-            <dd>{toText(item.order, "Contact AESA committee to order")}</dd>
+            <dd>
+              <a className="merch-order-link" href={club.socials.rubric} target="_blank" rel="noreferrer">
+                {toText(item.order, "Buy through AESA Rubric")} <ArrowRight size={15} />
+              </a>
+            </dd>
           </div>
         </dl>
       </div>

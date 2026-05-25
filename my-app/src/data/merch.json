@@ -3,7 +3,7 @@
     "eyebrow": "Merch",
     "title": "AESA merch is coming soon",
     "text": "A simple display page for future AESA clothing, patches, stickers, and club items. Online payments are not handled on this website.",
-    "orderNote": "Contact AESA committee to order or ask about upcoming merch drops.",
+    "orderNote": "To buy AESA merch, visit the AESA Rubric page.",
     "items": [
       {
         "name": "AESA club shirt",
@@ -12,7 +12,7 @@
         "price": "Price TBC",
         "options": "Sizes TBC",
         "status": "Coming soon",
-        "order": "Contact AESA committee to order"
+        "order": "Buy through AESA Rubric"
       },
       {
         "name": "AESA sticker pack",
@@ -21,7 +21,7 @@
         "price": "Price TBC",
         "options": "Designs TBC",
         "status": "Coming soon",
-        "order": "Contact AESA committee to order"
+        "order": "Buy through AESA Rubric"
       },
       {
         "name": "AESA patch",
@@ -30,7 +30,7 @@
         "price": "Price TBC",
         "options": "Style TBC",
         "status": "Coming soon",
-        "order": "Contact AESA committee to order"
+        "order": "Buy through AESA Rubric"
       }
     ]
   }
