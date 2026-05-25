@@ -1,32 +1,34 @@
 {
   "merch": {
     "eyebrow": "Merch",
-    "title": "AESA merch is coming soon",
-    "text": "A simple display page for future AESA clothing, patches, stickers, and club items. Online payments are not handled on this website.",
+    "title": "AESA MERCH",
     "orderNote": "To buy AESA merch, visit the AESA Rubric page.",
     "items": [
       {
-        "name": "AESA club shirt",
-        "description": "Official AESA apparel placeholder. Add the final product photo and details when merch is confirmed.",
-        "price": "Price TBC",
-        "options": "Sizes TBC",
-        "status": "Coming soon",
+        "name": "AESA Launch Collection - Hoodie",
+        "image": "/uploads/0a850cf305f58548da09b205ce1f1f41.jpg",
+        "description": "Designed by our friends at Astilbe Studios, and manufactured by our partners Meridius Promotions. Grab a hoodie from our first ever merch drop!\nTermsMembers and attendees agree to abide by the RUSU Clubs Code of Conduct.",
+        "price": "$46.66",
+        "options": "S,M,L",
+        "status": "Available",
         "order": "Buy through AESA Rubric"
       },
       {
-        "name": "AESA club hoodie",
-        "description": "Placeholder",
-        "price": "Price TBC",
-        "options": "Designs TBC",
-        "status": "Coming soon",
+        "name": "AESA Launch Collection - Oversized Tee",
+        "image": "/uploads/f46014ddb567b7a8cd705ae5feb1f29f.jpg",
+        "description": "Description\n\nYou can't wear hoodies in the summer! \nTermsMembers and attendees agree to abide by the RUSU Clubs Code of Conduct.\n",
+        "price": "$21.02",
+        "options": "S,M,L",
+        "status": "Available",
         "order": "Buy through AESA Rubric"
       },
       {
-        "name": "AESA TShirts",
-        "description": "Placeholder",
-        "price": "Price TBC",
-        "options": "Style TBC",
-        "status": "Coming soon",
+        "name": "AESA Club Member Tee",
+        "image": "/uploads/8a136e14-4b53-4759-84f9-9479cc2905e5.jpeg",
+        "description": "Rep your club now with our new boxy fit club member tee!\nTermsMembers and attendees agree to abide by the RUSU Clubs Code of Conduct.",
+        "price": "$21.02",
+        "options": "S,M,L",
+        "status": "Available",
         "order": "Buy through AESA Rubric"
       }
     ]
