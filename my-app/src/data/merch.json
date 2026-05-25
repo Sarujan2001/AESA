@@ -7,7 +7,6 @@
     "items": [
       {
         "name": "AESA club shirt",
-        "image": "",
         "description": "Official AESA apparel placeholder. Add the final product photo and details when merch is confirmed.",
         "price": "Price TBC",
         "options": "Sizes TBC",
@@ -15,18 +14,16 @@
         "order": "Buy through AESA Rubric"
       },
       {
-        "name": "AESA sticker pack",
-        "image": "",
-        "description": "Placeholder for future sticker or small merch items.",
+        "name": "AESA club hoodie",
+        "description": "Placeholder",
         "price": "Price TBC",
         "options": "Designs TBC",
         "status": "Coming soon",
         "order": "Buy through AESA Rubric"
       },
       {
-        "name": "AESA patch",
-        "image": "",
-        "description": "Placeholder for a future club patch, badge, or bag accessory.",
+        "name": "AESA TShirts",
+        "description": "Placeholder",
         "price": "Price TBC",
         "options": "Style TBC",
         "status": "Coming soon",
