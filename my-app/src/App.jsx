@@ -119,6 +119,10 @@ function PageHero({ eyebrow, title, text, action, onAction }) {
 
 function getNextEvent(events) {
   // Finds the next scheduled calendar item when the optional isoDate field exists.
+  if (!Array.isArray(events) || events.length === 0) {
+    return null;
+  }
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
