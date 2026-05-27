@@ -322,6 +322,11 @@ footer button:hover {
   padding: clamp(54px, 7vw, 96px) 0 70px;
 }
 
+.hero.editorial-hero {
+  padding-left: clamp(28px, 4vw, 64px);
+  padding-right: clamp(28px, 4vw, 64px);
+}
+
 @supports (animation-timeline: view()) {
   .welcome-copy h1 span {
     animation: aesa-spread linear both;
@@ -575,6 +580,11 @@ h3 {
   width: 100%;
   padding-inline: max(18px, calc((100vw - 1120px) / 2));
   background: var(--soft);
+}
+
+.overview-section {
+  padding-left: clamp(28px, 4vw, 64px);
+  padding-right: clamp(28px, 4vw, 64px);
 }
 
 .split-overview {
