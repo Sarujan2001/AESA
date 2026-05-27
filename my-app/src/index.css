@@ -513,7 +513,7 @@ h3 {
   top: 50%;
   left: 50%;
   z-index: 2;
-  width: 350px;
+  width: 450px;
   height: 200px;
   color: var(--ink);
   transform: translate(-50%, -50%);
